@@ -48,14 +48,12 @@ if ($_POST['accio'] === 'registre') {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        //echo "mail <strong>$email</strong> existent<br>";
         $_SESSION['error_registre']     = "Aquest correu electrònic ja existeix.";
         $_SESSION['tab_actiu'] = 'registre';
         $_SESSION['form_data'] = ['email' => $email, 'username' => $usuari];
         header("Location: ../panell.php");
         exit;    
     } else {
-        //echo "mail <strong>$email</strong> lliure<br>";
         $sql = "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sss", $usuari, $email, $password_hash);
@@ -81,22 +79,24 @@ if ($_POST['accio'] === 'login') {
     $stmt->bind_param("s", $mailLogin);
     $stmt->execute();
     $result = $stmt->get_result();
-    if ($result->num_rows === 0) {
+    if ($result->num_rows === 0) { //si no existeix el mail a la base de dades
         $_SESSION['error_login'] = "Credencials incorrectes.";
         $_SESSION['tab_actiu']   = 'login';
         header("Location: ../panell.php");
         exit;
         //errorLoginGeneric();
-    } else {
-        //echo("email SI existeix");    
+    } else {  
         $row = $result->fetch_assoc();
-        if (password_verify($passLogin, $row['password_hash'])) {
+        if (password_verify($passLogin, $row['password_hash'])) { //aqui entrem si el login és correcte
             $_SESSION['usuari_id']  = $row['id'];
             $_SESSION['nom_usuari'] = $row['username'];
             $_SESSION['email']      = $row['email'];
+            $stmt = $conn->prepare ("UPDATE users SET last_login = NOW() WHERE id = ?"); //actualitzem la data d'accés per mostrar última connexió.
+            $stmt->bind_param("i", $_SESSION['usuari_id']);
+            $stmt->execute();
             header("Location: ../panell.php");
             exit;
-        } else {
+        } else { //si el mail existeix pero no coincideix la contrasenya
             $_SESSION['error_login'] = "Credencials incorrectes.";
             $_SESSION['tab_actiu']   = 'login';
             header("Location: ../panell.php");
@@ -105,6 +105,4 @@ if ($_POST['accio'] === 'login') {
     }
     $stmt->close();
 }
-    
-    //echo("<br><strong>Usuari:</strong> $usuari <br><strong>Mail:</strong> $email <br><strong>Pass1: </strong>$pass1 <br><strong>Pass2: </strong>$pass2 <br><strong>Pass hash:</strong> $password_hash") ;
 ?>
