@@ -1,0 +1,17 @@
+# Config local (IMPORTANT)
+.vscode/
+sftp.json
+
+# Credencials
+connexio.php
+includes/connexio.php
+
+# Sistema
+desktop.ini
+*.log
+
+# Opcional (si tens)
+.env
+
+# receptor de les dades arduino
+receptor-dades.php
