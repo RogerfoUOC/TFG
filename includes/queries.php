@@ -1,5 +1,5 @@
 <?php
-
+// TODO⌛: passar queries de variables a funcions + statements
 /* ###################################### CONSULTES INDEX.PHP ###################################### */
 /* -- Consulta últims registres:
         - trobem els IDs més recents de cada ubicació
@@ -129,5 +129,14 @@ $dadesExterior = "SELECT
     ) x ON DATE_FORMAT(s.reading_time, '%H') = x.hora
       AND s.reading_time = x.max_time
     ORDER BY hora";
-?>
 
+    function getUserCreatedAt($conn, $user_id) {
+        $stmt = $conn->prepare("SELECT username, email, created_at FROM users WHERE id = ?");
+        
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        
+        return $stmt->get_result()->fetch_assoc();
+    }
+
+?>

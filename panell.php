@@ -2,6 +2,7 @@
     $page = 'panell';
     include 'includes/header.php'; 
     include 'includes/connexio.php';
+    include 'includes/queries.php';
     session_start();
     $usuari_validat     = isset($_SESSION['usuari_id']);
     $userName           = isset($_SESSION['nom_usuari']) ? $_SESSION['nom_usuari'] : '';    
@@ -22,6 +23,7 @@
         <div class="panell">
             <h1>Panell</h1>
             <p>HOLA! <?= htmlspecialchars($userName) . ' (' . htmlspecialchars($userMail). ')' ?></p>
+            <p><strong>Registrat el: </strong><?= date("d/m/Y H:i", strtotime($user['created_at'])) ?></p>
             <a href="logout.php" class="btn-logout">Tancar sessió</a>
         </div>
     <?php else: ?>
