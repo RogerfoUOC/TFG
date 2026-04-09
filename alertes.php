@@ -21,7 +21,7 @@
             <a href="logout.php" class="btn-logout">Tancar sessió</a>
         </div>
     <?php else: 
-            $_SESSION['error_session'] = "Per veure les alertes t'has de validar.";
+            $_SESSION['error_session'] = "Per gestionar les alertes t'has de validar.";
             header("Location: panell.php");
             exit;
      endif; ?>  
