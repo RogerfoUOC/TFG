@@ -10,8 +10,5 @@ includes/connexio.php
 desktop.ini
 *.log
 
-# Opcional (si tens)
-.env
-
 # receptor de les dades arduino
 receptor-dades.php
