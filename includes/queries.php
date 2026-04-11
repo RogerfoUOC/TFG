@@ -130,13 +130,20 @@ $dadesExterior = "SELECT
       AND s.reading_time = x.max_time
     ORDER BY hora";
 
-    function getUserCreatedAt($conn, $user_id) {
-        $stmt = $conn->prepare("SELECT username, email, created_at FROM users WHERE id = ?");
-        
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        
-        return $stmt->get_result()->fetch_assoc();
+/* ###################################### CONSULTES USUARI ###################################### */
+function dataRegistreUsuari($conn, $userId) {
+    if (!$userId) return null;
+
+    $query = "SELECT created_at FROM users WHERE id = $userId";
+    $result = $conn->query($query);
+
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['created_at'];
     }
+
+    return null;
+}
+
 
 ?>
