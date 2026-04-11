@@ -117,6 +117,12 @@ nav ul li.active a {
     color:#fff;
 }
 
+*:hover {
+    text-decoration: none;
+}
+
+
+
 /* -- MENÚ SUPERIOR -- */
 .site-header {
     position: fixed; /* sempre visible */
@@ -253,25 +259,6 @@ fieldset {
 .fastData button:hover {
     background: #dcdcdc;
 }
-
-/* botó d'enviament dels formularis */
-.formulariFiltre button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    background: #4a8edf;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.2s;
-}
-
-.formulariFiltre button[type="submit"]:hover {
-    background: #3b78c0;
-}
-
 
 /* -- TAULA -- */
 .table-wrapper {
@@ -863,22 +850,12 @@ a:hover {
         display: block;
     }
 
-    .btn-submit {
+
+    .panell-botons form {
+        display: block;
         width: 100%;
-        padding: 0.8rem;
-        background: #2e4f94;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        margin-top: 0.5rem;
-        transition: background 0.2s;
     }
-    .btn-submit:hover {
-        background: #102e6e;
-    }
+    .btn-submit,
     .btn-alerta,
     .btn-logout {
         margin-top: 10px;
@@ -888,6 +865,7 @@ a:hover {
         border-radius: 6px;
         font-size: 14px;
         text-decoration: none;
+        font-weight: 600;
         background: transparent;
         cursor: pointer;
         transition: background 0.15s ease, color 0.15s ease;
@@ -901,9 +879,11 @@ a:hover {
     .btn-alerta:hover {
         background: #e8f5e9;
         color: #1b5e20;
+        text-decoration: none;
     }
 
     .btn-logout {
+        width: 100%;
         border: 1.5px solid #e57373;
         color: #c62828;
     }
@@ -911,6 +891,15 @@ a:hover {
     .btn-logout:hover {
         background: #ffebee;
         color: #b71c1c;
+    }
+    .btn-submit {
+        width: 100%;
+        border: 1.5px solid #102e6e;
+        color: #102e6e;
+    }
+     .btn-submit:hover {
+        background: #ebebff;
+        color: #102e6e;
     }
     .panell-botons {
         display: flex;

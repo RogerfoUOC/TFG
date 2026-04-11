@@ -62,7 +62,7 @@
                         <button type="button" onclick="getAhir()">Ahir</button>
                     </div>
                 </div>
-                <button type="submit">Veure logs</button>
+                <button type="submit" class="btn-submit">Veure logs</button>
             </fieldset>
         </form>
         <!-- MOSTRAR CONTINGUT -->
