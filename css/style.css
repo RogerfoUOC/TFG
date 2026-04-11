@@ -879,37 +879,45 @@ a:hover {
     .btn-submit:hover {
         background: #102e6e;
     }
+    .btn-alerta,
     .btn-logout {
-        display: inline-block;
-        margin-top: 1rem;
-        padding: 0.6rem 1.2rem;
-        border: 1px solid #de2c1c;
-        background: #fff;
-        color: #de2c1c;
+        margin-top: 10px;
+        display: block;
+        text-align: center;
+        padding: 9px 16px;
         border-radius: 6px;
+        font-size: 14px;
         text-decoration: none;
-        font-weight: 600;
-    }
-    .btn-logout:hover {
-        background: #de2c1c;
-        color: #fff;
-        text-decoration: none;
-    }
-    .btn-alerta {
-        display: inline-block;
-        margin-top: 1rem;
-        padding: 0.6rem 1.2rem;
-        border: 1px solid #71ff7f;
         background: transparent;
-        color: #71ff7f;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s ease, color 0.15s ease;
     }
+
+    .btn-alerta {
+        border: 1.5px solid #4caf50;
+        color: #2e7d32;
+    }
+
     .btn-alerta:hover {
-        background: #71ff7f;
-        color: #fff;
-        text-decoration: none;
+        background: #e8f5e9;
+        color: #1b5e20;
+    }
+
+    .btn-logout {
+        border: 1.5px solid #e57373;
+        color: #c62828;
+    }
+
+    .btn-logout:hover {
+        background: #ffebee;
+        color: #b71c1c;
+    }
+    .panell-botons {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        max-width: 160px;
+        text-align: center;
     }
     .error-box {
         background-color: #ffdede;
