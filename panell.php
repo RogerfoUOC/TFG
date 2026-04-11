@@ -26,8 +26,12 @@
             <h1>Panell</h1>
             <p>HOLA! <?= htmlspecialchars($userName) . ' (' . htmlspecialchars($userMail). ')' ?></p>
             <p><strong>Data d'alta: </strong><?= $dataRegistre ?></p>
-            <a href="#" class="btn-alerta">Crea una alerta</a>
-            <a href="logout.php" class="btn-logout">Tancar sessió</a>
+
+            <div class="panell-botons">
+                <a href="#" class="btn-alerta">Crear alerta</a>
+                <a href="logout.php" class="btn-logout">Desconnectar</a>
+            </div>
+
         </div>
     <?php else: ?>
         <div class="capa-auth">
