@@ -82,7 +82,7 @@ $conn->close();
                         <button type="button" onclick="getAhir()">Ahir</button>
                     </div>
                 </div>          
-                <button type="submit">Mostrar dades</button>
+                <button type="submit" class="btn-submit">Mostrar dades</button>
             </fieldset>
         </form>
 

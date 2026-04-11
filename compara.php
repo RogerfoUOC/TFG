@@ -90,7 +90,7 @@ $conn->close();
                 <div class="fastData">
                     <button type="button" onclick="setDatesRapides()">Avui i Ahir</button>
                 </div>
-                <button type="submit">Comparar dades</button>
+                <button type="submit" class="btn-submit">Comparar dades</button>
             </fieldset>
         </form>
         <!-- CAIXES DADES -->
