@@ -23,15 +23,7 @@
     </li>
   </ul>
 
-  <!-- Toggle tema -->
-  <button id="theme-toggle" class="theme-toggle" title="Canviar tema">
-    <span class="theme-toggle__track">
-      <span class="theme-toggle__thumb"></span>
-      <i class="fa-solid fa-sun  theme-icon theme-icon--sun"></i>
-      <i class="fa-solid fa-moon theme-icon theme-icon--moon"></i>
-    </span>
-    <span class="theme-toggle__label">Tema fosc</span>
-  </button>
+
 
   <!-- Botó tancar mòbil -->
   <button id="close-menu" class="close-btn">

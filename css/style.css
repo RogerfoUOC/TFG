@@ -895,6 +895,22 @@ a:hover {
         color: #fff;
         text-decoration: none;
     }
+    .btn-alerta {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.6rem 1.2rem;
+        border: 1px solid #71ff7f;
+        background: transparent;
+        color: #71ff7f;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .btn-alerta:hover {
+        background: #71ff7f;
+        color: #fff;
+        text-decoration: none;
+    }
     .error-box {
         background-color: #ffdede;
         border: 1px solid #ff5c5c;
