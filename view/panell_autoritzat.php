@@ -31,7 +31,7 @@
 
         <div class="fila">
             <span class="label">Última alerta:</span>
-            <span class="valor">10-04-2026 15:32:50</span>
+            <span class="valor">10/04/2026 15:32:50</span>
         </div>
 
         <div class="fila">

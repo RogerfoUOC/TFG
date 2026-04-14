@@ -139,7 +139,9 @@ function dataRegistreUsuari($conn, $userId) {
 
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        return $row['created_at'];
+
+        $data = new DateTime($row['created_at']);
+        return $data->format('d/m/Y H:i:s');
     }
 
     return null;
