@@ -88,7 +88,7 @@ $conn->close();
 <div class="main-container">
     <?php include 'includes/menu.php'; ?>
     <div class="content">
-        <h1>Dades actuals</h1>
+        <h1>Dades actuals.</h1>
         <div id="dia">
         <?= $diaSeleccionat ?>
         </div>
