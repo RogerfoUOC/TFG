@@ -3,13 +3,14 @@
     <div class="card-usuari">
         <h2><?=htmlspecialchars($userName) ?></h2>
 
-        <div class="fila">
+        <div class="fila cont-auth">
             <span class="label">Correu electrònic:</span>
-            <span class="valor"><?=htmlspecialchars($userMail) ?></span>
+            <span id="span-user-mail" class="valor"><?=htmlspecialchars($userMail) ?></span>
             <button id="btn-editar-mail" class="btn-editar" title="Editar correu">
                 <i class="fa-solid fa-pen"></i>
             </button>            
-            <button id="btn-guardar-mail" class="btn-guardar" title="Guardar correu">
+            <input type="text" id="input-user-pass" class=" ocult" value="<?= htmlspecialchars($userMail) ?>">
+            <button id="btn-guardar-mail" class="btn-guardar ocult" title="Guardar correu">
                 <i class="fas fa-save"></i>
             </button>
         </div>
@@ -17,7 +18,7 @@
         <div class="fila">
             <span class="label">Contrasenya:</span>
             <span class="valor">************</span>
-            <a href="editar_password.php" class="btn-editar" title="Editar contrasenya">
+            <a href="#editar_password.php" class="btn-editar" title="Editar contrasenya">
                 <i class="fa-solid fa-pen"></i>
             </a>
         </div>
@@ -52,18 +53,18 @@
 
 <style>
     .card-usuari {
-        max-width: 400px;
+        max-width: 420px;
         padding: 20px;
     }
 
     /* Files label + valor */
     .fila {
         display: grid;
-        grid-template-columns: 1fr auto 30px; /* reserva espai icona */
+        grid-template-columns: 1fr auto 35px; /* reserva espai icona */
         align-items: center;
         gap: 10px;
         margin-bottom: 10px;
-        line-height: 2rem;
+        line-height: 2.5rem;
     }
 
     /* Etiquetes */
@@ -102,4 +103,46 @@
         text-decoration: none;
     }
 
+
+
+    .btn-editar,
+    .btn-guardar {
+        background-color: #e5e7eb; /* gris clar */
+        border: none;
+        border-radius: 8px;
+        padding: 8px;
+        cursor: pointer;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 35px;
+        height: 35px;
+
+        transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-editar i,
+    .btn-guardar i {
+        font-size: 14px;
+        color: #111827; /* gris fosc */
+    }
+
+    /* Hover */
+    .btn-editar:hover,
+    .btn-guardar:hover {
+        background-color: #d1d5db;
+    }
+
+    /* Click */
+    .btn-editar:active,
+    .btn-guardar:active {
+        transform: scale(0.95);
+    }
+
+       .ocult  {
+        display: none;
+    }
 </style>
+<script defer src="js/panell.js"></script>
