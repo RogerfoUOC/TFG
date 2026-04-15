@@ -6,9 +6,12 @@
         <div class="fila">
             <span class="label">Correu electrònic:</span>
             <span class="valor"><?=htmlspecialchars($userMail) ?></span>
-            <a href="editar_mail.php" class="btn-editar" title="Editar correu">
+            <button id="btn-editar-mail" class="btn-editar" title="Editar correu">
                 <i class="fa-solid fa-pen"></i>
-            </a>
+            </button>            
+            <button id="btn-guardar-mail" class="btn-guardar" title="Guardar correu">
+                <i class="fas fa-save"></i>
+            </button>
         </div>
 
         <div class="fila">

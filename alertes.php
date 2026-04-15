@@ -17,8 +17,8 @@
         <!-- Autoritzat -->
         <div class="panell">
             <h1>Alertes</h1>
-            <p>HOLA! <?= htmlspecialchars($userName) . ' (' . htmlspecialchars($userMail). ')' ?></p>
-            <a href="logout.php" class="btn-logout">Tancar sessió</a>
+            <p>Hola <?= htmlspecialchars($userName)  ?>!</p>
+            
         </div>
     <?php else: 
             $_SESSION['error_session'] = "Per gestionar les alertes t'has de validar.";
