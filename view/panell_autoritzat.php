@@ -13,14 +13,17 @@
             <button id="btn-guardar-mail" class="btn-guardar ocult" title="Guardar correu">
                 <i class="fas fa-save"></i>
             </button>
+            <button id="btn-cancelar-mail" class="btn-cancelar ocult" title="Cancelar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
 
         <div class="fila">
             <span class="label">Contrasenya:</span>
             <span class="valor">************</span>
-            <a href="#editar_password.php" class="btn-editar" title="Editar contrasenya">
+            <button id="btn-editar-pass" class="btn-editar" title="Editar correu">
                 <i class="fa-solid fa-pen"></i>
-            </a>
+            </button> 
         </div>
 
         <div class="fila">
@@ -47,25 +50,31 @@
             <form action="logout.php" method="POST">
                 <button type="submit" class="btn-logout">Desconnectar</button>
             </form>
-        </div>
+        </div>       
     </div>
 </div>
 
 <style>
     .card-usuari {
-        max-width: 420px;
+        max-width: 500px;
         padding: 20px;
     }
 
     /* Files label + valor */
     .fila {
         display: grid;
-        grid-template-columns: 1fr auto 35px; /* reserva espai icona */
+        grid-template-columns: 1fr auto 35px 35px; /* reserva espai icona */
         align-items: center;
         gap: 10px;
         margin-bottom: 10px;
         line-height: 2.5rem;
     }
+
+    .fila.cont-auth {
+        max-width: inherit;
+    }
+
+
 
     /* Etiquetes */
     .label {
@@ -106,38 +115,50 @@
 
 
     .btn-editar,
-    .btn-guardar {
+    .btn-guardar,
+    .btn-cancelar {
         background-color: #e5e7eb; /* gris clar */
         border: none;
         border-radius: 8px;
         padding: 8px;
         cursor: pointer;
-
         display: inline-flex;
         align-items: center;
         justify-content: center;
-
         width: 35px;
         height: 35px;
-
         transition: background-color 0.2s ease, transform 0.1s ease;
     }
-
+    .btn-guardar {
+        border:1px solid green;
+    }
+    .btn-cancelar {
+        border:1px solid red;
+    }
+    
     .btn-editar i,
-    .btn-guardar i {
+    .btn-guardar i,
+    .btn-cancelar i {
         font-size: 14px;
         color: #111827; /* gris fosc */
     }
-
+    
     /* Hover */
-    .btn-editar:hover,
-    .btn-guardar:hover {
-        background-color: #d1d5db;
+    .btn-editar:hover {
+        background-color: #ebebeb;
     }
+    .btn-guardar:hover {
+        background-color: #e8f5e9;
+    }
+    .btn-cancelar:hover {
+        background-color: #ffebee;
+    }
+    
 
     /* Click */
     .btn-editar:active,
-    .btn-guardar:active {
+    .btn-guardar:active,
+    .btn-cancelar:active {
         transform: scale(0.95);
     }
 
