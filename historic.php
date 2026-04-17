@@ -21,7 +21,7 @@ if ($diaSeleccionat1 !== '') {
 
 // executem les consultes
 $resultInterior     = getDadesInterior($conn, $diaConsulta1);
-$resultExterior     = $conn->query($dadesExterior);
+$resultExterior     = getDadesExterior($conn, $diaConsulta1);
 $resultatHistoric   = $conn->query($dadesHistoric1);
 
 
