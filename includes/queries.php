@@ -6,19 +6,24 @@
         - seleccionem les dades d'aquests IDs
         - ordenem sempre amb Interior primer
 */
-$ultimesDades = "SELECT location, 
-                value1 as temperatura,
-                value2 as humitat,
-                reading_time 
-                FROM SensorData 
-                WHERE id IN (
-                SELECT MAX(id) FROM SensorData 
-                WHERE location IN ('Interior', 'Exterior') 
-                GROUP BY location
-            )
-            ORDER BY location = 'Interior' DESC ";
+function getUltimesDades($conn) {
+    $sql = "SELECT location, 
+                    value1 as temperatura,
+                    value2 as humitat,
+                    reading_time 
+                    FROM SensorData 
+                    WHERE id IN (
+                    SELECT MAX(id) FROM SensorData 
+                    WHERE location IN ('Interior', 'Exterior') 
+                    GROUP BY location
+                )
+                ORDER BY location = 'Interior' DESC ";
+    return $conn->query($sql);
+}
+            
 /* Consulta per calcular els valors minims màxims i mitjanes */
-$dadesDiaries = "SELECT location,
+function getDadesDiaries($conn) {
+    $sql = "SELECT location,
                     MIN(CAST(value1 AS DECIMAL(10, 2))) as temp_minima,
                     MAX(CAST(value1 AS DECIMAL(10, 2))) as temp_maxima,
                     AVG(CAST(value1 AS DECIMAL(10, 2))) as temp_mitjana,
@@ -30,24 +35,32 @@ $dadesDiaries = "SELECT location,
                     AND DATE(reading_time) = CURDATE()
                 GROUP BY location
                 ORDER BY location = 'Interior' DESC";
+    return $conn->query($sql);
+}
 
 /* Últim registre INTERIOR */
-$sqlUltimaLecturaInterior = "SELECT reading_time
-    FROM SensorData
-    WHERE location = 'Interior'
-    ORDER BY id DESC
-    LIMIT 1";
+function getUltimaLecturaInterior($conn) {
+    $sql = "SELECT reading_time
+        FROM SensorData
+        WHERE location = 'Interior'
+        ORDER BY id DESC
+        LIMIT 1";
+    return $conn->query($sql);
+}
 
 /* Últim registre EXTERIOR */
-$sqlUltimaLecturaExterior = "SELECT reading_time
-    FROM SensorData
-    WHERE location = 'Exterior'
-    ORDER BY id DESC
-    LIMIT 1";
+function getUltimaLecturaExterior($conn) {
+    $sql = "SELECT reading_time
+        FROM SensorData
+        WHERE location = 'Exterior'
+        ORDER BY id DESC
+        LIMIT 1";
+    return $conn->query($sql);
+}
 
 /* ###################################### CONSULTES HISTORIC.php ###################################### */
 /* -- Determinar el dia a consultar -- */
-$dadesHistoric1 = "SELECT location,
+$dadesHistoric1 = "SELECT location, 
                         MIN(CAST(value1 AS DECIMAL(10, 2))) as temp_minima,
                         MAX(CAST(value1 AS DECIMAL(10, 2))) as temp_maxima,
                         AVG(CAST(value1 AS DECIMAL(10, 2))) as temp_mitjana,
@@ -95,40 +108,59 @@ $filtreLog .= " ORDER BY id DESC";
 $diaConsulta1 = isset($diaSeleccionat1) ? $diaSeleccionat1 : date('Y-m-d');
 
 /* -- Consultes per INTERIOR -- */
-$dadesInterior = "SELECT 
+function getDadesInterior($conn, $diaConsulta1) {
+    $sql = "SELECT 
         DATE_FORMAT(s.reading_time, '%H') AS hora,
         s.value1 AS temperatura,
         s.value2 AS humitat
-    FROM SensorData s
-    INNER JOIN (
-        SELECT 
-            DATE_FORMAT(reading_time, '%H') AS hora,
-            MAX(reading_time) AS max_time
-        FROM SensorData
-        WHERE location = 'Interior'
-          AND DATE(reading_time) = '$diaConsulta1'
-        GROUP BY hora
-    ) x ON DATE_FORMAT(s.reading_time, '%H') = x.hora
-      AND s.reading_time = x.max_time
-    ORDER BY hora";
+            FROM SensorData s
+            INNER JOIN (
+                SELECT 
+                    DATE_FORMAT(reading_time, '%H') AS hora,
+                    MAX(reading_time) AS max_time
+                FROM SensorData
+                WHERE location = 'Interior'
+                AND DATE(reading_time) = ?
+                GROUP BY hora
+            ) x 
+            ON DATE_FORMAT(s.reading_time, '%H') = x.hora
+            AND s.reading_time = x.max_time
+            ORDER BY hora";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $diaConsulta1);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    return $result;
+}
 
 /* -- Consultes per EXTERIOR -- */
-$dadesExterior = "SELECT 
+function getDadesExterior($conn, $diaConsulta1) {
+    $sql = "SELECT 
     DATE_FORMAT(s.reading_time, '%H') AS hora,
         s.value1 AS temperatura,
         s.value2 AS humitat
-    FROM SensorData s
-    INNER JOIN (
-        SELECT 
-            DATE_FORMAT(reading_time, '%H') AS hora,
-            MAX(reading_time) AS max_time
-        FROM SensorData
-        WHERE location = 'Exterior'
-          AND DATE(reading_time) = '$diaConsulta1'
-        GROUP BY hora
-    ) x ON DATE_FORMAT(s.reading_time, '%H') = x.hora
-      AND s.reading_time = x.max_time
-    ORDER BY hora";
+        FROM SensorData s
+        INNER JOIN (
+            SELECT 
+                DATE_FORMAT(reading_time, '%H') AS hora,
+                MAX(reading_time) AS max_time
+            FROM SensorData
+            WHERE location = 'Exterior'
+            AND DATE(reading_time) = ?
+            GROUP BY hora
+        ) x ON DATE_FORMAT(s.reading_time, '%H') = x.hora
+        AND s.reading_time = x.max_time
+        ORDER BY hora";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $diaConsulta1);  
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    return $result;
+}
+
+
 
 /* ###################################### CONSULTES USUARI ###################################### */
 function dataRegistreUsuari($conn, $userId) {
@@ -143,7 +175,6 @@ function dataRegistreUsuari($conn, $userId) {
         $data = new DateTime($row['created_at']);
         return $data->format('d/m/Y H:i:s');
     }
-
     return null;
 }
 

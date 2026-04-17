@@ -11,16 +11,16 @@ $diaSeleccionat = date('d/m/Y');
 include 'includes/queries.php';
 
 // executem les consultes
-$resultUltimesDades = $conn->query($ultimesDades);
-$resultatDiaris     = $conn->query($dadesDiaries);
-$resultInterior     = $conn->query($dadesInterior);
-$resultExterior     = $conn->query($dadesExterior);
-$resultatUltimaLecturaInterior = $conn->query($sqlUltimaLecturaInterior );
-$resultatUltimaLecturaExterior = $conn->query($sqlUltimaLecturaExterior);
+$ultimesDades           = getUltimesDades($conn);
+$dadesDiaries           = getDadesDiaries($conn);   
+$resultInterior         = getDadesInterior($conn, $diaConsulta1);
+$resultExterior         = getDadesExterior($conn, $diaConsulta1);
+$ultimaLecturaInterior  = getUltimaLecturaInterior($conn);
+$ultimaLecturaExterior  = getUltimaLecturaExterior($conn);
 
 // obtenim el registre associatiu de l'última lectura
-$registreUltimaLecturaInterior = $resultatUltimaLecturaInterior -> fetch_assoc();
-$registreUltimaLecturaExterior = $resultatUltimaLecturaExterior -> fetch_assoc();
+$registreUltimaLecturaInterior = $ultimaLecturaInterior -> fetch_assoc();
+$registreUltimaLecturaExterior = $ultimaLecturaExterior -> fetch_assoc();
 
 // convertim la data de l'última lectura a objecte DateTime (o null si no existeix)
 $dataHoraUltimaInterior = $registreUltimaLecturaInterior ? new DateTime($registreUltimaLecturaInterior['reading_time']) : null;
@@ -52,7 +52,7 @@ $actuals = [
     "Exterior" => ["temp" => null, "hum" => null]
 ];
 
-while ($row = $resultUltimesDades->fetch_assoc()) {
+while ($row = $ultimesDades->fetch_assoc()) {
     $loc = $row["location"];
     $actuals[$loc]["temp"] = number_format($row["temperatura"], 1);
     $actuals[$loc]["hum"]  = round($row["humitat"]);
@@ -64,7 +64,7 @@ $stats = [
     "Exterior" => null
 ];
 
-while ($row = $resultatDiaris->fetch_assoc()) {
+while ($row = $dadesDiaries->fetch_assoc()) {
     $stats[$row["location"]] = $row;
 }
 
