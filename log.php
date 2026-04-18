@@ -21,7 +21,7 @@
     }
     
     // executem la consulta
-    $resultLogs = $conn->query($filtreLog);
+    $resultLogs = getResultLogs($conn, $filtreLocalitzacio, $diaSeleccionatLog);
 
 ?>
 <!-- MOSTRAR CONTINGUT -->
