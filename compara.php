@@ -20,8 +20,8 @@ if ($diaSeleccionat1 !== '' && $diaSeleccionat2 !== '') {
 }
 
 // executem les consultes
-$resultatDia1   = $conn->query($dadesHistoric1);
-$resultatDia2   = $conn->query($dadesHistoric2);
+$resultatDia1   = getDadesHistoric1($conn, $diaSeleccionat1);
+$resultatDia2   = getDadesHistoric2($conn, $diaSeleccionat2);
 
 /* --- LLEGIR ESTADÍSTIQUES DEL DIA 1 (min / max / avg) --- */
 

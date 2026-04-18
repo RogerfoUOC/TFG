@@ -60,31 +60,37 @@ function getUltimaLecturaExterior($conn) {
 
 /* ###################################### CONSULTES HISTORIC.php ###################################### */
 /* -- Determinar el dia a consultar -- */
-$dadesHistoric1 = "SELECT location, 
-                        MIN(CAST(value1 AS DECIMAL(10, 2))) as temp_minima,
-                        MAX(CAST(value1 AS DECIMAL(10, 2))) as temp_maxima,
-                        AVG(CAST(value1 AS DECIMAL(10, 2))) as temp_mitjana,
-                        MIN(CAST(value2 AS DECIMAL(10, 2))) as humitat_minima,
-                        MAX(CAST(value2 AS DECIMAL(10, 2))) as humitat_maxima,
-                        AVG(CAST(value2 AS DECIMAL(10, 2))) as humitat_mitjana
-                    FROM SensorData
-                    WHERE location IN ('Interior', 'Exterior')
-                        AND DATE(reading_time) = '$diaSeleccionat1'
-                    GROUP BY location
-                    ORDER BY location = 'Interior' DESC";
+ function getDadesHistoric1($conn, $diaSeleccionat1) {
+    $sql = "SELECT location, 
+            MIN(CAST(value1 AS DECIMAL(10, 2))) as temp_minima,
+            MAX(CAST(value1 AS DECIMAL(10, 2))) as temp_maxima,
+            AVG(CAST(value1 AS DECIMAL(10, 2))) as temp_mitjana,
+            MIN(CAST(value2 AS DECIMAL(10, 2))) as humitat_minima,
+            MAX(CAST(value2 AS DECIMAL(10, 2))) as humitat_maxima,
+            AVG(CAST(value2 AS DECIMAL(10, 2))) as humitat_mitjana
+        FROM SensorData
+        WHERE location IN ('Interior', 'Exterior')
+            AND DATE(reading_time) = '$diaSeleccionat1'
+        GROUP BY location
+        ORDER BY location = 'Interior' DESC";
+    return $conn->query($sql);
+}
 
-$dadesHistoric2 = "SELECT location,
-                        MIN(CAST(value1 AS DECIMAL(10, 2))) as temp_minima,
-                        MAX(CAST(value1 AS DECIMAL(10, 2))) as temp_maxima,
-                        AVG(CAST(value1 AS DECIMAL(10, 2))) as temp_mitjana,
-                        MIN(CAST(value2 AS DECIMAL(10, 2))) as humitat_minima,
-                        MAX(CAST(value2 AS DECIMAL(10, 2))) as humitat_maxima,
-                        AVG(CAST(value2 AS DECIMAL(10, 2))) as humitat_mitjana
-                    FROM SensorData
-                    WHERE location IN ('Interior', 'Exterior')
-                        AND DATE(reading_time) = '$diaSeleccionat2'
-                    GROUP BY location
-                    ORDER BY location = 'Interior' DESC";                    
+function getDadesHistoric2($conn, $diaSeleccionat2) {
+    $sql = "SELECT location,
+            MIN(CAST(value1 AS DECIMAL(10, 2))) as temp_minima,
+            MAX(CAST(value1 AS DECIMAL(10, 2))) as temp_maxima,
+            AVG(CAST(value1 AS DECIMAL(10, 2))) as temp_mitjana,
+            MIN(CAST(value2 AS DECIMAL(10, 2))) as humitat_minima,
+            MAX(CAST(value2 AS DECIMAL(10, 2))) as humitat_maxima,
+            AVG(CAST(value2 AS DECIMAL(10, 2))) as humitat_mitjana
+        FROM SensorData
+        WHERE location IN ('Interior', 'Exterior')
+            AND DATE(reading_time) = '$diaSeleccionat2'
+        GROUP BY location
+        ORDER BY location = 'Interior' DESC";
+    return $conn->query($sql);
+}
 
 /* ###################################### CONSULTA LOG ###################################### */
 
