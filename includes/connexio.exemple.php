@@ -1,15 +1,15 @@
 <?php
-// Exemple de connexió (sense credencials reals)
-$host = "localhost";
-$user = "user";
-$pass = "password";
-$db = "database";
+    $servername = "servedrname";
+    $dbname     = "dbname";
+    $username   = "username";
+    $password   = "password";
 
+	$conn = new mysqli($servername, $username, $password, $dbname);
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Error de connexió: " . $conn->connect_error);
-    }
-    //establim codificació de caràcters UTF-8
-    $conn->set_charset("utf8");
+	if ($conn->connect_error) {
+		die("Error de connexió amb la base de dades");
+	}
+
+	// charset modern
+	$conn->set_charset("utf8mb4");
 ?>

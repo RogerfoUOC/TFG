@@ -70,10 +70,15 @@ function getUltimaLecturaExterior($conn) {
             AVG(CAST(value2 AS DECIMAL(10, 2))) as humitat_mitjana
         FROM SensorData
         WHERE location IN ('Interior', 'Exterior')
-            AND DATE(reading_time) = '$diaSeleccionat1'
+            AND DATE(reading_time) = ?
         GROUP BY location
         ORDER BY location = 'Interior' DESC";
-    return $conn->query($sql);
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $diaSeleccionat1);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    return $result;
 }
 
 function getDadesHistoric2($conn, $diaSeleccionat2) {
@@ -86,27 +91,53 @@ function getDadesHistoric2($conn, $diaSeleccionat2) {
             AVG(CAST(value2 AS DECIMAL(10, 2))) as humitat_mitjana
         FROM SensorData
         WHERE location IN ('Interior', 'Exterior')
-            AND DATE(reading_time) = '$diaSeleccionat2'
+            AND DATE(reading_time) = ?
         GROUP BY location
         ORDER BY location = 'Interior' DESC";
-    return $conn->query($sql);
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $diaSeleccionat2);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    return $result;
 }
 
 /* ###################################### CONSULTA LOG ###################################### */
 
 /* -- Permet consultar dades segons el filtre del formulari -- */
-$filtreLog = "SELECT id, sensor, location, value1, value2, reading_time 
-        FROM SensorData";       
+function getResultLogs($conn, $filtreLocalitzacio, $diaSeleccionatLog) {
+     
     if ($filtreLocalitzacio == 'int') {
-        $filtreLog .= " WHERE location = 'Interior'";
-        $filtreLog .= " AND DATE(reading_time) = '$diaSeleccionatLog'";
+        $sql = "SELECT id, sensor, location, value1, value2, reading_time 
+            FROM SensorData
+            WHERE location = ?
+            AND DATE(reading_time) = ?
+            ORDER BY reading_time DESC";
+        $stmt = $conn->prepare($sql);
+        $location = 'Interior';
+        $stmt->bind_param("ss", $location, $diaSeleccionatLog);
     } elseif ($filtreLocalitzacio == 'ext') {
-        $filtreLog .= " WHERE location = 'Exterior'"; 
-        $filtreLog .= " AND DATE(reading_time) = '$diaSeleccionatLog'";
+        $sql = "SELECT id, sensor, location, value1, value2, reading_time 
+            FROM SensorData
+            WHERE location = ?
+            AND DATE(reading_time) = ?
+            ORDER BY reading_time DESC";
+        $stmt = $conn->prepare($sql);
+        $location = 'Exterior';
+        $stmt->bind_param("ss", $location, $diaSeleccionatLog);
     } else {
-        $filtreLog .= " WHERE DATE(reading_time) = '$diaSeleccionatLog'";
+        $sql = "SELECT id, sensor, location, value1, value2, reading_time 
+            FROM SensorData
+            WHERE DATE(reading_time) = ?
+            ORDER BY reading_time DESC";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $diaSeleccionatLog);
     }
-$filtreLog .= " ORDER BY id DESC";
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    return $result;
+}
 
 /* ###################################### CONSULTES CHART ###################################### */
 
@@ -172,8 +203,12 @@ function getDadesExterior($conn, $diaConsulta1) {
 function dataRegistreUsuari($conn, $userId) {
     if (!$userId) return null;
 
-    $query = "SELECT created_at FROM users WHERE id = $userId";
-    $result = $conn->query($query);
+    $query = "SELECT created_at FROM users WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
 
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
@@ -183,6 +218,4 @@ function dataRegistreUsuari($conn, $userId) {
     }
     return null;
 }
-
-
 ?>
