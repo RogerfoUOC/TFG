@@ -3,11 +3,12 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();
 include 'connexio.php';
+include 'functions.php';
 
 if (!isset($_POST['accio'])) {
     header("Location: ../panell.php");
     exit;
-    }
+}
     
 $passwordFormat = "/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':\"\\\\|,.<>\/?])[^\s]{8,}$/";
 
@@ -19,7 +20,7 @@ function errorRegistreGeneric() {
     exit;
 }
 
-    function errorLoginGeneric() {
+function errorLoginGeneric() {
     $_SESSION['error_login']     = "Error d'accés, torna-ho a intentar.";
     $_SESSION['tab_actiu'] = 'login';
     header("Location: ../panell.php");
@@ -41,13 +42,7 @@ if ($_POST['accio'] === 'registre') {
 
     $password_hash = password_hash($pass1, PASSWORD_DEFAULT);
 
-    $sql    = "SELECT id FROM users WHERE email = ?";
-    $stmt   = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
+    if (emailExisteix($conn, $email)) {
         $_SESSION['error_registre']     = "Aquest correu electrònic ja existeix.";
         $_SESSION['tab_actiu'] = 'registre';
         $_SESSION['form_data'] = ['email' => $email, 'username' => $usuari];
@@ -64,7 +59,6 @@ if ($_POST['accio'] === 'registre') {
         header("Location: ../panell.php");
         exit;
     }
-    $stmt->close();
 }
 
 if ($_POST['accio'] === 'login') {
@@ -103,6 +97,5 @@ if ($_POST['accio'] === 'login') {
             exit;
         }
     }
-    $stmt->close();
 }
 ?>
