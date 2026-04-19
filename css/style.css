@@ -916,6 +916,15 @@ a:hover {
         border-radius: 5px;
         text-align: center;
     }
+    .success-box {
+        background-color: #e8f5e9;   
+        border: 1px solid #4caf50;   
+        color: #1b5e20;              
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        text-align: center;
+    }
 
         /* ── Theme toggle ── */
     .theme-toggle {

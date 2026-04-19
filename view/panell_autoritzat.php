@@ -190,6 +190,7 @@ $errorEmail = $toastError !== null;
     .error-container {
         grid-column: 1 / -1; /* ocupa tota la fila */
     }
+    
     .toast {
         position: fixed;
         top: 20px;
