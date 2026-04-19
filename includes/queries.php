@@ -1,5 +1,4 @@
 <?php
-// TODO⌛: passar queries de variables a funcions + statements
 /* ###################################### CONSULTES INDEX.PHP ###################################### */
 /* -- Consulta últims registres:
         - trobem els IDs més recents de cada ubicació

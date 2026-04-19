@@ -17,56 +17,56 @@ include 'includes/queries.php';
 // comprovar si s'han triat dues dates per mostrar les dades
 if ($diaSeleccionat1 !== '' && $diaSeleccionat2 !== '') {
     $mostrarDades = true;
+    // executem les consultes
+    $resultatDia1   = getDadesHistoric1($conn, $diaSeleccionat1);
+    $resultatDia2   = getDadesHistoric2($conn, $diaSeleccionat2);
+    
+    /* --- LLEGIR ESTADÍSTIQUES DEL DIA 1 (min / max / avg) --- */
+    
+    $statsDia1 = [
+        "Interior" => null,
+        "Exterior" => null
+    ];
+    
+    while ($row = $resultatDia1->fetch_assoc()) {
+        $statsDia1[$row["location"]] = $row;
+    }
+    
+    /* --- CALCULAR DIFERÈNCIES INTERIOR - EXTERIOR DEL DIA 1--- */
+    $diferenciaMitjaTempDia1 = null;
+    $diferenciaMitjaHumDia1 = null;
+    
+    if (is_numeric($statsDia1["Interior"]["temp_mitjana"]) && is_numeric($statsDia1["Exterior"]["temp_mitjana"])) {
+        $diferenciaMitjaTempDia1 = $statsDia1["Interior"]["temp_mitjana"] - $statsDia1["Exterior"]["temp_mitjana"];
+    }
+    
+    if (is_numeric($statsDia1["Interior"]["humitat_mitjana"]) && is_numeric($statsDia1["Exterior"]["humitat_mitjana"])) {
+        $diferenciaMitjaHumDia1 = $statsDia1["Interior"]["humitat_mitjana"] - $statsDia1["Exterior"]["humitat_mitjana"];
+    }
+    
+    /* --- LLEGIR ESTADÍSTIQUES DEL DIA 2 (min / max / avg) --- */
+    
+    $statsDia2 = [
+        "Interior" => null,
+        "Exterior" => null
+    ];
+    
+    while ($row = $resultatDia2->fetch_assoc()) {
+        $statsDia2[$row["location"]] = $row;
+    }
+    /* --- CALCULAR DIFERÈNCIES INTERIOR - EXTERIOR DEL DIA 2--- */
+    $diferenciaMitjaTempDia2 = null;
+    $diferenciaMitjaHumDia2 = null;
+    
+    if (is_numeric($statsDia2["Interior"]["temp_mitjana"]) && is_numeric($statsDia2["Exterior"]["temp_mitjana"])) {
+        $diferenciaMitjaTempDia2 = $statsDia2["Interior"]["temp_mitjana"] - $statsDia2["Exterior"]["temp_mitjana"];
+    }
+    
+    if (is_numeric($statsDia2["Interior"]["humitat_mitjana"]) && is_numeric($statsDia2["Exterior"]["humitat_mitjana"])) {
+        $diferenciaMitjaHumDia2 = $statsDia2["Interior"]["humitat_mitjana"] - $statsDia2["Exterior"]["humitat_mitjana"];
+    }
 }
 
-// executem les consultes
-$resultatDia1   = getDadesHistoric1($conn, $diaSeleccionat1);
-$resultatDia2   = getDadesHistoric2($conn, $diaSeleccionat2);
-
-/* --- LLEGIR ESTADÍSTIQUES DEL DIA 1 (min / max / avg) --- */
-
-$statsDia1 = [
-    "Interior" => null,
-    "Exterior" => null
-];
-
-while ($row = $resultatDia1->fetch_assoc()) {
-    $statsDia1[$row["location"]] = $row;
-}
-
-/* --- CALCULAR DIFERÈNCIES INTERIOR - EXTERIOR DEL DIA 1--- */
-$diferenciaMitjaTempDia1 = null;
-$diferenciaMitjaHumDia1 = null;
-
-if (is_numeric($statsDia1["Interior"]["temp_mitjana"]) && is_numeric($statsDia1["Exterior"]["temp_mitjana"])) {
-    $diferenciaMitjaTempDia1 = $statsDia1["Interior"]["temp_mitjana"] - $statsDia1["Exterior"]["temp_mitjana"];
-}
-
-if (is_numeric($statsDia1["Interior"]["humitat_mitjana"]) && is_numeric($statsDia1["Exterior"]["humitat_mitjana"])) {
-    $diferenciaMitjaHumDia1 = $statsDia1["Interior"]["humitat_mitjana"] - $statsDia1["Exterior"]["humitat_mitjana"];
-}
-
-/* --- LLEGIR ESTADÍSTIQUES DEL DIA 2 (min / max / avg) --- */
-
-$statsDia2 = [
-    "Interior" => null,
-    "Exterior" => null
-];
-
-while ($row = $resultatDia2->fetch_assoc()) {
-    $statsDia2[$row["location"]] = $row;
-}
-/* --- CALCULAR DIFERÈNCIES INTERIOR - EXTERIOR DEL DIA 2--- */
-$diferenciaMitjaTempDia2 = null;
-$diferenciaMitjaHumDia2 = null;
-
-if (is_numeric($statsDia2["Interior"]["temp_mitjana"]) && is_numeric($statsDia2["Exterior"]["temp_mitjana"])) {
-    $diferenciaMitjaTempDia2 = $statsDia2["Interior"]["temp_mitjana"] - $statsDia2["Exterior"]["temp_mitjana"];
-}
-
-if (is_numeric($statsDia2["Interior"]["humitat_mitjana"]) && is_numeric($statsDia2["Exterior"]["humitat_mitjana"])) {
-    $diferenciaMitjaHumDia2 = $statsDia2["Interior"]["humitat_mitjana"] - $statsDia2["Exterior"]["humitat_mitjana"];
-}
 
 
 $conn->close();
