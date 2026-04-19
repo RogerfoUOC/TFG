@@ -40,24 +40,24 @@ $errorEmail = $toastError !== null;
         <div class="fila">
             <span class="label">Contrasenya:</span>
             <span class="valor">************</span>
-            <button id="btn-editar-pass" class="btn-editar" title="Editar correu">
+            <button id="btn-editar-pass" class="btn-editar" title="Editar contrasenya">
                 <i class="fa-solid fa-pen"></i>
             </button> 
         </div>
 
         <div class="fila">
             <span class="label">Alertes creades:</span>
-            <span class="valor">4</span>
+            <span class="valor">0</span>
         </div>
 
         <div class="fila">
             <span class="label">Alertes actives:</span>
-            <span class="valor">3</span>
+            <span class="valor">0</span>
         </div>
 
         <div class="fila">
             <span class="label">Última alerta:</span>
-            <span class="valor">10/04/2026 15:32:50</span>
+            <span class="valor">-</span>
         </div>
 
         <div class="fila">
@@ -73,6 +73,36 @@ $errorEmail = $toastError !== null;
     </div>
 </div>
 
+<div id="modal-pass" class="capa-modal">
+    <div class="modal-pass marc">
+        <h3>Canvi de contrasenya</h3>
+        <form method="POST" action="canviar_password.php" class="form-pass">
+            <div class="grup-form">
+                <label for="pass-actual">Contrasenya actual</label>
+                <input id="pass-actual" type="password" name="pass-actual" placeholder="••••••••" autocomplete="current-password">
+                <span id="show-pass-actual" class="sw-psw"><i class="fas fa-eye"></i></span>
+                <span id="hide-pass-actual" class="sw-psw ocult"><i class="fas fa-eye-slash"></i></span>
+            </div>
+            <div class="grup-form">
+                <label for="pass-nova">Nova contrasenya</label>
+                <input id="pass-nova" type="password" name="pass-nova" placeholder="••••••••" autocomplete="new-password">
+                <span id="show-pass-nova" class="sw-psw"><i class="fas fa-eye"></i></span>
+                <span id="hide-pass-nova" class="sw-psw ocult"><i class="fas fa-eye-slash"></i></span>
+            </div>
+            <div class="grup-form">
+                <label for="pass-confirm">Confirmar contrasenya</label>
+                <input id="pass-confirm" type="password" name="pass-confirm" placeholder="••••••••" autocomplete="new-password">
+                <span id="show-pass-confirm" class="sw-psw"><i class="fas fa-eye"></i></span>
+                <span id="hide-pass-confirm" class="sw-psw ocult" ><i class="fas fa-eye-slash"></i></span>
+            </div>
+            <div class="grup-btns">
+                <button type="submit" class="btn-submit">Canviar contrasenya</button>
+                <button type="button" id="btn-cancelar-pass" class="btn-cancel">Cancel·lar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <style>
     .card-usuari {
         max-width: 500px;
@@ -85,7 +115,6 @@ $errorEmail = $toastError !== null;
         grid-template-columns: 1fr auto 40px 40px; /* reserva espai icona */
         align-items: center;
         gap: 10px;
-        margin-bottom: 10px;
         line-height: 2.5rem;
     }
 
@@ -190,7 +219,7 @@ $errorEmail = $toastError !== null;
     .error-container {
         grid-column: 1 / -1; /* ocupa tota la fila */
     }
-    
+
     .toast {
         position: fixed;
         top: 20px;
@@ -202,6 +231,58 @@ $errorEmail = $toastError !== null;
         transition: opacity 0.5s ease;
     }
     
+/* -- MODAL CANVI PASS PANELL -- */
+
+
+
+.capa-modal {
+    position: fixed;           /* clau per sobre de tota la pàgina */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        background: rgba(0,0,0,0.5);  /* fons fosc */
+        
+        display: flex;
+        justify-content: center;   /* centrat horitzontal */
+        align-items: center;       /* centrat vertical */
+        
+        z-index: 9999;             /* per sobre de tot */
+        
+        /* ocult per defecte */
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+    }
+    
+    .capa-modal.actiu {
+        opacity: 1;
+        pointer-events: all;
+    }
+    
+    .modal-pass {
+        max-width: 300px;
+        padding: 2rem;
+        border-radius: 10px;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .grup-btns {
+        display: flex;
+        gap: 10px; /* opcional, separació */
+    }
+
+    .btn-submit {
+        flex: 3; /* ocupa 3 parts */
+    }
+
+    .btn-cancel {
+        flex: 1; /* ocupa 1 part */
+    }
+
 
 </style>
 <script defer src="js/validation.js"></script>

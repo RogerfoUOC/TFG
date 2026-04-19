@@ -33,8 +33,7 @@
     const tabInicial = "<?= $tab_actiu ?>";
 </script>
 <?php if (!$usuari_validat): ?>
-     <!-- evitem carregar la part de validació si ja estem validats -->
+    <!-- evitem carregar la part de validació si ja estem validats -->
     <script defer src="js/tabs.js"></script>
     <script defer src="js/auth.js"></script>
-   
 <?php endif; ?>

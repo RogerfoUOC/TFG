@@ -712,7 +712,8 @@ a:hover {
         max-width: 420px;
         overflow: hidden;
     }
-    .cont-auth input {
+    .cont-auth input,
+    .modal-pass input{
         width: 100%;
         padding: 0.65rem 0.9rem;
         border: 1px solid #ddd;
@@ -721,11 +722,14 @@ a:hover {
         box-sizing: border-box;
         transition: border-color 0.2s;
     }
-    .cont-auth input:focus {
+    .cont-auth input:focus,
+    .modal-pass input:focus{
         outline: none;
         border-color: #1a1a2e;          
     }
-    .cont-auth form{
+    .cont-auth form,
+    .modal-pass form
+    {
         margin-bottom: inherit;
     }
 
@@ -805,7 +809,7 @@ a:hover {
         color: #f93434;
         font-size: 0.9rem;
         text-align: start;
-        margin: 5px 0px;
+        margin: 0px;
     }
     .cont-auth input.input-error{
         border:1px solid #f93434;
@@ -856,7 +860,8 @@ a:hover {
     }
     .btn-submit,
     .btn-alerta,
-    .btn-logout {
+    .btn-logout,
+    .btn-cancel {
         margin-top: 10px;
         display: block;
         text-align: center;
@@ -881,13 +886,15 @@ a:hover {
         text-decoration: none;
     }
 
-    .btn-logout {
+    .btn-logout,
+    .btn-cancel{
         width: 100%;
         border: 1.5px solid #e57373;
         color: #c62828;
     }
 
-    .btn-logout:hover {
+    .btn-logout:hover,
+    .btn-cancel:hover {
         background: #ffebee;
         color: #b71c1c;
     }
@@ -926,75 +933,4 @@ a:hover {
         text-align: center;
     }
 
-        /* ── Theme toggle ── */
-    .theme-toggle {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: calc(100% - 32px);
-    margin: 12px 16px 16px;
-    padding: 8px 10px;
-    background: none;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    color: inherit;
-    font-family: inherit;
-    transition: background 0.2s;
-    }
-    .theme-toggle:hover {
-    background: rgba(128,128,128,0.12);
-    }
-
-    .theme-toggle__track {
-    position: relative;
-    width: 48px;
-    height: 26px;
-    background: #c5cfe0;
-    border-radius: 99px;
-    flex-shrink: 0;
-    transition: background 0.4s;
-    }
-    .theme-toggle__thumb {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.22);
-    transition: transform 0.35s cubic-bezier(.34,1.56,.64,1);
-    z-index: 1;
-    }
-    .theme-icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 11px;
-    transition: opacity 0.25s;
-    z-index: 0;
-    }
-    .theme-icon--sun  { left: 6px;  color: #f59e0b; }
-    .theme-icon--moon { right: 6px; color: #94a3b8; opacity: 0; }
-
-    .theme-toggle__label {
-    font-size: 0.85rem;
-    font-weight: 500;
-    white-space: nowrap;
-    color: #555;
-    transition: color 0.3s;
-    }
-
-    /* Estat fosc actiu */
-    .theme-toggle.is-dark .theme-toggle__track {
-    background: #3b3a52;
-    }
-    .theme-toggle.is-dark .theme-toggle__thumb {
-    transform: translateX(22px);
-    }
-    .theme-toggle.is-dark .theme-icon--sun  { opacity: 0; }
-    .theme-toggle.is-dark .theme-icon--moon { opacity: 1; }
-    .theme-toggle.is-dark .theme-toggle__label {
-    color: #a89ef0;
-    }
+      

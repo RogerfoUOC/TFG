@@ -169,7 +169,6 @@
 
 
 // VALIDACIO LOGIN:
-
     formLogin.addEventListener('submit', function (event){
         event.preventDefault();
         formulariLoginValidat = true;
@@ -208,7 +207,6 @@
 
     });
 
-
 // MOSTRAR CONTRASENYES:
 
     //funció reutilitzable per a cada input de password, pels botons de mostrar/ocultar password
@@ -216,6 +214,11 @@
         const input   = document.getElementById(inputId);
         const btnShow = document.getElementById(showBtnId);
         const btnHide = document.getElementById(hideBtnId);
+
+            if (!input || !btnShow || !btnHide) {
+            console.log('no trobat:', inputId);
+            return;
+    }
 
         btnShow.addEventListener('click', function () {
             input.type = 'text';
@@ -234,6 +237,9 @@
     toggleContrasenya ('password-login', 'show-pass0', 'hide-pass0');
     toggleContrasenya ('password1', 'show-pass1', 'hide-pass1');
     toggleContrasenya ('password2', 'show-pass2', 'hide-pass2');
+    toggleContrasenya ('pass-actual', 'show-pass-actual', 'hide-pass-actual');
+    toggleContrasenya ('pass-nova', 'show-pass-nova', 'hide-pass-nova');
+    toggleContrasenya ('pass-confirm', 'show-pass-confirm', 'hide-pass-confirm');
 
     
     const netejarFormulari = (formulari) => {
