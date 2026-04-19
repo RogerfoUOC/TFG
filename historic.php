@@ -17,51 +17,52 @@ include 'includes/queries.php';
 // comprovar si s'ha triat una data per mostrar les dades
 if ($diaSeleccionat1 !== '') {
     $mostrarDades = true;
+    
+    // executem les consultes
+    $resultInterior     = getDadesInterior($conn, $diaConsulta1);
+    $resultExterior     = getDadesExterior($conn, $diaConsulta1);
+    $resultatHistoric   = getDadesHistoric1($conn, $diaSeleccionat1);
+    
+    // arrays pels horais de  la gràfica
+    $tempINT = array_fill(0, 24, null);
+    $humINT  = array_fill(0, 24, null);
+    $tempEXT = array_fill(0, 24, null);
+    $humEXT  = array_fill(0, 24, null);
+    
+    // omplim arrays Interior
+    while ($fila = $resultInterior->fetch_assoc()) {
+        $h = intval($fila['hora']);
+        $tempINT[$h] = floatval($fila['temperatura']);
+        $humINT[$h]  = floatval($fila['humitat']);
+    }
+    
+    // omplim arrays Exterior
+    while ($fila = $resultExterior->fetch_assoc()) {
+        $h = intval($fila['hora']);
+        $tempEXT[$h] = floatval($fila['temperatura']);
+        $humEXT[$h]  = floatval($fila['humitat']);
+    }
+    
+    /* --- LLEGIR ESTADÍSTIQUES DEL DIA (min / max / avg) --- */
+    $stats = [
+        "Interior" => null,
+        "Exterior" => null
+    ];
+    
+    while ($row = $resultatHistoric->fetch_assoc()) {
+        $stats[$row["location"]] = $row;
+    }
+    
+    /* --- CALCULAR DIFERÈNCIES INTERIOR - EXTERIOR --- */
+    if (is_numeric($stats["Interior"]["temp_mitjana"]) && is_numeric($stats["Exterior"]["temp_mitjana"])) {
+        $diferenciaMitjaTemp = $stats["Interior"]["temp_mitjana"] - $stats["Exterior"]["temp_mitjana"];
+    }
+    
+    if (is_numeric($stats["Interior"]["humitat_mitjana"]) && is_numeric($stats["Exterior"]["humitat_mitjana"])) {
+        $diferenciaMitjaHum = $stats["Interior"]["humitat_mitjana"] - $stats["Exterior"]["humitat_mitjana"];
+    }
 }
 
-// executem les consultes
-$resultInterior     = getDadesInterior($conn, $diaConsulta1);
-$resultExterior     = getDadesExterior($conn, $diaConsulta1);
-$resultatHistoric   = getDadesHistoric1($conn, $diaSeleccionat1);
-
-// arrays pels horais de  la gràfica
-$tempINT = array_fill(0, 24, null);
-$humINT  = array_fill(0, 24, null);
-$tempEXT = array_fill(0, 24, null);
-$humEXT  = array_fill(0, 24, null);
-
-// omplim arrays Interior
-while ($fila = $resultInterior->fetch_assoc()) {
-    $h = intval($fila['hora']);
-    $tempINT[$h] = floatval($fila['temperatura']);
-    $humINT[$h]  = floatval($fila['humitat']);
-}
-
-// omplim arrays Exterior
-while ($fila = $resultExterior->fetch_assoc()) {
-    $h = intval($fila['hora']);
-    $tempEXT[$h] = floatval($fila['temperatura']);
-    $humEXT[$h]  = floatval($fila['humitat']);
-}
-
-/* --- LLEGIR ESTADÍSTIQUES DEL DIA (min / max / avg) --- */
-$stats = [
-    "Interior" => null,
-    "Exterior" => null
-];
-
-while ($row = $resultatHistoric->fetch_assoc()) {
-    $stats[$row["location"]] = $row;
-}
-
-/* --- CALCULAR DIFERÈNCIES INTERIOR - EXTERIOR --- */
-if (is_numeric($stats["Interior"]["temp_mitjana"]) && is_numeric($stats["Exterior"]["temp_mitjana"])) {
-    $diferenciaMitjaTemp = $stats["Interior"]["temp_mitjana"] - $stats["Exterior"]["temp_mitjana"];
-}
-
-if (is_numeric($stats["Interior"]["humitat_mitjana"]) && is_numeric($stats["Exterior"]["humitat_mitjana"])) {
-    $diferenciaMitjaHum = $stats["Interior"]["humitat_mitjana"] - $stats["Exterior"]["humitat_mitjana"];
-}
 
 $conn->close();
 ?>
