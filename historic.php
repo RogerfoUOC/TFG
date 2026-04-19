@@ -24,9 +24,6 @@ $resultInterior     = getDadesInterior($conn, $diaConsulta1);
 $resultExterior     = getDadesExterior($conn, $diaConsulta1);
 $resultatHistoric   = getDadesHistoric1($conn, $diaSeleccionat1);
 
-var_dump($resultatHistoric);
-exit;
-
 // arrays pels horais de  la gràfica
 $tempINT = array_fill(0, 24, null);
 $humINT  = array_fill(0, 24, null);
