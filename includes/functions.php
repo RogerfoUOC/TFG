@@ -24,4 +24,22 @@ function formatarData($data) {
     return $dataFormatejada;
 }
 
+function emailExisteix($conn, $email, $userId = null) {
+
+    if ($userId) {
+        $sql = "SELECT id FROM users WHERE email = ? AND id != ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("si", $email, $userId);
+    } else {
+        $sql = "SELECT id FROM users WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    return $result->num_rows > 0;
+}
+
 ?>
