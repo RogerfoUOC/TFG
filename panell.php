@@ -37,3 +37,4 @@
     <script defer src="js/tabs.js"></script>
     <script defer src="js/auth.js"></script>
 <?php endif; ?>
+<script defer src="js/ui.js"></script>
