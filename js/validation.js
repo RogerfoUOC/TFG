@@ -7,12 +7,18 @@ const validarEmailPanell = (email) => {
 };
 console.log("validation.js carregat");
 
-const validarBuit = (pass) => {
+const validarPassBuitPanell = (camp, pass) => {
     console.log(pass);
-    if (pass.length <=0) {
+    netejarError(camp);
+    if (pass.length <8) {
+        crearError(camp, 'La contrasenya ha de tenir com a mínim 8 caràcters');
         console.log("valida NO");
+        camp.classList.add('input-error');
+        camp.classList.remove('input-correct');
         return false;
     }
+    camp.classList.remove('input-error');
+    camp.classList.add('input-correct');
     console.log("valida OK");
     return true;
 };

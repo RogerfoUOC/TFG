@@ -30,9 +30,10 @@ formPassPanell.addEventListener('submit', (event) => {
         const passActual    = passwordInputPanell.value;
         const passNou       = passwordNouPanell.value;
         const passConfirmat = passwordConfirmPanell.value;
-        if (!validarBuit(passActual, 'Introdueix la contrasenya actual.')) valid = false;
-        if (!validarBuit(passNou, 'Introdueix la nova contrasenya.')) valid = false;
-        if (!validarBuit(passConfirmat, 'Confirma la nova contrasenya.')) valid = false;
+        if (!validarPassBuitPanell(passwordInputPanell, passActual)) valid = false;
+        if (!validarPassBuitPanell(passwordNouPanell, passNou)) valid = false;
+        if (!validarPassBuitPanell(passwordConfirmPanell, passConfirmat)) valid = false;
+
         if (valid) { 
             console.log("submit pass form OK");
             formPassPanell.submit();
@@ -97,19 +98,27 @@ function tancarmodalPassPanell() {
 
 
 const netejarError = (camp) => {
-    const container = camp.closest('.fila')?.querySelector('.error-container');
-    if (container) {
-        container.innerHTML = '';
+    const fila = camp.closest('.fila');
+    if (fila) {
+        fila.querySelector('.error-container').innerHTML = '';
+    } else {
+        const error = camp.closest('.grup-form')?.querySelector('.label-error');
+        if (error) error.remove();
     }
 };
 
 //funció per crear els errors a cada input després de la validació
 const crearError = (camp, missatge) => {
-    const container = camp.closest('.fila').querySelector('.error-container');
     netejarError(camp);
     const errorElement = document.createElement('p');
     errorElement.className = 'label-error';
     errorElement.textContent = missatge;
-    container.appendChild(errorElement);
+    
+    const fila = camp.closest('.fila');
+    if (fila) {
+        fila.querySelector('.error-container').appendChild(errorElement);
+    } else {
+        camp.insertAdjacentElement('afterend', errorElement);
+    }
 };
 
