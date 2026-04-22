@@ -12,8 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // MOSTRAR CONTRASENYES:
-//TODO: per ara està duplicat aquí i a auth.js. Cal unificar-ho a un sol .js si cal
-
 //funció reutilitzable per a cada input de password, pels botons de mostrar/ocultar password
 const toggleContrasenya = (inputId, showBtnId, hideBtnId) => {
     const input   = document.getElementById(inputId);
@@ -43,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleContrasenya ('pass-actual', 'show-pass-actual', 'hide-pass-actual');
     toggleContrasenya ('pass-nova', 'show-pass-nova', 'hide-pass-nova');
     toggleContrasenya ('pass-confirm', 'show-pass-confirm', 'hide-pass-confirm');
-
     toggleContrasenya('pass-actual', 'show-pass-actual', 'hide-pass-actual');
     toggleContrasenya('pass-nova', 'show-pass-nova', 'hide-pass-nova');
     toggleContrasenya('pass-confirm', 'show-pass-confirm', 'hide-pass-confirm');

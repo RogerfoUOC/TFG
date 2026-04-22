@@ -76,7 +76,7 @@ $errorEmail = $toastError !== null;
 <div id="modal-pass" class="capa-modal">
     <div class="modal-pass marc">
         <h3>Canvi de contrasenya</h3>
-        <form method="POST" action="canviar_password.php" class="form-pass">
+        <form method="POST" id="form-pass" action="../includes/update-password.php">
             <div class="grup-form">
                 <label for="pass-actual">Contrasenya actual</label>
                 <input id="pass-actual" type="password" name="pass-actual" placeholder="••••••••" autocomplete="current-password">

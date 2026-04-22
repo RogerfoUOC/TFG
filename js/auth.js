@@ -12,7 +12,7 @@
 // VALIDACIO REGISTRE:
 
     //escoltem el click del botó del formulari de registre
-    formRegistre.addEventListener('submit', function (event){
+    formRegistre.addEventListener('submit', (event) => {
         event.preventDefault();
         formulariRegValidat = true;
         //primer de tot eliminem possibles missatges d'error anteriors
@@ -116,9 +116,8 @@
         const errorElement = document.createElement('p');
         errorElement.className = 'label-error';
         errorElement.textContent = missatge;
-        inputElement = camp;
         //afegim l'element <p> creat, sota l'element rebut per parametre
-        inputElement.insertAdjacentElement('afterend', errorElement);
+        camp.insertAdjacentElement('afterend', errorElement);
     }
 
     const netejarError = (input) => {
@@ -167,7 +166,7 @@
 
 
 // VALIDACIO LOGIN:
-    formLogin.addEventListener('submit', function (event){
+    formLogin.addEventListener('submit', (event) => {
         event.preventDefault();
         formulariLoginValidat = true;
         document.querySelectorAll('.label-error').forEach(errorElement => {
