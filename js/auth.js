@@ -153,8 +153,6 @@
 
     passwordInput2.addEventListener('blur', () => {
         netejarError(passwordInput2);
-        //console.log('pass1 correcte?', passwordInput1.classList.contains('input-correct'));
-        //console.log('classes pass2:', passwordInput2.classList);
         if (passwordInput1.classList.contains('input-correct')) {
             validarPassword2(passwordInput1.value, passwordInput2.value);
         } else {

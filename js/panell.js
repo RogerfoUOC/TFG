@@ -1,6 +1,6 @@
 console.log("panell.js carregat");
-const formMailPanell   = document.getElementById("form-email");
-const formPassPanell   = document.getElementById("form-pass");
+const formMailPanell        = document.getElementById("form-email");
+const formPassPanell        = document.getElementById("form-pass");
 const btnEditarEmailPanell  = document.getElementById("btn-editar-mail");
 const btnEditarPassPanell   = document.getElementById("btn-editar-pass");
 const spanUserMailPanell    = document.getElementById("span-user-mail");  
@@ -31,8 +31,8 @@ formPassPanell.addEventListener('submit', (event) => {
         const passNou       = passwordNouPanell.value;
         const passConfirmat = passwordConfirmPanell.value;
         if (!validarPassBuitPanell(passwordInputPanell, passActual)) valid = false;
-        if (!validarPassBuitPanell(passwordNouPanell, passNou)) valid = false;
-        if (!validarPassBuitPanell(passwordConfirmPanell, passConfirmat)) valid = false;
+        if (!validarNouPassPanell(passwordNouPanell, passNou)) valid = false;
+        if (!confirmarPassPanell(passwordConfirmPanell, passConfirmat)) valid = false;
 
         if (valid) { 
             console.log("submit pass form OK");
@@ -96,6 +96,63 @@ function tancarmodalPassPanell() {
     // botó cancel
     btnCancelPassPanell.addEventListener('click', tancarmodalPassPanell);
 
+const validarEmailPanell = (email) => {
+    console.log("validarEmail");
+    //expressió regular que verifica si té el format de mail correcte
+    const emailFormat = /^[a-zA-Z0-9-_]{2,}@[a-zA-Z0-9-]{3,}\.[a-zA-Z]{2,}$/;
+    return emailFormat.test(email);
+};
+console.log("validation.js carregat");
+
+const validarPassBuitPanell = (camp, pass) => {
+    console.log(pass);
+    netejarError(camp);
+    if (pass.length <8) {
+        crearError(camp, 'La contrasenya ha de tenir com a mínim 8 caràcters');
+        console.log("valida NO");
+        camp.classList.add('input-error');
+        camp.classList.remove('input-correct');
+        return false;
+    }
+    camp.classList.remove('input-error');
+    camp.classList.add('input-correct');
+    console.log("valida OK");
+    return true;
+};
+
+
+const validarNouPassPanell = (camp, password) => {
+        netejarError(camp);
+    //expressió regular que verifica si té lletres, números, com a mínim un caràcter especial, i com a mínim 8 caràcters
+    const passwordFormat = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[^\s]{8,}$/;
+    if (passwordFormat.test(password) == true) {
+        camp.classList.remove('input-error');
+        camp.classList.add('input-correct');
+        return true;
+    }
+    camp.classList.add('input-error');
+    camp.classList.remove('input-correct');
+    crearError(camp,'La contrasenya ha de tenir mínim 8 caràcters, lletres, números, mínim un caràcter especial i sense espais.');  
+    return false;
+};
+
+const confirmarPassPanell = (camp, password1, password2) => {
+    netejarError(camp);
+    console.log(password1);
+    console.log(password2); 
+    if (password1 === password2) {
+        camp.classList.remove('input-error');
+        camp.classList.add('input-correct');
+        console.log("pass iguals");
+        return true;
+    } 
+    console.log("pass diferents");
+    camp.classList.add('input-error');
+    camp.classList.remove('input-correct');
+    crearError(camp,'Les contrasenyes no coincideixen.'); 
+    return false;
+}; 
+
 
 const netejarError = (camp) => {
     const fila = camp.closest('.fila');
@@ -120,29 +177,4 @@ const crearError = (camp, missatge) => {
     } else {
         camp.insertAdjacentElement('afterend', errorElement);
     }
-};
-
-
-const validarEmailPanell = (email) => {
-    console.log("validarEmail");
-    //expressió regular que verifica si té el format de mail correcte
-    const emailFormat = /^[a-zA-Z0-9-_]{2,}@[a-zA-Z0-9-]{3,}\.[a-zA-Z]{2,}$/;
-    return emailFormat.test(email);
-};
-console.log("validation.js carregat");
-
-const validarPassBuitPanell = (camp, pass) => {
-    console.log(pass);
-    netejarError(camp);
-    if (pass.length <8) {
-        crearError(camp, 'La contrasenya ha de tenir com a mínim 8 caràcters');
-        console.log("valida NO");
-        camp.classList.add('input-error');
-        camp.classList.remove('input-correct');
-        return false;
-    }
-    camp.classList.remove('input-error');
-    camp.classList.add('input-correct');
-    console.log("valida OK");
-    return true;
 };
