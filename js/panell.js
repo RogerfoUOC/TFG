@@ -1,87 +1,86 @@
 console.log("panell.js carregat");
-const formulariMail     = document.getElementById("form-email");
-const formulariPass     = document.getElementById("form-pass");
-const btnEditarEmail     = document.getElementById("btn-editar-mail");
-const btnEditarPass     = document.getElementById("btn-editar-pass");
-const spanUserMail      = document.getElementById("span-user-mail");  
-const emailInput        = document.getElementById("input-user-mail");
-const btnGuardarMail    = document.getElementById("btn-guardar-mail");
-const btnCancelMail     = document.getElementById("btn-cancelar-mail");
-const btnCancelPass     = document.getElementById("btn-cancelar-pass");
-const modalPass         = document.getElementById("modal-pass");
-let emailOriginal       = emailInput.value;
+const formulariMailPanell   = document.getElementById("form-email");
+const formulariPassPanell   = document.getElementById("form-pass");
+const btnEditarEmailPanell  = document.getElementById("btn-editar-mail");
+const btnEditarPassPanell   = document.getElementById("btn-editar-pass");
+const spanUserMailPanell    = document.getElementById("span-user-mail");  
+const emailInputPanell      = document.getElementById("input-user-mail");
+const btnGuardarMailPanell  = document.getElementById("btn-guardar-mail");
+const btnCancelMailPanell   = document.getElementById("btn-cancelar-mail");
+const btnCancelPassPanell   = document.getElementById("btn-cancelar-pass");
+const modalPassPanell       = document.getElementById("modal-pass");
+let emailOriginalPanell     = emailInputPanell.value;
 
-if (btnEditarEmail) {
-    btnEditarEmail.addEventListener('click', () => {
+if (btnEditarEmailPanell) {
+    btnEditarEmailPanell.addEventListener('click', () => {
         console.log("click editar mail");
-        emailInput.value = emailOriginal;
-        btnEditarEmail.classList.add('ocult');
-        spanUserMail.classList.add('ocult');
-        emailInput.classList.remove('ocult');
-        btnGuardarMail.classList.remove('ocult');
-        btnCancelMail.classList.remove('ocult');
+        emailInputPanell.value = emailOriginalPanell;
+        btnEditarEmailPanell.classList.add('ocult');
+        spanUserMailPanell.classList.add('ocult');
+        emailInputPanell.classList.remove('ocult');
+        btnGuardarMailPanell.classList.remove('ocult');
+        btnCancelMailPanell.classList.remove('ocult');
     });
 }
 
-if (btnGuardarMail) {
-    if (formulariMail) {
-        formulariMail.addEventListener('submit', (e) => {
-            netejarError(emailInput);
+if (formulariMailPanell) {
+    formulariMailPanell.addEventListener('submit', (e) => {
+        netejarError(emailInputPanell);
 
-            if (!validarEmail(emailInput.value)) {
-                e.preventDefault();
-                spanUserMail.classList.add('ocult');
-                btnEditarEmail.classList.add('ocult');
-                emailInput.classList.remove('ocult');
-                btnGuardarMail.classList.remove('ocult');
-                btnCancelMail.classList.remove('ocult');
-                emailInput.classList.add('input-error');
-                crearError(emailInput, 'El correu electrònic no té el format correcte, o està buit.');
-                return;
-            }
-        });
-    }
+        if (!validarEmailPanell(emailInputPanell.value)) {
+            e.preventDefault();
+            spanUserMailPanell.classList.add('ocult');
+            btnEditarEmailPanell.classList.add('ocult');
+            emailInputPanell.classList.remove('ocult');
+            btnGuardarMailPanell.classList.remove('ocult');
+            btnCancelMailPanell.classList.remove('ocult');
+            emailInputPanell.classList.add('input-error');
+            crearError(emailInputPanell, 'El correu electrònic no té el format correcte, o està buit.');
+            return;
+        }
+    });
 }
 
-if (btnCancelMail) {
-    btnCancelMail.addEventListener('click', () => {
-        netejarError(emailInput);
-        spanUserMail.classList.remove('ocult');
-        btnEditarEmail.classList.remove('ocult');
-        btnCancelMail.classList.add('ocult');
-        emailInput.classList.add('ocult');
-        btnGuardarMail.classList.add('ocult');
-        emailInput.classList.remove('input-error');
-        emailInput.classList.remove('input-correct');
-        emailInput.value = emailOriginal;
+
+if (btnCancelMailPanell) {
+    btnCancelMailPanell.addEventListener('click', () => {
+        netejarError(emailInputPanell);
+        spanUserMailPanell.classList.remove('ocult');
+        btnEditarEmailPanell.classList.remove('ocult');
+        btnCancelMailPanell.classList.add('ocult');
+        emailInputPanell.classList.add('ocult');
+        btnGuardarMailPanell.classList.add('ocult');
+        emailInputPanell.classList.remove('input-error');
+        emailInputPanell.classList.remove('input-correct');
+        emailInputPanell.value = emailOriginalPanell;
     });
 }  
 
-if (btnEditarPass) {
-    btnEditarPass.addEventListener('click', () => {
+if (btnEditarPassPanell) {
+    btnEditarPassPanell.addEventListener('click', () => {
         console.log("click editar pass");
-        modalPass.classList.add('actiu');
+        modalPassPanell.classList.add('actiu');
     });
 };
 
 //TANCAR MODAL
-function tancarModalPass() {
-    modalPass.classList.remove('actiu');
+function tancarmodalPassPanell() {
+    modalPassPanell.classList.remove('actiu');
 }
     // clic fora
-    modalPass.addEventListener('click', (e) => { 
-        if (e.target === modalPass) {
-            tancarModalPass();
+    modalPassPanell.addEventListener('click', (e) => { 
+        if (e.target === modalPassPanell) {
+            tancarmodalPassPanell();
         }
     });
     //click ESC
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            tancarModalPass();
+            tancarmodalPassPanell();
         }
     });
     // botó cancel
-    btnCancelPass.addEventListener('click', tancarModalPass);
+    btnCancelPassPanell.addEventListener('click', tancarmodalPassPanell);
 
 
 const netejarError = (camp) => {
