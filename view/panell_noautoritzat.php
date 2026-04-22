@@ -29,7 +29,7 @@
                             <span id="show-pass0" class="sw-psw" ><i class="fas fa-eye"></i></span>
                             <span id="hide-pass0" class="sw-psw ocult" ><i class="fas fa-eye-slash"></i></span>
                         </div>    
-                        <button id="btn-login" class="btn-submit" type="submit" >Entrar</button>   
+                        <button id="btn-login" class="btn-submit" type="submit">Entrar</button>   
                     </form>
                 </div>
                 <!-- Pestanya REGISTRE -->

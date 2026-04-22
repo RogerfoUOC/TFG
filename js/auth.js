@@ -4,8 +4,6 @@
     const passwordInput2        = document.getElementById('password2');
     const mailInputLogin        = document.getElementById('mail-login');
     const passwordInputLogin    = document.getElementById('password-login');
-    const btnLogin              = document.getElementById('btn-login');
-    const btnRegistre           = document.getElementById('btn-registre');
     const formRegistre          = document.getElementById('form-registre');
     const formLogin             = document.getElementById('form-login');
     let formulariRegValidat     = true;
