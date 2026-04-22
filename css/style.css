@@ -811,11 +811,11 @@ a:hover {
         text-align: start;
         margin: 0px;
     }
-    .cont-auth input.input-error{
+    input.input-error{
         border:1px solid #f93434;
         background-color: #fff2f2;
     }
-    .cont-auth input.input-correct{
+    input.input-correct{
         border:1px solid #72f934;
         background-color: #f2fff2;
     }
