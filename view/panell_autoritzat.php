@@ -1,11 +1,13 @@
 <?php 
 $toastError = $_SESSION['toast_error'] ?? null;
 $okEmailMsg = $_SESSION['ok_email'] ?? null;
+$okPasswordMsg = $_SESSION['ok_password'] ?? null;
 $oldEmail = $_SESSION['old_email'] ?? null;
 unset($_SESSION['toast_error']);
 unset($_SESSION['ok_email']);
+unset($_SESSION['ok_password']);
 unset($_SESSION['old_email']);
-$errorEmail = $toastError !== null;
+$errorEmail = !empty($oldEmail);
 ?>
 
 <div class="panell">
@@ -13,9 +15,11 @@ $errorEmail = $toastError !== null;
 <?php if ($toastError): ?>
     <div class="toast error-box"><?= $toastError ?></div>
 <?php endif; ?>
-
 <?php if ($okEmailMsg): ?>
     <div class="toast success-box"><?= $okEmailMsg ?></div>
+<?php endif; ?>
+<?php if ($okPasswordMsg): ?>
+    <div class="toast success-box"><?= $okPasswordMsg ?></div>
 <?php endif; ?>
     <div class="card-usuari">
         <h2><?=htmlspecialchars($userName) ?></h2>
@@ -84,10 +88,10 @@ $errorEmail = $toastError !== null;
                 <span id="hide-pass-actual" class="sw-psw ocult"><i class="fas fa-eye-slash"></i></span>
             </div>
             <div class="grup-form">
-                <label for="pass-nova">Nova contrasenya</label>
-                <input id="pass-nova" type="password" name="pass-nova" placeholder="••••••••" autocomplete="new-password">
-                <span id="show-pass-nova" class="sw-psw"><i class="fas fa-eye"></i></span>
-                <span id="hide-pass-nova" class="sw-psw ocult"><i class="fas fa-eye-slash"></i></span>
+                <label for="pass-nou">Nova contrasenya</label>
+                <input id="pass-nou" type="password" name="pass-nou" placeholder="••••••••" autocomplete="new-password">
+                <span id="show-pass-nou" class="sw-psw"><i class="fas fa-eye"></i></span>
+                <span id="hide-pass-nou" class="sw-psw ocult"><i class="fas fa-eye-slash"></i></span>
             </div>
             <div class="grup-form">
                 <label for="pass-confirm">Confirmar contrasenya</label>
