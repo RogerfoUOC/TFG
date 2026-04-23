@@ -812,18 +812,18 @@ a:hover {
         margin: 0px;
     }
     input.input-error{
-        border:1px solid #f93434;
-        background-color: #fff2f2;
+        border:1px solid #ffd2d2;
+        background-color: #fffcfc;
     }
     input.input-correct{
-        border:1px solid #72f934;
-        background-color: #f2fff2;
+        border:1px solid #d7ffc5 ;
+        background-color: #f8fff8 ;
     }
 
     input.input-correct:-webkit-autofill {
-        -webkit-box-shadow: 0 0 0px 1000px #f2fff2 inset !important;
+        -webkit-box-shadow: 0 0 0px 1000px #f8fff8 inset !important;
         -webkit-text-fill-color: inherit !important;
-        border: 1px solid #72f934 !important;
+        border: 1px solid #d7ffc5  !important;
     }
         
 
@@ -915,7 +915,7 @@ a:hover {
         text-align: center;
     }
     .error-box {
-        background-color: #ffdede;
+        background-color: #fff0f0;
         border: 1px solid #ff5c5c;
         color: #a30000;
         padding: 10px;
@@ -924,7 +924,7 @@ a:hover {
         text-align: center;
     }
     .success-box {
-        background-color: #e8f5e9;   
+        background-color: #f8fff8;   
         border: 1px solid #4caf50;   
         color: #1b5e20;              
         padding: 10px;
