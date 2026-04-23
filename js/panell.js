@@ -206,6 +206,18 @@ const crearError = (camp, missatge) => {
     passActualPanell.addEventListener('blur', () => {
         netejarError(passActualPanell);
         validarPassBuitPanell(passActualPanell, passActualPanell.value);
+        console.log( passwordNouPanell.value);
+        console.log(passActualPanell.value);
+        if (passwordNouPanell.value !== '' &&  passActualPanell.value === passwordNouPanell.value) {
+
+                passwordNouPanell.classList.remove('input-correct');
+                passwordNouPanell.classList.add('input-error');
+                crearError(passwordNouPanell, 'La nova contrasenya no pot ser igual que l\'actual.');
+                return;
+        }
+        if (passwordNouPanell.value !== '') {
+            validarNouPassPanell(passwordNouPanell, passwordNouPanell.value);
+        }
     });
 
     passwordNouPanell.addEventListener('blur', () => {
