@@ -39,10 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleContrasenya ('password1', 'show-pass1', 'hide-pass1');
     toggleContrasenya ('password2', 'show-pass2', 'hide-pass2');
     toggleContrasenya ('pass-actual', 'show-pass-actual', 'hide-pass-actual');
-    toggleContrasenya ('pass-nova', 'show-pass-nova', 'hide-pass-nova');
+    toggleContrasenya ('pass-nou', 'show-pass-nou', 'hide-pass-nou');
     toggleContrasenya ('pass-confirm', 'show-pass-confirm', 'hide-pass-confirm');
     toggleContrasenya('pass-actual', 'show-pass-actual', 'hide-pass-actual');
-    toggleContrasenya('pass-nova', 'show-pass-nova', 'hide-pass-nova');
+    toggleContrasenya('pass-nou', 'show-pass-nou', 'hide-pass-nou');
     toggleContrasenya('pass-confirm', 'show-pass-confirm', 'hide-pass-confirm');
 
 });

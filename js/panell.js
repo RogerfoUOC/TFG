@@ -10,7 +10,7 @@ const btnCancelMailPanell   = document.getElementById("btn-cancelar-mail");
 const btnCancelPassPanell   = document.getElementById("btn-cancelar-pass");
 const modalPassPanell       = document.getElementById("modal-pass");
 const passActualPanell   = document.getElementById("pass-actual");
-const passwordNouPanell     = document.getElementById("pass-nova");
+const passwordNouPanell     = document.getElementById("pass-nou");
 const passwordConfirmPanell = document.getElementById("pass-confirm");
 let emailOriginalPanell     = emailInputPanell.value;
 
