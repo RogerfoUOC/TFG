@@ -20,15 +20,15 @@
             errorElement.remove();
         });
         //guardem els elements de cada inptut del formulari 
-         const username  = userInput.value;
-         const email     = emailInput.value;
-         const password1 = passwordInput1.value;
-         const password2 = passwordInput2.value;
-         //cridem les funcions per validar els camps
-         validarNomReg(username); 
-         if (!validarEmail(email, emailInput)) formulariRegValidat = false;
-         validarPassword1(password1);
-         if (passwordInput1.classList.contains('input-correct')) {
+        const username  = userInput.value;
+        const email     = emailInput.value;
+        const password1 = passwordInput1.value;
+        const password2 = passwordInput2.value;
+        //cridem les funcions per validar els camps
+        validarNomReg(username); 
+        if (!validarEmail(email, emailInput)) formulariRegValidat = false;
+        validarPassword1(password1);
+        if (passwordInput1.classList.contains('input-correct')) {
             validarPassword2(password1, password2);
         } else {
             // netejar l'estat de pass2 si pass1 no és vàlid
