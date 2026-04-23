@@ -203,31 +203,56 @@ const crearError = (camp, missatge) => {
 
 
 
-    passActualPanell.addEventListener('blur', () => {
-        netejarError(passActualPanell);
-        validarPassBuitPanell(passActualPanell, passActualPanell.value);
-        console.log( passwordNouPanell.value);
-        console.log(passActualPanell.value);
-        if (passwordNouPanell.value !== '' &&  passActualPanell.value === passwordNouPanell.value) {
-
-                passwordNouPanell.classList.remove('input-correct');
-                passwordNouPanell.classList.add('input-error');
-                crearError(passwordNouPanell, 'La nova contrasenya no pot ser igual que l\'actual.');
-                return;
+passActualPanell.addEventListener('blur', () => {
+    netejarError(passActualPanell);
+    validarPassBuitPanell(passActualPanell, passActualPanell.value);
+    
+    if (passwordNouPanell.value === '') return; // si nou està buit, no cal seguir
+    
+    if (passActualPanell.value === passwordNouPanell.value) {
+        passwordNouPanell.classList.remove('input-correct');
+        passwordNouPanell.classList.add('input-error');
+        netejarError(passwordNouPanell);
+        crearError(passwordNouPanell, 'La nova contrasenya és igual que l\'actual.');
+        // re-validem confirm en cascada
+        if (passwordConfirmPanell.value !== '') {
+            passwordConfirmPanell.classList.remove('input-correct');
+            passwordConfirmPanell.classList.add('input-error');
+            netejarError(passwordConfirmPanell);
+            crearError(passwordConfirmPanell, 'Primer has d\'introduir una contrasenya vàlida.');
         }
-        if (passwordNouPanell.value !== '') {
-            validarNouPassPanell(passwordNouPanell, passwordNouPanell.value);
+        return;
+    }
+    
+    validarNouPassPanell(passwordNouPanell, passwordNouPanell.value);
+    
+    if (passwordConfirmPanell.value !== '') {
+        if (passwordNouPanell.classList.contains('input-correct')) {
+            confirmarPassPanell(passwordConfirmPanell, passwordNouPanell.value, passwordConfirmPanell.value);
+        } else {
+            passwordConfirmPanell.classList.remove('input-correct');
+            passwordConfirmPanell.classList.add('input-error');
+            netejarError(passwordConfirmPanell);
+            crearError(passwordConfirmPanell, 'Primer has d\'introduir una contrasenya vàlida.');
         }
-    });
+    }
+});
 
-    passwordNouPanell.addEventListener('blur', () => {
+passwordNouPanell.addEventListener('blur', () => {
         netejarError(passwordNouPanell);
         validarNouPassPanell(passwordNouPanell, passwordNouPanell.value);
         if (passwordNouPanell.classList.contains('input-correct') && passActualPanell.value !== '') {
             if (passActualPanell.value === passwordNouPanell.value) {
                 passwordNouPanell.classList.remove('input-correct');
                 passwordNouPanell.classList.add('input-error');
-                crearError(passwordNouPanell, 'La nova contrasenya no pot ser igual que l\'actual.');
+                crearError(passwordNouPanell, 'La nova contrasenya és igual que l\'actual.');
+                // validacio de pass confrm 
+                if (passwordConfirmPanell.value !== '') {
+                    passwordConfirmPanell.classList.remove('input-correct');
+                    passwordConfirmPanell.classList.add('input-error');
+                    netejarError(passwordConfirmPanell);
+                    crearError(passwordConfirmPanell, 'Primer has d\'introduir una contrasenya vàlida.');
+                }
                 return;
             }
         }                                                                   
