@@ -140,8 +140,7 @@ function getResultLogs($conn, $filtreLocalitzacio, $diaSeleccionatLog) {
 
 /* ###################################### CONSULTES CHART ###################################### */
 
-/* -- Determinar el dia a consultar -- */
-$diaConsulta1 = isset($diaSeleccionat1) ? $diaSeleccionat1 : date('Y-m-d');
+
 
 /* -- Consultes per INTERIOR -- */
 function getDadesInterior($conn, $diaConsulta1) {
