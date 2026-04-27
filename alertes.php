@@ -15,11 +15,7 @@
 
     <?php if ($usuari_validat): ?>
         <!-- Autoritzat -->
-        <div class="panell">
-            <h1>Alertes</h1>
-            <p>Hola <?= htmlspecialchars($userName)  ?>!</p>
-            
-        </div>
+        <?php include 'view/alertes_autoritzat.php'; ?>
     <?php else: 
             $_SESSION['error_session'] = "Per gestionar les alertes t'has de validar.";
             header("Location: panell.php");
