@@ -14,18 +14,20 @@
     $tab_actiu          = $_SESSION['tab_actiu'] ?? 'login';            //assignem la pestanya, si no sempre login
     $form_data          = $_SESSION['form_data'] ?? [];                 //guardem les dades del formulari per recuperar-les quan carrega amb algun error
     unset($_SESSION['error_login'], $_SESSION['error_registre'], $_SESSION['error_session'], $_SESSION['tab_actiu'], $_SESSION['form_data']); //netegem variables de sseesió un cop assigandes
+
+
+if ($usuari_validat) {
+    $dataRegistre = dataRegistreUsuari($conn, $userId);
+    $vista = 'view/panell_autoritzat.php';
+} else {
+    $vista = 'view/panell_noautoritzat.php';
+}
 ?>
+
 <div class="main-container">
     <?php include 'includes/menu.php'; ?>
     <div class="content">
-
-    <?php if ($usuari_validat): $dataRegistre = dataRegistreUsuari($conn, $userId);?>
-        <!-- Autoritzat -->
-        <?php include 'view/panell_autoritzat.php'; ?>
-    <?php else: ?>
-        <!-- No autoritzat -->
-        <?php include 'view/panell_noautoritzat.php'; ?>
-    <?php endif; ?>  
+        <?php include $vista; ?>
     </div>
 </div>
 
