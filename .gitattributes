@@ -1,1 +1,2 @@
 *.php linguist-language=PHP
+receptor-dades.example.php linguist-detectable=false
