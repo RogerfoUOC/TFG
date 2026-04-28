@@ -16,7 +16,6 @@
                         <?php if ($error_session): ?>
                             <p class="error-box"><?= htmlspecialchars($error_session) ?></p>
                         <?php endif; ?>
-
                     <form id="form-login" method="POST" action="includes/auth.php">
                         <input type="hidden" name="accio" value="login">
                         <div class="grup-form">

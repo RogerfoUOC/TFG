@@ -10,17 +10,14 @@ unset($_SESSION['old_email']);
 $errorEmail = !empty($oldEmail);
 ?>
 
+
 <div class="panell">
     <h1>Panell</h1>
-<?php if ($toastError): ?>
-    <div class="toast error-box"><?= $toastError ?></div>
-<?php endif; ?>
-<?php if ($okEmailMsg): ?>
-    <div class="toast success-box"><?= $okEmailMsg ?></div>
-<?php endif; ?>
-<?php if ($okPasswordMsg): ?>
-    <div class="toast success-box"><?= $okPasswordMsg ?></div>
-<?php endif; ?>
+<?php
+    if ($toastError)   echo '<div class="toast error-box">'   . htmlspecialchars($toastError)    . '</div>';
+    if ($okEmailMsg)   echo '<div class="toast success-box">' . htmlspecialchars($okEmailMsg)    . '</div>';
+    if ($okPasswordMsg)echo '<div class="toast success-box">' . htmlspecialchars($okPasswordMsg) . '</div>';
+?>
     <div class="card-usuari">
         <h2><?=htmlspecialchars($userName) ?></h2>
         <form id="form-email" method="POST" action="includes/update-email.php">

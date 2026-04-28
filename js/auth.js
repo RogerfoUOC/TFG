@@ -63,15 +63,13 @@
     const validarEmail = (email, inputElement) => {
         //expressió regular que verifica si té el format de mail correcte
         const emailFormat = /^[a-zA-Z0-9-_]{2,}@[a-zA-Z0-9-]{3,}\.[a-zA-Z]{2,}$/;
+        //amb test validem si el mail compleix l'expressió regular
         if (emailFormat.test(email) == true) {
             inputElement.value = inputElement.value.toLowerCase() //passem mail a minuscules 
-            //alert("mailOk");
             inputElement.classList.remove('input-error'); //elimina la classe per error del input
-            //inputElement.classList.add('input-correct'); //afegeix la classe per error al input
             if (inputElement === emailInput) inputElement.classList.add('input-correct');
             return true;
         } else {
-            //alert(missatgeError)
             inputElement.classList.add('input-error');
             inputElement.classList.remove('input-correct');
             crearError(inputElement, 'El correu electrònic no té el format correcte, o està buit.');
@@ -120,6 +118,7 @@
         camp.insertAdjacentElement('afterend', errorElement);
     }
 
+    //funció per netejar els errors
     const netejarError = (input) => {
         const grupForm = input.closest('.grup-form');
         const error = grupForm.querySelector('.label-error');

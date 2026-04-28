@@ -367,7 +367,7 @@ th, td {
 
 /* --- GRID: Dades Mitjana / Diferència --- */
 .grid-dades-mitjana {
-    display: grid; 
+display: grid; 
     grid-template-columns: auto auto; 
     align-items: center; 
     justify-content: center; 
@@ -377,8 +377,8 @@ th, td {
 
 /* --- GRID: Layout Històric (Contenidor) --- */
 .grid-historic {
-    margin: 0 auto;
     display: grid;
+    margin: 0 auto;
     grid-column-gap: 16px;
     grid-row-gap: 16px;
     grid-template-columns: 1fr 0.8fr 0.85fr;
@@ -581,6 +581,10 @@ a:hover {
 
 @media (max-width: 868px) {
 
+    .date-group {
+        flex-direction: column;
+    }
+
     /* menú compacte */
     nav {
         width: 160px;
@@ -595,9 +599,6 @@ a:hover {
         gap: 10px;
     }
     
-    .date-group {
-        flex-direction: column;
-    }
     
     table {
         overflow-x: auto;
@@ -642,7 +643,7 @@ a:hover {
     /* el contingut ha de començar a marge 0 en mòbil */
     .content {
         margin-left: 0 !important;
-    }
+}
 
 }
 
