@@ -42,7 +42,6 @@ if (!password_verify($passActual, $row['password_hash'])) {
     header("Location: ../panell.php");
     exit;
 }
-
 // actualitzar la contrasenya
 $passwordHash = password_hash($passNou, PASSWORD_DEFAULT);
 

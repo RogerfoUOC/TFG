@@ -117,6 +117,18 @@ function tancarmodalPassPanell() {
     // botó cancel
     btnCancelPassPanell.addEventListener('click', tancarmodalPassPanell);
 
+emailInputPanell.addEventListener('blur', () => {
+    netejarError(emailInputPanell);
+    if (!validarEmailPanell(emailInputPanell.value)) {
+        emailInputPanell.classList.add('input-error');
+        crearError(emailInputPanell, 'El correu electrònic no té el format correcte, o està buit.');
+    } else {
+        emailInputPanell.classList.remove('input-error');
+        emailInputPanell.classList.add('input-correct');
+    }
+});
+
+
 const validarEmailPanell = (email) => {
     console.log("validarEmail");
     //expressió regular que verifica si té el format de mail correcte

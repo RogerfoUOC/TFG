@@ -26,7 +26,6 @@ const int NUM_NETWORKS = sizeof(networks) / sizeof(networks[0]);
 /* CONFIGURACIÓ DE COMUNICACIÓ AMB EL SERVIDOR
    Identifica el dispositiu i valida l’origen de dades. */
 const char* serverName = "https://rogerfo.link/tfg/receptor-dades.php";
-
 const String apiKey = "++++++++";
 const String sensorName = "BME280E";
 const String sensorLocation = "Exterior";
@@ -41,20 +40,16 @@ Adafruit_BME280 bme;
    definides i evita bloquejos prolongats. */
 void connectWifi() {
   WiFi.mode(WIFI_STA); 
-
   for (int i = 0; i < NUM_NETWORKS; i++) {
     WiFi.begin(networks[i].ssid, networks[i].password);
-
     int attempts = 0;
     while (WiFi.status() != WL_CONNECTED && attempts < 150) {
       delay(100);
       attempts++;
     }
-
     if (WiFi.status() == WL_CONNECTED) {
       return; // connexió OK
     }
-
     WiFi.disconnect(); // neteja d’estat abans del següent intent
     delay(1000);
   }

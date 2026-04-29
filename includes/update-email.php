@@ -15,22 +15,18 @@ $userId         = $_SESSION['usuari_id'];
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $_SESSION['toast_error'] = "El format del correu no és correcte.";
     $_SESSION['old_email'] = $email;
-
     header("Location: ../panell.php");
     exit;
 }
-
 if ($email === $currentEmail) {
     $_SESSION['toast_error'] = "El correu introduït és igual que l'actual.";
     $_SESSION['old_email'] = $email;
     header("Location: ../panell.php");
     exit;
 }
-
 if (emailExisteix($conn, $email, $userId)) {
     $_SESSION['toast_error'] = "Aquest correu ja està en ús.";
     $_SESSION['old_email'] = $email;
-
     header("Location: ../panell.php");
     exit;
 }
