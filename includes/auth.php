@@ -78,9 +78,6 @@ if ($_POST['accio'] === 'login') {
         $_SESSION['usuari_id']  = $row['id'];
         $_SESSION['nom_usuari'] = $row['username'];
         $_SESSION['email']      = $row['email'];
-        $stmt = $conn->prepare ("UPDATE users SET last_login = NOW() WHERE id = ?"); //actualitzem la data d'accés per mostrar última connexió.
-        $stmt->bind_param("i", $_SESSION['usuari_id']);
-        $stmt->execute();
         header("Location: ../panell.php");
         exit;
     } 
