@@ -4,10 +4,10 @@
       <a href="index.php"><i class="fa-solid fa-home"></i> Inici</a>
     </li>
     <li class="<?= ($page == 'panell') ? 'active' : '' ?>">
-      <a href="panell.php"><i class="fa-regular fa-user"></i></fa-regular> Panell</a>
+      <a href="panell.php"><i class="fa-regular fa-user"></i> Panell</a>
     </li>
     <li class="<?= ($page == 'alertes') ? 'active' : '' ?>">
-      <a href="alertes.php"><i class="fa-regular fa-bell"></i></fa-regular> Alertes</a>
+      <a href="alertes.php"><i class="fa-regular fa-bell"></i> Alertes</a>
     </li>
     <li class="<?= ($page == 'historic') ? 'active' : '' ?>">
       <a href="historic.php"><i class="fa-solid fa-calendar-days"></i> Històric</a>
