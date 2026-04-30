@@ -1,4 +1,4 @@
-console.log("panell.js carregat");
+//console.log("panell.js carregat");
 const formMailPanell        = document.getElementById("form-email");
 const formPassPanell        = document.getElementById("form-pass");
 const btnEditarEmailPanell  = document.getElementById("btn-editar-mail");
@@ -16,25 +16,25 @@ let emailOriginalPanell     = emailInputPanell.value;
 
 
 const validarEmailPanell = (email) => {
-    console.log("validarEmail");
+    //console.log("validarEmail");
     //expressió regular que verifica si té el format de mail correcte
     const emailFormat = /^[a-zA-Z0-9-_]{2,}@[a-zA-Z0-9-]{3,}\.[a-zA-Z]{2,}$/;
     return emailFormat.test(email);
 };
 
 const validarPassBuitPanell = (camp, pass) => {
-    console.log(pass);
+    //console.log(pass);
     netejarError(camp);
     if (pass.length <8) {
         crearError(camp, 'La contrasenya ha de tenir com a mínim 8 caràcters');
-        console.log("valida NO");
+        //console.log("valida NO");
         camp.classList.add('input-error');
         camp.classList.remove('input-correct');
         return false;
     }
     camp.classList.remove('input-error');
     camp.classList.add('input-correct');
-    console.log("valida OK");
+    //console.log("valida OK");
     return true;
 };
 
@@ -56,16 +56,16 @@ const validarNouPassPanell = (camp, password) => {
 
 const confirmarPassPanell = (camp, password1, password2) => {
     netejarError(camp);
-    console.log(password1);
-    console.log(password2); 
+    //console.log(password1);
+    //console.log(password2); 
     
     if (password1 === password2) {
         camp.classList.remove('input-error');
         camp.classList.add('input-correct');
-        console.log("pass iguals");
+        //console.log("pass iguals");
         return true;
     } 
-    console.log("pass diferents");
+    //console.log("pass diferents");
     camp.classList.add('input-error');
     camp.classList.remove('input-correct');
     crearError(camp,'Les contrasenyes no coincideixen.'); 
@@ -100,11 +100,11 @@ const crearError = (camp, missatge) => {
 
 
 emailInputPanell.addEventListener('focus', () => {
-    console.log("focus email panell");
+    //console.log("focus email panell");
 });
 
 emailInputPanell.addEventListener('blur', () => {
-    console.log("blur email panell");
+    //console.log("blur email panell");
     if (emailInputPanell.classList.contains('ocult')) return; // no validem si està ocult
     netejarError(emailInputPanell);
     if (!validarEmailPanell(emailInputPanell.value)) {
@@ -118,7 +118,7 @@ emailInputPanell.addEventListener('blur', () => {
 });
 
 btnEditarEmailPanell.addEventListener('click', () => {
-    console.log("click editar mail");
+    //console.log("click editar mail");
     emailInputPanell.value = emailOriginalPanell;
     btnEditarEmailPanell.classList.add('ocult');
     spanUserMailPanell.classList.add('ocult');
@@ -159,10 +159,10 @@ formPassPanell.addEventListener('submit', (event) => {
 
 
         if (valid) { 
-            console.log("submit pass form OK");
+            //console.log("submit pass form OK");
             formPassPanell.submit();
         } else {
-            console.log("submit pass form NO"); 
+            //console.log("submit pass form NO"); 
         }
 });    
 
@@ -196,7 +196,7 @@ btnCancelMailPanell.addEventListener('click', () => {
 
 
 btnEditarPassPanell.addEventListener('click', () => {
-    console.log("click editar pass");
+    //console.log("click editar pass");
     modalPassPanell.classList.add('actiu');
 });
 

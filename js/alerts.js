@@ -24,7 +24,7 @@ sliderTemp.addEventListener('input', () => {
 
 
 alertHeader.addEventListener('click', (event)=> {
-    console.log("header alert click");
+    //console.log("header alert click");
     if (alertHeader.classList.contains('active')) {
         alertHeader.classList.remove('active');
         newAlertForm.classList.add('ocult');

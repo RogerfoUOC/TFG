@@ -91,7 +91,7 @@
             crearError(inputElement,textContent);  
             formulariRegValidat = false;
         }
-        console.log(formulariRegValidat);
+        //console.log(formulariRegValidat);
     };
 
     const validarPassword2 = (password1, password2) => {
@@ -106,7 +106,7 @@
             crearError(inputElement,textContent); 
             formulariRegValidat = false;
         }
-        console.log(formulariRegValidat);
+        //console.log(formulariRegValidat);
     };
 
     //funció per crer els errors a cada input després de la validació
@@ -177,11 +177,11 @@
             passwordInputLogin.classList.add('input-error');
             crearError(passwordInputLogin, 'La contrasenya no pot estar buida.');
             formulariLoginValidat = false; 
-            console.log("Login NO enviat");
+            //console.log("Login NO enviat");
         }
         //console.log ("submit login form ");
         if (formulariLoginValidat) {
-            console.log("Login enviat");
+            //console.log("Login enviat");
             formLogin.submit();
         };
     });

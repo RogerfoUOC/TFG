@@ -103,5 +103,4 @@ $errorEmail = !empty($oldEmail);
         </form>
     </div>
 </div>
-<script defer src="js/validation.js"></script>
 <script defer src="js/panell.js"></script>
