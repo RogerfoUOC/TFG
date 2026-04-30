@@ -76,7 +76,7 @@ $errorEmail = !empty($oldEmail);
 
 <div id="modal-pass" class="capa-modal">
     <div class="modal-pass marc">
-        <h3>Canvi de contrasenya</h3>
+        <h2>Canvi de contrasenya</h2>
         <form method="POST" id="form-pass" action="./includes/update-password.php">
             <div class="grup-form">
                 <label for="pass-actual">Contrasenya actual</label>

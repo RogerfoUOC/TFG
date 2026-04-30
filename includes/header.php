@@ -18,7 +18,7 @@
 <body>
 
 <header class="site-header">
-    <button id="menu-toggle" class="hamburger">
+    <button id="menu-toggle" class="hamburger" aria-label="Obrir menú">
         <i class="fa-solid fa-bars"></i>
     </button>    
 </header>

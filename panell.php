@@ -26,9 +26,9 @@ if ($usuari_validat) {
 
 <div class="main-container">
     <?php include 'includes/menu.php'; ?>
-    <div class="content">
+    <main class="content">
         <?php include $vista; ?>
-    </div>
+    </main>
 </div>
 
 <script>

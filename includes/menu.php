@@ -26,7 +26,7 @@
 
 
   <!-- Botó tancar mòbil -->
-  <button id="close-menu" class="close-btn">
+  <button id="close-menu" class="close-btn" aria-label="Tancar menú">
       <i class="fa-solid fa-xmark"></i>
   </button>
 </nav>

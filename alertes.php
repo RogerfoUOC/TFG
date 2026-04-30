@@ -11,7 +11,7 @@
 
 <div class="main-container">
     <?php include 'includes/menu.php'; ?>
-    <div class="content">
+    <main class="content">
 
     <?php if ($usuari_validat): ?>
         <!-- Autoritzat -->
@@ -21,5 +21,5 @@
             header("Location: panell.php");
             exit;
      endif; ?>  
-    </div>
+    </main>
 </div>

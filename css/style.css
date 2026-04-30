@@ -17,7 +17,7 @@ h1 {
     text-transform: uppercase;
 }
 
-h3.titol {
+span.titol {
     display: flex;
     align-items: center;
     line-height: 0;
@@ -29,15 +29,15 @@ h3.titol {
     font-weight: 500;
     line-height: 15px;
 }
-h3.titol.interior {
+span.titol.interior {
     background: #c8ceff;
     color: #414991;
 }
-h3.titol.exterior {
+span.titol.exterior {
     background: #92e4b9;
     color: #295e21;
 }
-h3.titol.diferencia {
+span.titol.diferencia {
     background: #e3e492;
     color: #5A5229;
 }
@@ -325,6 +325,16 @@ th, td {
 
 .historic .valor-grid { 
     font-weight: bold;
+}
+
+/*amaga el label per accessibilitat dels formularis. */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
 }
 
 .valor-actual-grid { /* valor Actual a l'index */

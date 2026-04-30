@@ -6,7 +6,7 @@
 
 <div class="main-container">
     <?php include 'includes/menu.php'; ?>
-    <div class="content">
+    <main class="content">
         <h1>Projecte</h1>
         <div class="projecte-container">
             <div class="projecte-layout">
@@ -25,12 +25,12 @@
                     </p>
                 </div>
                 <div class="projecte-imatge">
-                    <img src="./img/sensor-01.png" alt="Placa + Sensor">
+                    <img src="./img/sensor-01.png" alt="Placa ESP8266 amb sensor BME280 muntada al circuit">
                 </div>
             </div>
             <div class="projecte-layout layout2">
                 <div class="projecte-imatge">
-                    <img src="./img/sensor-02.png" alt="Sensor encapsulat">
+                    <img src="./img/sensor-02.png" alt="Sensor BME280 encapsulat per protegir-lo de la humitat i la pluja">
                 </div>
                 <div class="projecte-text">
                     <p>
@@ -66,9 +66,9 @@
                     </p>
                 </div>
                 <div class="projecte-imatge">
-                    <img src="./img/sensor-03.png" alt="Sensor a l'exterior">
+                    <img src="./img/sensor-03.png" alt="Dispositiu sensor instal·lat a l'exterior per recollir dades ambientals">
                 </div>
             </div>
         </div>
-    </div>
+</main>
 </div>

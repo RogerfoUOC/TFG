@@ -27,7 +27,7 @@
 <!-- MOSTRAR CONTINGUT -->
 <div class="main-container">
     <?php include 'includes/menu.php'; ?>
-    <div class="content">
+    <main class="content">
         <h1>Logs</h1>
         <form method="GET" class="formulariFiltre">
             <fieldset>
@@ -72,13 +72,13 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Ubicació</th>
-                                <th>TMP (°C)</th>
-                                <th>HMT (%)</th>
-                                <th>Hora</th>
-                                <th>Data</th>
-                                <th>Sensor</th>
-                                <th>ID</th>
+                                <th scope="col">Ubicació</th>
+                                <th scope="col">TMP (°C)</th>
+                                <th scope="col">HMT (%)</th>
+                                <th scope="col">Hora</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Sensor</th>
+                                <th scope="col">ID</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -105,7 +105,7 @@
             <div class="sensedates">Selecciona un dia per mostrar el log.</div>
         <?php endif; ?>
         </div>
-    </div>
+        </main>
 </div>
 
 

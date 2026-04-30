@@ -19,8 +19,8 @@ if ($diaSeleccionat1 !== '') {
     $mostrarDades = true;
     
     // executem les consultes
-    $resultInterior     = getDadesInterior($conn, $diaConsulta1);
-    $resultExterior     = getDadesExterior($conn, $diaConsulta1);
+    $resultInterior     = getDadesInterior($conn, $diaSeleccionat1);
+    $resultExterior     = getDadesExterior($conn, $diaSeleccionat1);
     $resultatHistoric   = getDadesHistoric1($conn, $diaSeleccionat1);
     
     // arrays pels horais de  la gràfica
@@ -69,13 +69,14 @@ $conn->close();
 <!-- MOSTRAR CONTINGUT -->
 <div class="main-container">
     <?php include 'includes/menu.php'; ?>
-    <div class="content">
+    <main class="content">
         <h1>Històric de dades</h1>
         <!-- FORMULARI -->
         <form method="GET" action="historic.php" class="formulariFiltre">
             <fieldset>
                 <legend>Selecciona un dia:</legend>  
                 <div class="date-group">          
+                    <label for="inputData" class="visually-hidden">Selecciona una data</label>
                     <input type="date" id="inputData" name="data" value="<?= htmlspecialchars($diaSeleccionat1) ?>">
                     <div class="fastData">
                         <button type="button" onclick="getAvui()">Avui</button>
@@ -95,86 +96,91 @@ $conn->close();
                 <div class="grid-historic">
                     <!--  BLOC INTERIOR -->
                     <div class="marc interior">
-                        <h3 class="titol interior">Interior</h3>
+                        <span class="titol interior">Interior</span>
                         <div class="grid-dades-interior"> 
-                            <img src="icons/temp.svg" class="ico-principal-grid">
+                            <img src="icons/temp.svg" class="ico-principal-grid" alt="">
+
                             <div class="grup-valor"> 
-                                <img src="icons/min.svg" class="ico-secundaria-grid">
+                                <img src="icons/min.svg" class="ico-secundaria-grid" alt="">
                                 <span class="valor-grid"><?= formatTemp($stats["Interior"]["temp_minima"]) ?>º</span>
                             </div>
                             <div class="grup-valor"> 
-                                <img src="icons/max.svg" class="ico-secundaria-grid">
+                                <img src="icons/max.svg" class="ico-secundaria-grid" alt="">
                                 <span class="valor-grid"><?= formatTemp($stats["Interior"]["temp_maxima"]) ?>º</span>
                             </div>
-                            <img src="icons/hum.svg" class="ico-principal-grid">
+                            <img src="icons/hum.svg" class="ico-principal-grid" alt="">
                             <div class="grup-valor"> 
-                                <img src="icons/min.svg" class="ico-secundaria-grid">
+                                <img src="icons/min.svg" class="ico-secundaria-grid" alt="">
                                 <span class="valor-grid"><?= round($stats["Interior"]["humitat_minima"]) ?>%</span>
                             </div>
                             <div class="grup-valor"> 
-                                <img src="icons/max.svg" class="ico-secundaria-grid">
+                                <img src="icons/max.svg" class="ico-secundaria-grid" alt="">
                                 <span class="valor-grid"><?= round($stats["Interior"]["humitat_maxima"]) ?>%</span>
                             </div>
                         </div>
                     </div>
                     <!--  BLOC EXTERIOR -->
                     <div class="marc exterior">
-                        <h3 class="titol exterior">Exterior</h3>
+                        <span class="titol exterior">Exterior</span>
                         <div class="grid-dades-interior"> 
-                            <img src="icons/temp.svg" class="ico-principal-grid">
+                            <img src="icons/temp.svg" class="ico-principal-grid" alt="">
+
                             <div class="grup-valor"> 
-                                <img src="icons/min.svg" class="ico-secundaria-grid">
+                                <img src="icons/min.svg" class="ico-secundaria-grid" alt="">
                                 <span class="valor-grid"><?= formatTemp($stats["Exterior"]["temp_minima"]) ?>º</span>
                             </div>
                             <div class="grup-valor"> 
-                                <img src="icons/max.svg" class="ico-secundaria-grid">
+                                <img src="icons/max.svg" class="ico-secundaria-grid" alt="">
                                 <span class="valor-grid"><?= formatTemp($stats["Exterior"]["temp_maxima"]) ?>º</span>
                             </div>
-                            <img src="icons/hum.svg" class="ico-principal-grid">
+                            <img src="icons/hum.svg" class="ico-principal-grid" alt="">
                             <div class="grup-valor"> 
-                                <img src="icons/min.svg" class="ico-secundaria-grid">
+                                <img src="icons/min.svg" class="ico-secundaria-grid" alt="">
                                 <span class="valor-grid"><?= round($stats["Exterior"]["humitat_minima"]) ?>%</span>
                             </div>
                             <div class="grup-valor"> 
-                                <img src="icons/max.svg" class="ico-secundaria-grid">
+                                <img src="icons/max.svg" class="ico-secundaria-grid" alt="">
                                 <span class="valor-grid"><?= round($stats["Exterior"]["humitat_maxima"]) ?>%</span>
                             </div>
                         </div>
                     </div>
                     <!--  BLOC MITJANA INTERIOR -->
                     <div class="marc mitjana-interior">
-                        <h3 class="titol interior">Mitjana Interior</h3>
+                        <span class="titol interior">Mitjana Interior</span>
                         <div class="grid-dades-mitjana">
-                            <img src="icons/temp.svg" class="ico-principal-grid">
+                            <img src="icons/temp.svg" class="ico-principal-grid" alt="">
+
                             <span class="valor-mitjana"><?= formatTemp($stats["Interior"]["temp_mitjana"]) ?>º</span>
-                            <img src="icons/hum.svg" class="ico-principal-grid">
+                            <img src="icons/hum.svg" class="ico-principal-grid" alt="">
                             <span class="valor-mitjana"><?= round($stats["Interior"]["humitat_mitjana"]) ?>%</span>
                         </div>
                     </div>
                     <!--  BLOC MITJANA EXTERIOR -->
                     <div class="marc mitjana-exterior">
-                        <h3 class="titol exterior">Mitjana Exterior</h3>
+                        <span class="titol exterior">Mitjana Exterior</span>
                         <div class="grid-dades-mitjana">
-                            <img src="icons/temp.svg" class="ico-principal-grid">
+                            <img src="icons/temp.svg" class="ico-principal-grid" alt="">
+
                             <span class="valor-mitjana"><?= formatTemp($stats["Exterior"]["temp_mitjana"]) ?>º</span>
-                            <img src="icons/hum.svg" class="ico-principal-grid">
+                            <img src="icons/hum.svg" class="ico-principal-grid" alt="">
                             <span class="valor-mitjana"><?= round($stats["Exterior"]["humitat_mitjana"]) ?>%</span>
                         </div>
                     </div> 
                     <!--  BLOC DIFERÈNCIA MITJANA  -->
                     <div class="marc dif-mitjana">
-                        <h3 class="titol diferencia">
+                        <span class="titol diferencia">
                             Diferència mitjana
                             <span class="info-icon">
                                 <img src="icons/info.svg" alt="info">
                                 <span class="tooltip">Diferència de la mitjana interior respecte exterior.</span>
                             </span>
-                        </h3>
+                        </span>
                         <div class="grid-dades-mitjana">
-                            <img src="icons/temp.svg" class="ico-principal-grid">
+                            <img src="icons/temp.svg" class="ico-principal-grid" alt="">
+
                             <!-- fem servir l’operador ternari per la condicio de mostrar el signe positiu si el valor és superior a 0 -->
                             <span class="valor-mitjana"><?= ($diferenciaMitjaTemp > 0 ? '+' : '') . formatTemp($diferenciaMitjaTemp) ?>º</span>
-                            <img src="icons/hum.svg" class="ico-principal-grid">
+                            <img src="icons/hum.svg" class="ico-principal-grid" alt="">
                             <span class="valor-mitjana"><?= ($diferenciaMitjaHum > 0 ? '+' : '') . round($diferenciaMitjaHum) ?>%</span>
                         </div>
                     </div>
@@ -192,7 +198,7 @@ $conn->close();
         <?php else: ?>
             <div class="sensedates">Selecciona una data al formulari per veure les dades.</div>
         <?php endif; ?>    
-    </div> <!-- Final "content"> --> 
+        </main> <!-- Final "content"> --> 
 </div> <!-- Final "main-container"> -->
 
 

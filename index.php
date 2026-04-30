@@ -94,7 +94,7 @@ $conn->close();
 <!-- MOSTRAR CONTINGUT -->
 <div class="main-container">
     <?php include 'includes/menu.php'; ?>
-    <div class="content">
+    <main class="content">
         <h1>Dades actuals</h1>
         <div id="dia">
         <?= $diaSeleccionat ?>
@@ -102,68 +102,71 @@ $conn->close();
         <div class="dades actuals">
             <!--  BLOC INTERIOR -->
             <div class="marc">
-                <h3 class="titol interior">Interior</h3>
+                <span class="titol interior">Interior</span>
                 <div class="grid-dades-actuals"> 
-                    <img src="icons/temp.svg" class="ico-principal-grid">
+                    <img src="icons/temp.svg" class="ico-principal-grid" alt="">
+
                     <span class="valor-actual-grid"><?= formatTemp($actuals["Interior"]["temp"]) ?>º</span> <div class="grup-valor"> 
-                        <img src="icons/min.svg" class="ico-secundaria-grid">
+                        <img src="icons/min.svg" class="ico-secundaria-grid" alt="">
                         <span class="valor-grid"><?= formatTemp($stats["Interior"]["temp_minima"]) ?>º</span>
                     </div>
                     <div class="grup-valor"> 
-                        <img src="icons/max.svg" class="ico-secundaria-grid">
+                        <img src="icons/max.svg" class="ico-secundaria-grid" alt="">
                         <span class="valor-grid"><?= formatTemp($stats["Interior"]["temp_maxima"]) ?>º</span>
                     </div>
-                    <img src="icons/hum.svg" class="ico-principal-grid">
+                    <img src="icons/hum.svg" class="ico-principal-grid" alt="">
                     <span class="valor-actual-grid"><?= $actuals["Interior"]["hum"] ?>%</span> <div class="grup-valor"> 
-                        <img src="icons/min.svg" class="ico-secundaria-grid">
+                        <img src="icons/min.svg" class="ico-secundaria-grid" alt="">
                         <span class="valor-grid"><?= round($stats["Interior"]["humitat_minima"]) ?>%</span>
                     </div>
                     <div class="grup-valor"> 
-                        <img src="icons/max.svg" class="ico-secundaria-grid">
+                        <img src="icons/max.svg" class="ico-secundaria-grid" alt="">
                         <span class="valor-grid"><?= round($stats["Interior"]["humitat_maxima"]) ?>%</span>
                     </div>
                 </div>
             </div>
             <!--  BLOC EXTERIOR -->
             <div class="marc">
-                <h3 class="titol exterior">Exterior</h3>
+                <span class="titol exterior">Exterior</span>
                 <div class="grid-dades-actuals">
-                    <img src="icons/temp.svg" class="ico-principal-grid">
+                    <img src="icons/temp.svg" class="ico-principal-grid" alt="">
+
                     <span class="valor-actual-grid"><?= formatTemp($actuals["Exterior"]["temp"]) ?>º</span>
                     <div class="grup-valor"> 
-                        <img src="icons/min.svg" class="ico-secundaria-grid">
+                        <img src="icons/min.svg" class="ico-secundaria-grid" alt="">
                         <span class="valor-grid"><?= formatTemp($stats["Exterior"]["temp_minima"]) ?>º</span>
                     </div>
                     <div class="grup-valor"> 
-                        <img src="icons/max.svg" class="ico-secundaria-grid">
+                        <img src="icons/max.svg" class="ico-secundaria-grid" alt="">
                         <span class="valor-grid"><?= formatTemp($stats["Exterior"]["temp_maxima"]) ?>º</span>
                     </div>
-                    <img src="icons/hum.svg" class="ico-principal-grid">
+                    <img src="icons/hum.svg" class="ico-principal-grid" alt="">
                     <span class="valor-actual-grid"><?= $actuals["Exterior"]["hum"] ?>%</span>
                     <div class="grup-valor"> 
-                        <img src="icons/min.svg" class="ico-secundaria-grid">
+                        <img src="icons/min.svg" class="ico-secundaria-grid" alt="">
                         <span class="valor-grid"><?= round($stats["Exterior"]["humitat_minima"]) ?>%</span>
                     </div>
                     <div class="grup-valor"> 
-                        <img src="icons/max.svg" class="ico-secundaria-grid">
+                        <img src="icons/max.svg" class="ico-secundaria-grid" alt="">
                         <span class="valor-grid"><?= round($stats["Exterior"]["humitat_maxima"]) ?>%</span>
                     </div>
                 </div>
             </div>
             <!--  BLOC DIFERÈNCIA -->
             <div class="marc diferencia">
-                <h3 class="titol diferencia">
+                <span class="titol diferencia">
                     Diferència
                     <span class="info-icon">
-                        <img src="icons/info.svg" alt="info">
+                        <img src="icons/info.svg" alt="Més informació sobre aquest valor">
                         <span class="tooltip">Diferència interior respecte exterior.</span>
                     </span>
-                </h3>
+                </span>
                 <div class="grid-dades-mitjana">
-                    <img src="icons/temp.svg" class="ico-principal-grid">
+                    <img src="icons/temp.svg" class="ico-principal-grid" alt="">
+
                     <!-- fem servir l’operador ternari per la condicio de mostrar el signe positiu -->
                     <span class="valor-mitjana"><?= ($diferenciaTemp > 0 ? '+' : '') . formatTemp($diferenciaTemp) ?>º</span>
-                    <img src="icons/hum.svg" class="ico-principal-grid">
+                    <img src="icons/hum.svg" class="ico-principal-grid" alt="">
                     <span class="valor-mitjana"><?= ($diferenciaHum > 0 ? '+' : '') . round($diferenciaHum) ?>%</span>
                 </div>
             </div>
@@ -187,5 +190,5 @@ $conn->close();
             </div>
         </div>
 
-    </div>
+</main>
 </div>
