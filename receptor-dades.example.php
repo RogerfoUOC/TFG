@@ -25,20 +25,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn = new mysqli($servername, $username, $password, $dbname);
         // comprova la connexió
         if ($conn->connect_error) {
-            die("Connexió fallida: " . $conn->connect_error);
-        } 
-        //afegim les dades a la abse de ades amb Insert
-        $sql = "INSERT INTO SensorData (sensor, location, value1, value2, value3)
-        VALUES ('" . $sensor . "', '" . $location . "', '" . $value1 . "', '" . $value2 . "', '" . $value3 . "')";
-        
-        if ($conn->query($sql) === TRUE) {
-            echo "Dades guardades correctament";
-        } 
-        else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-        //tanquem la connexió
-        $conn->close();
+			die("Error de connexió");
+		}
+
+		$sql = "INSERT INTO SensorData (sensor, location, value1, value2, value3) VALUES (?, ?, ?, ?, ?)";
+		$stmt = $conn->prepare($sql);
+		$stmt->bind_param("sssss", $sensor, $location, $value1, $value2, $value3);
+
+		if ($stmt->execute()) {
+			echo "Dades guardades correctament";
+		} else {
+			echo "Error: " . $conn->error;
+		}
+		$stmt->close();
+		$conn->close();
     }
     else {
         echo "API incorrecte";

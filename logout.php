@@ -3,5 +3,5 @@ session_start();
 session_destroy();
 
 
-header('Location: panell.php');
+header('Location: index.php');
 ?>

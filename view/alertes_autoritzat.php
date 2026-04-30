@@ -9,7 +9,7 @@
             <span class="nova-alerta-titol">Crear alerta</span>
         </div>
         
-        <form method="POST" id="form-alerts" class="formulari-nova-alerta ocult" action="./includes/add-alert.php">
+        <form method="POST" id="form-alerts" class="formulari-nova-alerta ocult" action="./includes/add-alert.php"> <!-- TODO: fitxer pendent de creació -->
         <!-- columna esquerra -->
             <div class="alerta-col">
                 <div class="alerta-grup">
@@ -65,7 +65,6 @@
                         <option value="eq">Igual a ... (=)</option>
                     </select>
                 </div>
-
                 <div class="alerta-grup">
                     <span class="alerta-label">Valor</span>
                         <!-- Humitat -->
@@ -73,24 +72,20 @@
                             <input type="range" name="humitat" id="slider-hum" min="0" max="100" value="50" class="slider-alerta">
                             <span id="display-hum">50%</span>
                         </div>
-
                         <!-- Temperatura -->
                         <div id="slider-temperatura" class="slider-wrapper">
                             <input type="range" name="temperatura" id="slider-temp" min="0" max="40" value="20" class="slider-alerta">
                             <span id="display-temp">20ºC</span>
                         </div>
-
-                    
                 </div>
 
                 <div class="alerta-grup alerta-grup-boto">
-                    <button type="button" class="btn-alerta">Crear alerta</button>
+                    <button type="submit" class="btn-alerta">Crear alerta</button>
                 </div>
             </div>
         </form>
 
     </div>
-
 
     <!-- Llistat d'alertes -->
     <div class="marc llistat-alerta">
