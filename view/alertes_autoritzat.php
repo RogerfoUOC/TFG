@@ -9,7 +9,8 @@
             <span class="nova-alerta-titol">Crear alerta</span>
         </div>
         
-        <form method="POST" id="form-alerts" class="formulari-nova-alerta ocult" action="./includes/add-alert.php"> <!-- TODO: fitxer pendent de creació -->
+        <form method="POST" id="form-alerts" class="formulari-nova-alerta ocult" action=""> 
+        <!-- <form method="POST" id="form-alerts" class="formulari-nova-alerta ocult" action="./includes/add-alert.php">  TODO: fitxer pendent de creació -->
         <!-- columna esquerra -->
             <div class="alerta-col">
                 <div class="alerta-grup">

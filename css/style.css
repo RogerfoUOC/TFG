@@ -653,7 +653,13 @@ a:hover {
     /* el contingut ha de començar a marge 0 en mòbil */
     .content {
         margin-left: 0 !important;
-}
+    }
+
+    .nova-alerta .formulari-nova-alerta{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 
 }
 
