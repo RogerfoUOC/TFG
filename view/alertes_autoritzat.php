@@ -9,8 +9,8 @@
             <span class="nova-alerta-titol">Crear alerta</span>
         </div>
         
-        <form method="POST" id="form-alerts" class="formulari-nova-alerta ocult" action=""> 
-        <!-- <form method="POST" id="form-alerts" class="formulari-nova-alerta ocult" action="./includes/add-alert.php">  TODO: fitxer pendent de creació -->
+       
+        <form method="POST" id="form-alerts" class="formulari-nova-alerta ocult" action="./includes/add-alert.php"> <!--  TODO: fitxer pendent de creació -->
         <!-- columna esquerra -->
             <div class="alerta-col">
                 <div class="alerta-grup">
@@ -53,6 +53,7 @@
                             <span>Correu electrònic</span>
                         </label>
                     </div>
+                    <p id="error-avis" class="label-error ocult">Has de seleccionar com a mínim un tipus d'avís.</p>
                 </div>
             </div>
 
@@ -61,9 +62,8 @@
                 <div class="alerta-grup">
                     <span class="alerta-label">Condició</span>
                     <select name="condicio" class="select-alerta">
-                        <option value="lt">Menor que ... (&lt;)</option>
-                        <option value="gt">Major que ... (&gt;)</option>
-                        <option value="eq">Igual a ... (=)</option>
+                        <option value="lt">Inferior a ... (<=)</option>
+                        <option value="gt">Superior a ... (>=)</option>
                     </select>
                 </div>
                 <div class="alerta-grup">
@@ -75,7 +75,7 @@
                         </div>
                         <!-- Temperatura -->
                         <div id="slider-temperatura" class="slider-wrapper">
-                            <input type="range" name="temperatura" id="slider-temp" min="0" max="40" value="20" class="slider-alerta">
+                            <input type="range" name="temperatura" id="slider-temp" min="-10" max="50" value="20" class="slider-alerta">
                             <span id="display-temp">20ºC</span>
                         </div>
                 </div>

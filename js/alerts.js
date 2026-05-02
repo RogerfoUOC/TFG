@@ -9,6 +9,9 @@ const displayHum    = document.getElementById('display-hum');
 const displayTemp   = document.getElementById('display-temp');
 const wrapperHum    = document.getElementById('slider-humitat');
 const wrapperTemp   = document.getElementById('slider-temperatura');
+const checkAvisWeb  = document.querySelector('input[name="avis_web"]');
+const checkAvisMail = document.querySelector('input[name="avis_mail"]');
+const errorAvis     = document.getElementById('error-avis');
 
 // inicialitzem
 displayHum.textContent  = sliderHum.value + '%';
@@ -54,8 +57,12 @@ radios.forEach(radio => {
     });
 });
 
+
 const actualitzarColorSlider = (slider) => {
-    const percent = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+    const val     = parseFloat(slider.value);
+    const min     = parseFloat(slider.min);
+    const max     = parseFloat(slider.max);
+    const percent = (val - min) / (max - min) * 100;
     slider.style.background = `linear-gradient(to right, #1a5495 ${percent}%, #ddd ${percent}%)`;
 };
 
@@ -73,3 +80,24 @@ sliderTemp.addEventListener('input', () => {
     actualitzarColorSlider(sliderTemp);
 });
 
+
+// validació del formulari abans d'enviar
+newAlertForm.addEventListener('submit', (event) => {
+    // comprovem que com a mínim un avís estigui marcat
+    if (!checkAvisWeb.checked && !checkAvisMail.checked) {
+        event.preventDefault();
+        errorAvis.classList.remove('ocult');
+        return;
+    }
+    errorAvis.classList.add('ocult');
+    // si tot és correcte, el formulari s'envia normalment
+});
+ 
+// amaguem l'error d'avís quan l'usuari marca un checkbox
+[checkAvisWeb, checkAvisMail].forEach(cb => {
+    cb.addEventListener('change', () => {
+        if (checkAvisWeb.checked || checkAvisMail.checked) {
+            errorAvis.classList.add('ocult');
+        }
+    });
+});

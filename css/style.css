@@ -1247,7 +1247,7 @@ a:hover {
     .slider-alerta {
         flex: 1;
         accent-color: #1a5495;
-        height: 4px;
+        height: 6px;
         cursor: pointer;
     }
 
