@@ -655,6 +655,7 @@ a:hover {
         margin-left: 0 !important;
     }
 
+    /* passar a 1 columna formulari d'alertes */
     .nova-alerta .formulari-nova-alerta{
         display: grid;
         grid-template-columns: 1fr;
