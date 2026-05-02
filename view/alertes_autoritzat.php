@@ -1,16 +1,21 @@
+<?php 
+$error_alerta       = $_SESSION['error_alerta'] ?? null;
+$formAlertaObert    = $_SESSION['form_alerta_obert'] ?? false;
+unset($_SESSION['error_alerta']);
+unset($_SESSION['form_alerta_obert']);
+?>
 <div class="panell">
     <h1>Alertes</h1>
-
     <!-- FORMULARI NOVA ALERTA -->
     <div class="marc nova-alerta">
-        <div id="alert-header" class="nova-alerta-header">
-            <span id="plus-alert" class="nova-alerta-ico"><i class="fa-solid fa-square-plus"></i></span>
-            <span id="less-alert" class="nova-alerta-ico ocult"><i class="fa-solid fa-square-minus"></i></span>
+        <div id="alert-header" class="nova-alerta-header <?= $formAlertaObert ? 'active' : '' ?>">
+            <span id="plus-alert" class="nova-alerta-ico <?= $formAlertaObert ? 'ocult' : '' ?>"><i class="fa-solid fa-square-plus"></i></span>
+            <span id="less-alert" class="nova-alerta-ico <?= $formAlertaObert ? '' : 'ocult' ?>"><i class="fa-solid fa-square-minus"></i></span>
             <span class="nova-alerta-titol">Crear alerta</span>
         </div>
         
-       
-        <form method="POST" id="form-alerts" class="formulari-nova-alerta ocult" action="./includes/add-alert.php"> <!--  TODO: fitxer pendent de creació -->
+        <form method="POST" id="form-alerts" class="formulari-nova-alerta <?= $formAlertaObert ? '' : 'ocult' ?>" action="./includes/add-alert.php">
+        <!-- form method="POST" id="form-alerts" class="formulari-nova-alerta ocult" action="./includes/add-alert.php">  TODO: fitxer pendent de creació -->
         <!-- columna esquerra -->
             <div class="alerta-col">
                 <div class="alerta-grup">
@@ -53,7 +58,10 @@
                             <span>Correu electrònic</span>
                         </label>
                     </div>
-                    <p id="error-avis" class="label-error ocult">Has de seleccionar com a mínim un tipus d'avís.</p>
+                    <?php if ($error_alerta): ?>
+                        <p class="error-box"><?= htmlspecialchars($error_alerta) ?></p>
+                    <?php endif; ?>
+                    <p id="error-avis" class="label-error ocult">Tria com a mínim un tipus d'avís.</p>
                 </div>
             </div>
 
@@ -62,8 +70,8 @@
                 <div class="alerta-grup">
                     <span class="alerta-label">Condició</span>
                     <select name="condicio" class="select-alerta">
-                        <option value="lt">Inferior a ... (<=)</option>
-                        <option value="gt">Superior a ... (>=)</option>
+                        <option value="inferior">Inferior a ... (<=)</option>
+                        <option value="superior">Superior a ... (>=)</option>
                     </select>
                 </div>
                 <div class="alerta-grup">

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'connexio.php';
- 
+
 // redirigim si no hi ha sessió o no arriben les dades necessàries
 if (!isset($_SESSION['usuari_id'])) {
     header("Location: ../panell.php");
@@ -20,14 +20,22 @@ $avis_web   = isset($_POST['avis_web']) ? 1 : 0;  //operador ternari per convert
 $avis_mail  = isset($_POST['avis_mail']) ? 1 : 0;
 
 
+function errorAlertaGenerica() {
+    $_SESSION['error_alerta'] = "Tria com a mínim un tipus d'avís.";
+    $_SESSION['form_alerta_obert'] = true;
+    header("Location: ../alertes.php");
+    exit;
+}
+
+if (!$avis_web && !$avis_wail) errorAlertaGenerica();
+
 echo '<pre>';
 print_r($_POST);
 echo '</pre>';
 die();
 
-function errorAlertaGenerica() {
-    $_SESSION['toast_error'] = "Error en crear l'alerta, torna-ho a intentar.";
-    header("Location: ../alertes.php");
-    exit;
-}
+
+//$sql = "INSERT INTO alerts (user_id, localitzacio, sensor, condicio, valor, avis_web, avis_mail)
+//        VALUES (?, ?, ?, ?, ?, ?, ?)";
+
 ?>
