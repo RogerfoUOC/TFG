@@ -99,21 +99,22 @@ unset($_SESSION['form_alerta_obert']);
         </form>
 
     </div>
-    <div class="tabs-auth">
-        <button id="btn-alertes-tab" class="tab-btn active">Alertes creades</button>
-        <button id="btn-log-tab" class="tab-btn">Registre d'alertes</button>
-    </div>
+    <div class="marc alertes-autoritzat">
+        <div class="tabs-auth tabs-alerta-header">
+            <button id="btn-alertes-tab" class="tab-btn active">Alertes creades</button>
+            <button id="btn-log-tab" class="tab-btn">Registre d'alertes</button>
+        </div>
 
-    <div id="tab-alertes" class="tab-content active">
-        <!-- llistat d'alertes -->
-        ALERTES CREADES
-    </div>
+        <div id="tab-alertes" class="tab-content active">
+            <!-- llistat d'alertes -->
+            ALERTES CREADES
+        </div>
 
-    <div id="tab-log" class="tab-content">
-        <!-- registre d'alertes -->
-         LOG D'ALERTES
+        <div id="tab-log" class="tab-content">
+            <!-- registre d'alertes -->
+            LOG D'ALERTES
+        </div>
     </div>
-
 </div>    
 <script defer src="js/alerts.js"></script>
-<script defer src="js/tabs.js"></script>
+<script defer src="js/tabs-alerts.js"></script>

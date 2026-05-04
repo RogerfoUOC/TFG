@@ -1,6 +1,7 @@
 
 :root {
   --ombra-card: 0px 0px 7px -2px #b9b9b9;
+  --amplada-alertes: 850px;
 }
 
 /* -- BASE & TIPOGRAFIA -- */
@@ -296,6 +297,7 @@ th, td {
     border-radius: 8px;
     padding: 15px;
     box-shadow: var(--ombra-card);
+    box-sizing: border-box;
 }
 
 .dades {
@@ -785,8 +787,6 @@ a:hover {
     .sw-psw.ocult {
         visibility: hidden;  
     }
-
-    
     #label-pass2.ocult {
         display: none;
     }
@@ -798,6 +798,13 @@ a:hover {
         font-weight: 600;
         color: #444;
         margin-bottom: 0.4rem;
+    }
+
+    .marc.alertes-autoritzat {
+        max-width: var(--amplada-alertes);
+        margin: 0 auto;
+        padding: 0px;
+        overflow: hidden;
     }
     .capa-auth {
         display: flex;
@@ -1060,8 +1067,8 @@ a:hover {
         transform: scale(0.95);
     }
 
-       .ocult  {
-        display: none;
+    .ocult  {
+        display: none !important;
     }
 
     .error-container {
@@ -1132,11 +1139,16 @@ a:hover {
     }
 
     /*ALERTES*/
+
+    .tabs-alerta-header {
+        margin: 0 -15px;
+    }
     .nova-alerta,
     .tabs-alerta,
     .llistat-alerta,
     .registre-alerta{
-        max-width: 750px;
+        max-width: var(--amplada-alertes);
+        margin: 0 auto;
         margin-bottom:20px;
     }
     .fa-square-plus,
