@@ -23,3 +23,4 @@
      endif; ?>  
     </main>
 </div>
+<script defer src="js/tabs.js"></script>

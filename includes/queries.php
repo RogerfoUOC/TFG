@@ -216,4 +216,18 @@ function dataRegistreUsuari($conn, $userId) {
     }
     return null;
 }
+
+function getComptadorAlertes($conn, $userId) {
+    $sql  = "SELECT 
+                COUNT(*) as total,
+                SUM(activa = 1) as actives
+             FROM alerts 
+             WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    return $result;
+}
 ?>

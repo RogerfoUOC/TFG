@@ -13,11 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$user       = $_SESSION['usuari_id'];
-$tipus_dada = $_POST['tipus_dada'] ?? null;
-$ubicacio   = $_POST['ubicacio'] ?? null;
-$avis_web   = isset($_POST['avis_web']) ? 1 : 0;  //operador ternari per convertir a 1 o 0 segons si està marcat o no
-$avis_mail  = isset($_POST['avis_mail']) ? 1 : 0;
+$user           = $_SESSION['usuari_id'];
+$tipus_dada     = $_POST['tipus_dada'] ?? null;
+$ubicacio       = $_POST['ubicacio'] ?? null;
+$avis_web       = isset($_POST['avis_web']) ? 1 : 0;  //operador ternari per convertir a 1 o 0 segons si està marcat o no
+$avis_mail      = isset($_POST['avis_mail']) ? 1 : 0;
+$condicio       = $_POST['condicio'] ?? null;
+$tempreatura    = $_POST['temperatura'] ?? null;
+$humitat        = $_POST['humitat'] ?? null;
+$valor          = $tipus_dada === 'temperatura' ? $tempreatura : $humitat;  //depenent el tipus de dada triat, agafem temperatura o humitat
 
 
 function errorAlertaGenerica() {
@@ -27,15 +31,29 @@ function errorAlertaGenerica() {
     exit;
 }
 
-if (!$avis_web && !$avis_wail) errorAlertaGenerica();
+if (!$avis_web && !$avis_mail) errorAlertaGenerica();
 
+/*
 echo '<pre>';
 print_r($_POST);
 echo '</pre>';
+
+echo '<br> Usuer: ' . $user . '<br>';
+echo 'Tipus de dada: ' . $tipus_dada . '<br>';
+echo 'Ubicació: ' . $ubicacio . '<br>';
+echo 'Avis web: ' . $avis_web . '<br>';
+echo 'Avis correu: ' . $avis_mail . '<br>';
+echo 'Condició: ' . $condicio . '<br>';
+echo 'Valor: ' . $valor . '<br>';
 die();
+*/
 
-
-//$sql = "INSERT INTO alerts (user_id, localitzacio, sensor, condicio, valor, avis_web, avis_mail)
-//        VALUES (?, ?, ?, ?, ?, ?, ?)";
-
+$sql = "INSERT INTO alerts (user_id, localitzacio, sensor, condicio, valor, avis_web, avis_mail)
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("isssiii", $user, $ubicacio, $tipus_dada, $condicio, $valor, $avis_web, $avis_mail);
+$stmt->execute();
+$_SESSION['ok_alerta'] = "Alerta creada correctament.";
+header("Location: ../alertes.php");
+exit;
 ?>

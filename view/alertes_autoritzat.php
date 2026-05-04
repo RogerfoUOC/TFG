@@ -1,11 +1,16 @@
 <?php 
 $error_alerta       = $_SESSION['error_alerta'] ?? null;
 $formAlertaObert    = $_SESSION['form_alerta_obert'] ?? false;
+$toastSuccess       = $_SESSION['ok_alerta'] ?? null;
+unset($_SESSION['ok_alerta']);
 unset($_SESSION['error_alerta']);
 unset($_SESSION['form_alerta_obert']);
 ?>
 <div class="panell">
     <h1>Alertes</h1>
+    <?php
+        if ($toastSuccess) echo '<div class="toast success-box">' . htmlspecialchars($toastSuccess) . '</div>';
+        ?>
     <!-- FORMULARI NOVA ALERTA -->
     <div class="marc nova-alerta">
         <div id="alert-header" class="nova-alerta-header <?= $formAlertaObert ? 'active' : '' ?>">
@@ -15,7 +20,6 @@ unset($_SESSION['form_alerta_obert']);
         </div>
         
         <form method="POST" id="form-alerts" class="formulari-nova-alerta <?= $formAlertaObert ? '' : 'ocult' ?>" action="./includes/add-alert.php">
-        <!-- form method="POST" id="form-alerts" class="formulari-nova-alerta ocult" action="./includes/add-alert.php">  TODO: fitxer pendent de creació -->
         <!-- columna esquerra -->
             <div class="alerta-col">
                 <div class="alerta-grup">
@@ -95,15 +99,21 @@ unset($_SESSION['form_alerta_obert']);
         </form>
 
     </div>
-
-    <!-- Llistat d'alertes -->
-    <div class="marc llistat-alerta">
-        Alertes creades
+    <div class="tabs-auth">
+        <button id="btn-alertes-tab" class="tab-btn active">Alertes creades</button>
+        <button id="btn-log-tab" class="tab-btn">Registre d'alertes</button>
     </div>
 
-    <!-- Registre d'alertes -->
-    <div class="marc registre-alerta">
-        Registre d'alertes
+    <div id="tab-alertes" class="tab-content active">
+        <!-- llistat d'alertes -->
+        ALERTES CREADES
     </div>
+
+    <div id="tab-log" class="tab-content">
+        <!-- registre d'alertes -->
+         LOG D'ALERTES
+    </div>
+
 </div>    
 <script defer src="js/alerts.js"></script>
+<script defer src="js/tabs.js"></script>

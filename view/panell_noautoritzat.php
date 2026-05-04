@@ -1,10 +1,10 @@
         <div class="capa-auth">
             <div class="cont-auth marc">
                 <div class="tabs-auth">
-                    <button class="tab-btn active" id="btn-login-tab">
+                    <button cid="btn-login-tab" lass="tab-btn active">
                         Login
                     </button>
-                    <button class="tab-btn" id="btn-registre-tab">
+                    <button id="btn-registre-tab" class="tab-btn">
                         Registre
                     </button>
                 </div>

@@ -8,16 +8,19 @@ unset($_SESSION['ok_email']);
 unset($_SESSION['ok_password']);
 unset($_SESSION['old_email']);
 $errorEmail = !empty($oldEmail);
-?>
 
+$row = getComptadorAlertes($conn, $userId)->fetch_assoc();
+$totalAlertes = $row['total'];
+$totalActives = $row['actives'];
+?>
 
 <div class="panell">
     <h1>Panell</h1>
-<?php
-    if ($toastError)   echo '<div class="toast error-box">'   . htmlspecialchars($toastError)    . '</div>';
-    if ($okEmailMsg)   echo '<div class="toast success-box">' . htmlspecialchars($okEmailMsg)    . '</div>';
-    if ($okPasswordMsg)echo '<div class="toast success-box">' . htmlspecialchars($okPasswordMsg) . '</div>';
-?>
+    <?php
+        if ($toastError)    echo '<div class="toast error-box">'   . htmlspecialchars($toastError)    . '</div>';
+        if ($okEmailMsg)    echo '<div class="toast success-box">' . htmlspecialchars($okEmailMsg)    . '</div>';
+        if ($okPasswordMsg) echo '<div class="toast success-box">' . htmlspecialchars($okPasswordMsg) . '</div>';
+    ?>
     <div class="card-usuari">
         <h2><?=htmlspecialchars($userName) ?></h2>
         <form id="form-email" method="POST" action="includes/update-email.php">
@@ -48,12 +51,12 @@ $errorEmail = !empty($oldEmail);
 
         <div class="fila">
             <span class="label">Alertes creades:</span>
-            <span class="valor">0</span>
+            <span class="valor"><?= $totalAlertes ?></span>
         </div>
 
         <div class="fila">
             <span class="label">Alertes actives:</span>
-            <span class="valor">0</span>
+            <span class="valor"><?= $totalActives ?></span>
         </div>
 
         <div class="fila">
