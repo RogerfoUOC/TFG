@@ -1,3 +1,4 @@
+<?php if (session_status() === PHP_SESSION_NONE) session_start(); ?>
 <nav class="sidebar">
   <ul>
     <li class="<?= ($page == 'home') ? 'active' : '' ?>">
@@ -23,7 +24,11 @@
     </li>
   </ul>
 
-
+  <?php if (isset($_SESSION['usuari_id'])): ?>
+  <a href="logout.php" class="logout-btn">
+    <i class="fa-solid fa-power-off"></i> Tancar sessió
+  </a>
+  <?php endif; ?>
 
   <!-- Botó tancar mòbil -->
   <button id="close-menu" class="close-btn" aria-label="Tancar menú">
