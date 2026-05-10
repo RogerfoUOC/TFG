@@ -146,7 +146,9 @@ unset($_SESSION['form_alerta_obert']);
                                     <span class="toggle-track"></span>
                                 </label>
                             </form> 
-                            <button type="button" class="btn-icon-alerta btn-eliminar" data-id="<?= $alerta['id'] ?>"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" class="btn-icon-alerta btn-eliminar" data-id="<?= $alerta['id'] ?>">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
                         </div>
                     </li>
                     <?php endwhile; ?>
