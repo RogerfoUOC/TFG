@@ -16,7 +16,7 @@ function getUltimesDades($conn) {
                     WHERE location IN ('Interior', 'Exterior') 
                     GROUP BY location
                 )
-                ORDER BY location = 'Interior' DESC ";
+                ORDER BY location = 'Interior' DESC ";  // 'Interior' primer: l'expressió booleana retorna 1 per 'Interior' i 0 per la resta; DESC posa l'1 al capdavant
     return $conn->query($sql);
 }
             
@@ -217,12 +217,27 @@ function dataRegistreUsuari($conn, $userId) {
     return null;
 }
 
+/* ###################################### CONSULTES ALERTES.php ###################################### */
+
 function getComptadorAlertes($conn, $userId) {
     $sql  = "SELECT 
                 COUNT(*) as total,
-                SUM(activa = 1) as actives
+                SUM(CASE WHEN activa = 1 THEN 1 ELSE 0 END) as actives /**/
              FROM alerts 
              WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    return $result;
+}
+
+function getAlertesUsuari($conn, $userId) {
+    $sql = "SELECT id, localitzacio, sensor, condicio, valor, avis_web, avis_mail, activa
+            FROM alerts
+            WHERE user_id = ?
+            ORDER BY id DESC";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $userId);
     $stmt->execute();

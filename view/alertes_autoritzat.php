@@ -1,4 +1,8 @@
 <?php 
+include_once 'includes/queries.php';
+$userId      = $_SESSION['usuari_id'];
+$alertes     = getAlertesUsuari($conn, $userId);
+
 $error_alerta       = $_SESSION['error_alerta'] ?? null;
 $formAlertaObert    = $_SESSION['form_alerta_obert'] ?? false;
 $toastSuccess       = $_SESSION['ok_alerta'] ?? null;
@@ -107,7 +111,44 @@ unset($_SESSION['form_alerta_obert']);
 
         <div id="tab-alertes" class="tab-content active">
             <!-- llistat d'alertes -->
-            ALERTES CREADES
+            <?php if ($alertes && $alertes->num_rows > 0): ?>
+                <ul class="llista-alertes">
+                    <?php while ($alerta = $alertes->fetch_assoc()):
+                        $sensor   = $alerta['sensor'] === 'temperatura' ? 'temperatura' : 'humitat';
+                        $unitat   = $alerta['sensor'] === 'temperatura' ? 'º' : '%';
+                        $condicio = $alerta['condicio'] === 'inferior' ? 'inferior' : 'superior';
+                        $avis_text = '';
+                        if ($alerta['avis_mail'] && $alerta['avis_web']) {
+                            $avis_text = 'un correu electrònic i avís web.';
+                        } elseif ($alerta['avis_mail']) {
+                            $avis_text = 'un correu electrònic.';
+                        } elseif ($alerta['avis_web']) {
+                            $avis_text = 'avís web.';
+                        }
+                    ?>
+                    <li class="alerta-item">
+                        <span class="alerta-led <?= $alerta['activa'] ? 'led-activa' : 'led-inactiva' ?>"></span>
+                        <span class="alerta-desc">
+                            Si la <strong><?= $sensor ?></strong>
+                            <strong><?= htmlspecialchars(strtolower($alerta['localitzacio'])) ?></strong>
+                            és <strong><?= $condicio ?></strong>
+                            a <strong><?= htmlspecialchars($alerta['valor']) ?><?= $unitat ?></strong>
+                            envia <?= htmlspecialchars($avis_text) ?>
+                            <span class="alerta-count">(0)</span>
+                        </span>
+                        <div class="alerta-accions">
+                            <label class="toggle-switch">
+                                <input type="checkbox" <?= $alerta['activa'] ? 'checked' : '' ?> >
+                                <span class="toggle-track"></span>
+                            </label>
+                            <button class="btn-icon-alerta btn-eliminar"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </li>
+                    <?php endwhile; ?>
+                </ul>
+            <?php else: ?>
+                <p class="sense-alertes">No tens alertes creades.</p>
+            <?php endif; ?>
         </div>
 
         <div id="tab-log" class="tab-content">

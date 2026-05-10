@@ -56,7 +56,7 @@
                     </p>
                     <p>
                         Tot el codi del projecte, tant de la part web com de la comunicació amb els dispositius, està
-                        disponible al repositori de <a href="https://github.com/RogerfoUOC/projecte3" target="_blank" ">GitHub</a>.
+                        disponible al repositori de <a href="https://github.com/RogerfoUOC/TFG" target="_blank" ">GitHub</a>.
                     </p>
                     <p>
                         Aquest projecte s’ha desenvolupat en el marc de l’assignatura del darrer semestre del <strong>Grau de Tècniques 

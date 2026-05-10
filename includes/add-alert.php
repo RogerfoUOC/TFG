@@ -19,9 +19,9 @@ $ubicacio       = $_POST['ubicacio'] ?? null;
 $avis_web       = isset($_POST['avis_web']) ? 1 : 0;  //operador ternari per convertir a 1 o 0 segons si està marcat o no
 $avis_mail      = isset($_POST['avis_mail']) ? 1 : 0;
 $condicio       = $_POST['condicio'] ?? null;
-$tempreatura    = $_POST['temperatura'] ?? null;
+$temperatura    = $_POST['temperatura'] ?? null;
 $humitat        = $_POST['humitat'] ?? null;
-$valor          = $tipus_dada === 'temperatura' ? $tempreatura : $humitat;  //depenent el tipus de dada triat, agafem temperatura o humitat
+$valor          = $tipus_dada === 'temperatura' ? $temperatura : $humitat;  //depenent el tipus de dada triat, agafem temperatura o humitat
 
 
 function errorAlertaGenerica() {
@@ -51,7 +51,7 @@ die();
 $sql = "INSERT INTO alerts (user_id, localitzacio, sensor, condicio, valor, avis_web, avis_mail)
         VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("isssiii", $user, $ubicacio, $tipus_dada, $condicio, $valor, $avis_web, $avis_mail);
+$stmt->bind_param("isssiii", $user, $ubicacio, $tipus_dada, $condicio, $valor, $avis_web, $avis_mail); // i=int, s=string
 $stmt->execute();
 $_SESSION['ok_alerta'] = "Alerta creada correctament.";
 header("Location: ../alertes.php");

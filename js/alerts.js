@@ -17,15 +17,6 @@ const errorAvis     = document.getElementById('error-avis');
 displayHum.textContent  = sliderHum.value + '%';
 displayTemp.textContent = sliderTemp.value + 'ºC';
 
-sliderHum.addEventListener('input', () => {
-    displayHum.textContent = sliderHum.value + '%';
-});
-
-sliderTemp.addEventListener('input', () => {
-    displayTemp.textContent = sliderTemp.value + 'ºC';
-});
-
-
 alertHeader.addEventListener('click', (event)=> {
     //console.log("header alert click");
     if (alertHeader.classList.contains('active')) {
