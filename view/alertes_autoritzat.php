@@ -127,6 +127,7 @@ unset($_SESSION['form_alerta_obert']);
                         }
                     ?>
                     <li class="alerta-item">
+                        <span class="alerta-id">#<?= $alerta['id'] ?>                                                                                                                                                                                                                                                  </span>    
                         <span class="alerta-led <?= $alerta['activa'] ? 'led-activa' : 'led-inactiva' ?>"></span>
                         <span class="alerta-desc">
                             Si la <strong><?= $sensor ?></strong>
@@ -137,11 +138,15 @@ unset($_SESSION['form_alerta_obert']);
                             <span class="alerta-count">(0)</span>
                         </span>
                         <div class="alerta-accions">
-                            <label class="toggle-switch">
-                                <input type="checkbox" <?= $alerta['activa'] ? 'checked' : '' ?> >
-                                <span class="toggle-track"></span>
-                            </label>
-                            <button class="btn-icon-alerta btn-eliminar"><i class="fa-solid fa-trash"></i></button>
+                            <form method="POST" action="./includes/update-alert.php">
+                                <input type="hidden" name="alerta_id" value="<?= $alerta['id'] ?>">         
+                                <input type="hidden" name="activa" value="<?= $alerta['activa'] ? 0 : 1?>"><!-- envia el valor invers a l'actual perquè el PHP no hagi de consultar la BD -->                       
+                                <label class="toggle-switch">
+                                    <input type="checkbox" <?= $alerta['activa'] ? 'checked' : '' ?> >
+                                    <span class="toggle-track"></span>
+                                </label>
+                            </form> 
+                            <button type="button" class="btn-icon-alerta btn-eliminar" data-id="<?= $alerta['id'] ?>"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </li>
                     <?php endwhile; ?>
@@ -156,6 +161,19 @@ unset($_SESSION['form_alerta_obert']);
             LOG D'ALERTES
         </div>
     </div>
-</div>    
+</div> 
+
+<div id="modal-eliminar-alerta" class="capa-modal">
+    <div class="modal-alerta marc">
+        <h2>Segur que vols eliminar l'alerta <span id="modal-alerta-id"></span>?</h2>
+        <form method="POST" id="form-eliminar" action="./includes/delete-alert.php">
+            <input type="hidden" name="alerta_id" id="input-alerta-id">
+            <div class="grup-btns">
+                <button type="submit" class="btn-submit">Eliminar alerta</button>
+                <button type="button" id="btn-cancel-eliminar" class="btn-cancel">Cancel·lar</button>
+            </div>
+        </form>
+    </div>
+</div>
 <script defer src="js/alerts.js"></script>
 <script defer src="js/tabs-alerts.js"></script>

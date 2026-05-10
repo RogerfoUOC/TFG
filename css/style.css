@@ -1116,13 +1116,21 @@ a:hover {
     pointer-events: all;
 }
 
-.modal-pass {
-    max-width: 300px;
+.modal-pass,
+.modal-alerta {
     padding: 2rem;
     border-radius: 10px;
     width: 100%;
     background: #fff;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.modal-pass {
+    max-width: 300px;
+}
+
+.modal-alerta {
+    max-width: 500px;
 }
 
 .grup-btns {
@@ -1366,7 +1374,8 @@ a:hover {
 .led-activa   { background: #28a745; }
 .led-inactiva { background: #dc3545; }
 
-.alerta-count {
+.alerta-count,
+.alerta-id {
     color: #999;
     font-size: 0.8rem;
     margin-right: 2px;
@@ -1447,4 +1456,8 @@ a:hover {
     padding: 16px;
     color: #888;
     font-size: 0.9rem;
+}
+
+.alerta-accions form {
+    margin-bottom: 0px;
 }

@@ -25,3 +25,5 @@
     </main>
 </div>
 <script defer src="js/tabs.js"></script>
+<script defer src="js/ui.js"></script>
+

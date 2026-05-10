@@ -12,6 +12,11 @@ const wrapperTemp   = document.getElementById('slider-temperatura');
 const checkAvisWeb  = document.querySelector('input[name="avis_web"]');
 const checkAvisMail = document.querySelector('input[name="avis_mail"]');
 const errorAvis     = document.getElementById('error-avis');
+const modalEliminar     = document.getElementById('modal-eliminar-alerta');
+const inputAlertaId     = document.getElementById('input-alerta-id');
+const modalAlertaIdSpan = document.getElementById('modal-alerta-id');
+const btnCancelEliminar = document.getElementById('btn-cancel-eliminar');
+
 
 // inicialitzem
 displayHum.textContent  = sliderHum.value + '%';
@@ -92,3 +97,35 @@ newAlertForm.addEventListener('submit', (event) => {
         }
     });
 });
+
+// envia el formulari de toggle quan l'usuari canvia l'estat de l'interruptor
+document.querySelectorAll('.toggle-switch input[type="checkbox"]').forEach(toggle => {
+    toggle.addEventListener('change', () => {
+        toggle.closest('form').submit();
+    });
+});
+
+// obre el modal d'eliminació i injecta l'id de l'alerta seleccionada
+document.querySelectorAll('.btn-eliminar').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        inputAlertaId.value = id;
+        modalAlertaIdSpan.textContent = '#' + id;
+        modalEliminar.classList.add('actiu');
+    });
+});
+
+// tanca el modal d'eliminació
+function tancarModalEliminar() {
+    modalEliminar.classList.remove('actiu');
+}
+    // clic fora
+    modalEliminar.addEventListener('click', (clic) => {
+        if (clic.target === modalEliminar) tancarModalEliminar();
+    });
+    // tecla ESC
+    document.addEventListener('keydown', (tecla) => {
+        if (tecla.key === 'Escape') tancarModalEliminar();
+    });
+    // botó cancel·lar
+    btnCancelEliminar.addEventListener('click', tancarModalEliminar);
