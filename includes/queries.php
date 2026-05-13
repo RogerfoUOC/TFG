@@ -233,6 +233,7 @@ function getComptadorAlertes($conn, $userId) {
     return $result;
 }
 
+
 function getAlertesUsuari($conn, $userId) {
     $sql = "SELECT id, localitzacio, sensor, condicio, valor, avis_web, avis_mail, activa
             FROM alerts
@@ -245,4 +246,34 @@ function getAlertesUsuari($conn, $userId) {
     $stmt->close();
     return $result;
 }
+
+/* RECORREM LES ALERTES ACTIVES DE CADA LOCALITZACIO */
+function getAlertesActivesLocalitzacio($conn, $location) {
+    $sql = "SELECT id, user_id, localitzacio, sensor, condicio, valor, activa, avis_web, avis_mail, users.email 
+            FROM alerts
+            JOIN users on alerts.user_id = users.id
+            WHERE localitzacio = ? and activa = 1";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $location);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    return $result;
+}
+
+/* VALOR ANTERIOR A L'ULTIMA LECTURA DE CADA UBICACIÓ */
+function getPenultimaLectura($conn, $location){
+    $sql = "SELECT id, location, value1, value2 
+            FROM SensorData 
+            WHERE location = ?
+            ORDER BY id DESC LIMIT 1 OFFSET 1";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $location);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    return $result;
+}
+
 ?>
+
