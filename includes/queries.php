@@ -283,6 +283,19 @@ function insertAlertLog($conn, $alert_id, $sensor_value){
     $stmt->close();
 }
 
+function getAlertsLogs ($conn, $user_id){
+    $sql = "SELECT alert_logs.id, alert_id, valor_sensor, data_activacio, alerts.localitzacio, alerts.sensor, alerts.condicio, alerts.valor
+            FROM alert_logs
+            JOIN alerts ON alert_id = alerts.id 
+            WHERE alerts.user_id = ?
+            ORDER BY data_activacio DESC";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    return $result;
+}
 ?>
 
 

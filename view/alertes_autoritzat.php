@@ -1,7 +1,8 @@
 <?php 
 include_once 'includes/queries.php';
-$userId      = $_SESSION['usuari_id'];
-$alertes     = getAlertesUsuari($conn, $userId);
+$userId     = $_SESSION['usuari_id'];
+$alertes    = getAlertesUsuari($conn, $userId);
+$LogAlertes = getAlertsLogs($conn, $userId);
 
 $error_alerta       = $_SESSION['error_alerta'] ?? null;
 $formAlertaObert    = $_SESSION['form_alerta_obert'] ?? false;
@@ -160,7 +161,34 @@ unset($_SESSION['form_alerta_obert']);
 
         <div id="tab-log" class="tab-content">
             <!-- registre d'alertes -->
-            LOG D'ALERTES
+            <?php if ($LogAlertes && $LogAlertes->num_rows > 0): ?>
+                <ul class="llista-alertes">
+                    <?php while ($rowLog  = $LogAlertes->fetch_assoc()):
+                        $dataLog         = date('d/m/Y H:i', strtotime($rowLog ['data_activacio']));
+                        $sensorLog       = $rowLog ['sensor'] === 'temperatura' ? 'temperatura' : 'humitat';
+                        $unitatLog       = $rowLog ['sensor'] === 'temperatura' ? 'º' : '%';
+                        $localitzacioLog = $rowLog ['localitzacio'];
+                        $condicioLog     = $rowLog ['condicio'] === 'inferior' ? 'inferior' : 'superior';
+                        $valorLog        = $rowLog ['valor'];
+                        $valorSensorLog  = $rowLog ['valor_sensor'];
+                        $textLog         = '';
+                    ?>
+                    <li class="alerta-item">
+                        <span class="alerta-id">#<?= $rowLog ['id'] ?></span>
+                        <span class="alerta-id"><?= $dataLog ?>  </span>                                                                                                                                                                                                                                                </span>    
+                        <span class="alerta-desc">
+                            <strong><?= ucfirst($sensorLog) ?></strong>
+                            <strong><?= htmlspecialchars(strtolower($localitzacioLog)) ?></strong>
+                            detectada <strong><?= $condicioLog ?></strong>
+                            a <strong><?= htmlspecialchars($valorLog) ?><?= $unitatLog ?></strong>
+                            (<?= htmlspecialchars($valorSensorLog) ?><?= $unitatLog ?>)
+                        </span>
+                    </li>
+                    <?php endwhile; ?>
+                </ul>
+            <?php else: ?>
+                <p class="sense-alertes">No hi ha registre d'alertes.</p>
+            <?php endif; ?>
         </div>
     </div>
 </div> 
