@@ -12,3 +12,4 @@ desktop.ini
 
 # receptor de les dades arduino
 receptor-dades.php
+includes/mailer.php
