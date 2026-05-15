@@ -249,7 +249,7 @@ function getAlertesUsuari($conn, $userId) {
 
 /* RECORREM LES ALERTES ACTIVES DE CADA LOCALITZACIO */
 function getAlertesActivesLocalitzacio($conn, $location) {
-    $sql = "SELECT alerts.id, user_id, localitzacio, sensor, condicio, valor, activa, avis_web, avis_mail, users.email 
+    $sql = "SELECT alerts.id, user_id, users.email, localitzacio, sensor, condicio, valor, activa, avis_web, avis_mail, users.email 
             FROM alerts
             JOIN users on alerts.user_id = users.id
             WHERE localitzacio = ? and activa = 1";
@@ -283,14 +283,15 @@ function insertAlertLog($conn, $alert_id, $sensor_value){
     $stmt->close();
 }
 
-function getAlertsLogs ($conn, $user_id){
+//limit dinàmic segons la crida del botó "Veure més"
+function getAlertsLogs ($conn, $user_id, $limit = 10){
     $sql = "SELECT alert_logs.id, alert_id, valor_sensor, data_activacio, alerts.localitzacio, alerts.sensor, alerts.condicio, alerts.valor
             FROM alert_logs
             JOIN alerts ON alert_id = alerts.id 
             WHERE alerts.user_id = ?
-            ORDER BY data_activacio DESC";
+            ORDER BY data_activacio DESC LIMIT ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $user_id);
+    $stmt->bind_param("ii", $user_id, $limit);
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();

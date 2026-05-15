@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', () => {
     const btnAlertesTab  = document.getElementById('btn-alertes-tab');
     const btnLogTab      = document.getElementById('btn-log-tab');
     const tabAlertes     = document.getElementById('tab-alertes');
@@ -21,3 +22,12 @@
             btnLogTab.classList.add('active');
         });
     }
+
+    //si detectem #tab-log després d'actualitzar quan llistem logs, mantenim la pestanya oberta
+    if (window.location.hash === '#tab-log') {
+        tabLog.classList.add('active');
+        tabAlertes.classList.remove('active');
+        btnLogTab.classList.add('active');
+        btnAlertesTab.classList.remove('active');
+    }
+});

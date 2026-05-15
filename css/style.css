@@ -1335,10 +1335,20 @@ a:hover {
 
 
 /*LLISTAT ALERTES CREADES*/
-#tab-alertes.tab-content {
 
+.alerta-log-taula { width: 100%; border-collapse: collapse; }
+.alerta-log-taula td {  border: 0px; }
+
+@media (max-width: 600px) {
+    .alerta-log-cap { flex-direction: column; align-items: flex-start; gap: 2px; }
+}
+.mes-registres{
+    text-align:center;
+    padding: 10px;
+}
+#tab-alertes.tab-content,
+#tab-log.tab-content {
     padding:  0;
-
 }
 
 .llista-alertes {

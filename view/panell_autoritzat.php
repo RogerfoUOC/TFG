@@ -69,7 +69,7 @@ $totalActives = $row['actives'];
             <span class="valor"><?= htmlspecialchars($dataRegistre) ?></span>
         </div>
         <div class="panell-botons">
-            <a href="alertes.php" class="btn-alerta">Crear alerta</a>
+            <a href="alertes.php" class="btn-alerta">Gestió d'alertes</a>
             <form action="logout.php" method="POST">
                 <button type="submit" class="btn-logout">Desconnectar</button>
             </form>

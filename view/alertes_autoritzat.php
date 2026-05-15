@@ -1,8 +1,11 @@
 <?php 
 include_once 'includes/queries.php';
+// llegim la pàgina del log de la URL (?log_pagina=2), mínim 1 per evitar valors invàlids
+$paginaLog  = isset($_GET['log_pagina']) ? max(1, (int)$_GET['log_pagina']) : 1;
+$limit      = $paginaLog * 10;
 $userId     = $_SESSION['usuari_id'];
 $alertes    = getAlertesUsuari($conn, $userId);
-$LogAlertes = getAlertsLogs($conn, $userId);
+$LogAlertes = getAlertsLogs($conn, $userId, $limit);
 
 $error_alerta       = $_SESSION['error_alerta'] ?? null;
 $formAlertaObert    = $_SESSION['form_alerta_obert'] ?? false;
@@ -164,6 +167,7 @@ unset($_SESSION['form_alerta_obert']);
             <?php if ($LogAlertes && $LogAlertes->num_rows > 0): ?>
                 <ul class="llista-alertes">
                     <?php while ($rowLog  = $LogAlertes->fetch_assoc()):
+                        $idAlerta        = $rowLog ['alert_id'];
                         $dataLog         = date('d/m/Y H:i', strtotime($rowLog ['data_activacio']));
                         $sensorLog       = $rowLog ['sensor'] === 'temperatura' ? 'temperatura' : 'humitat';
                         $unitatLog       = $rowLog ['sensor'] === 'temperatura' ? 'º' : '%';
@@ -174,17 +178,31 @@ unset($_SESSION['form_alerta_obert']);
                         $textLog         = '';
                     ?>
                     <li class="alerta-item">
-                        <span class="alerta-id">#<?= $rowLog ['id'] ?></span>
-                        <span class="alerta-id"><?= $dataLog ?>  </span>                                                                                                                                                                                                                                                </span>    
-                        <span class="alerta-desc">
-                            <strong><?= ucfirst($sensorLog) ?></strong>
-                            <strong><?= htmlspecialchars(strtolower($localitzacioLog)) ?></strong>
-                            detectada <strong><?= $condicioLog ?></strong>
-                            a <strong><?= htmlspecialchars($valorLog) ?><?= $unitatLog ?></strong>
-                            (<?= htmlspecialchars($valorSensorLog) ?><?= $unitatLog ?>)
-                        </span>
+                        <table class="alerta-log-taula">
+                            <tr>
+                                <td class="alerta-log-cap">
+                                    <span class="alerta-id">Alerta #<?= $idAlerta ?></span>
+                                    <span class="alerta-data"><?= $dataLog ?></span>
+                                </td>
+                          
+                                <td class="alerta-log-desc">
+                                    <span class="alerta-desc">
+                                        <strong><?= ucfirst($sensorLog) ?></strong>
+                                        <strong><?= htmlspecialchars(strtolower($localitzacioLog)) ?></strong>
+                                        detectada <strong><?= $condicioLog ?></strong>
+                                        a <strong><?= htmlspecialchars($valorLog) ?><?= $unitatLog ?></strong>
+                                        (<?= htmlspecialchars($valorSensorLog) ?><?= $unitatLog ?>)
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
                     </li>
                     <?php endwhile; ?>
+                    <?php if ($LogAlertes->num_rows === $limit): ?>
+                        <li class="mes-registres">
+                            <a href="?log_pagina=<?= $paginaLog + 1 ?>#tab-log">Veure més registres</a>
+                        </li>
+                    <?php endif; ?>                
                 </ul>
             <?php else: ?>
                 <p class="sense-alertes">No hi ha registre d'alertes.</p>

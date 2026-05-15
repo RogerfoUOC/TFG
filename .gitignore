@@ -12,4 +12,5 @@ desktop.ini
 
 # receptor de les dades arduino
 receptor-dades.php
+# funció mail amb credencials d'aplicació de google
 includes/mailer.php

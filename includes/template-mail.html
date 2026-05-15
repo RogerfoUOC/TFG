@@ -1,0 +1,66 @@
+
+<body style="margin:0; padding:0; background-color:#f4f6f8; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f6f8; padding: 40px 0;">
+        <tr>
+            <td align="center">
+                <table width="560" cellpadding="0" cellspacing="0" style="background-color:#ffffff; border-radius:8px; overflow:hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
+
+                    <!-- CAPÇALERA -->
+                    <tr>
+                        <td style="background-color:#1e3a5f; padding: 28px 40px;">
+                            <h1 style="margin:6px 0 0; color:#ffffff; font-size:22px; font-weight:500;">Alerta detectada #{{ALERT_ID}}</h1>
+                        </td>
+                    </tr>
+
+                    <!-- COS -->
+                    <tr>
+                        <td style="padding: 36px 40px 24px;">
+                            <!-- TARGETA DADES -->
+                            <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f0f4f8; border-radius:6px;">
+                                <tr>
+                                    <td style="padding: 15px;">
+                                        <table width="100%" cellpadding="0" cellspacing="8">
+                                            <tr>
+                                                <td style="color:#888; font-size:12px; text-transform:uppercase; letter-spacing:1px; padding-bottom:4px;">Sensor</td>
+                                                <td style="color:#1e3a5f; font-size:15px; font-weight:600; text-align:right;">{{SENSOR}} · {{LOCALITZACIO}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="border-top:1px solid #dde3ea; padding-top:12px;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="color:#888; font-size:12px; text-transform:uppercase; letter-spacing:1px;">Condició</td>
+                                                <td style="color:#444; font-size:15px; text-align:right;">{{CONDICIO}} a <strong>{{VALOR_LLINDAR}}{{UNITAT}}</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="border-top:1px solid #dde3ea; padding-top:12px;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="color:#888; font-size:12px; text-transform:uppercase; letter-spacing:1px;">Valor detectat</td>
+                                                <td style="color:#c0392b; font-size:20px; font-weight:700; text-align:right;">{{VALOR_SENSOR}}{{UNITAT}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="color:#888; font-size:12px; text-transform:uppercase; letter-spacing:1px;"> </td>
+                                                <td style="color:#444; font-size:15px; font-weight:700; text-align:right;">{{DATA}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- PEU -->
+                    <tr>
+                        <td style="background-color:#f9fafb; border-top:1px solid #eaecef; padding: 20px 40px;">
+                            <p style="margin:0; color:#aaa; font-size:12px; line-height:1.6;">
+                                Per gestionar les teves alertes, accedeix a la plataforma des de <a href="https://rogerfo.link/tfg/alertes.php">TwinSens</a>.
+                            </p>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
