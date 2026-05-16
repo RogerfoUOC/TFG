@@ -212,7 +212,7 @@ function dataRegistreUsuari($conn, $userId) {
         $row = $result->fetch_assoc();
 
         $data = new DateTime($row['created_at']);
-        return $data->format('d/m/Y H:i:s');
+        return $data->format('d/m/Y H:i');
     }
     return null;
 }
@@ -235,10 +235,13 @@ function getComptadorAlertes($conn, $userId) {
 
 
 function getAlertesUsuari($conn, $userId) {
-    $sql = "SELECT id, localitzacio, sensor, condicio, valor, avis_web, avis_mail, activa
+    $sql = "SELECT alerts.id, localitzacio, sensor, condicio, valor, avis_web, avis_mail, activa,
+            COUNT(alert_logs.id) as vegadesDetectada
             FROM alerts
-            WHERE user_id = ?
-            ORDER BY id DESC";
+            LEFT JOIN alert_logs ON alert_logs.alert_id = alerts.id
+            WHERE alerts.user_id = ?
+            GROUP BY alerts.id
+            ORDER BY alerts.id DESC";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $userId);
     $stmt->execute();
@@ -292,6 +295,19 @@ function getAlertsLogs ($conn, $user_id, $limit = 10){
             ORDER BY data_activacio DESC LIMIT ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ii", $user_id, $limit);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    return $result;
+}
+
+function getComptadorAlertesDisparades($conn, $userId) {
+    $sql  = "SELECT MAX(alert_logs.data_activacio) as ultimadeteccio
+            FROM alert_logs
+            JOIN alerts ON alert_logs.alert_id = alerts.id 
+            WHERE alerts.user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $userId);
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();

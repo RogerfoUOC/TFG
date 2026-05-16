@@ -7,6 +7,7 @@ $userId     = $_SESSION['usuari_id'];
 $alertes    = getAlertesUsuari($conn, $userId);
 $LogAlertes = getAlertsLogs($conn, $userId, $limit);
 
+
 $error_alerta       = $_SESSION['error_alerta'] ?? null;
 $formAlertaObert    = $_SESSION['form_alerta_obert'] ?? false;
 $toastSuccess       = $_SESSION['ok_alerta'] ?? null;
@@ -139,7 +140,7 @@ unset($_SESSION['form_alerta_obert']);
                             és <strong><?= $condicio ?></strong>
                             a <strong><?= htmlspecialchars($alerta['valor']) ?><?= $unitat ?></strong>
                             envia <?= htmlspecialchars($avis_text) ?>
-                            <span class="alerta-count">(0)</span>
+                            <span class="alerta-count">(<?= $alerta['vegadesDetectada'] ?>)</span>
                         </span>
                         <div class="alerta-accions">
                             <form method="POST" action="./includes/update-alert.php">

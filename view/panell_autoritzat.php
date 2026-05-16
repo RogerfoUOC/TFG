@@ -9,9 +9,27 @@ unset($_SESSION['ok_password']);
 unset($_SESSION['old_email']);
 $errorEmail = !empty($oldEmail);
 
-$row = getComptadorAlertes($conn, $userId)->fetch_assoc();
-$totalAlertes = $row['total'];
-$totalActives = $row['actives'];
+$dataRegistre      = dataRegistreUsuari($conn, $userId);
+$row               = getComptadorAlertes($conn, $userId)->fetch_assoc();
+$row2              = getComptadorAlertesDisparades($conn, $userId)->fetch_assoc();
+$totalAlertes      = $row['total'];
+$totalActives      = $row['actives'];
+$ultimaDeteccioRaw = $row2['ultimadeteccio'];
+if ($ultimaDeteccioRaw) {
+    $data = new DateTime($ultimaDeteccioRaw);
+    //un cop tenim la data mirem si es el mateix dia o el dia anterior per facilitar la lectura
+    $avui = new DateTime('today');
+    $ahir = new DateTime('yesterday');
+    if ($data >= $avui) {
+        $ultimaDeteccio = 'Avui ' . $data->format('H:i');
+    } elseif ($data >= $ahir) {
+        $ultimaDeteccio = 'Ahir ' . $data->format('H:i');
+    } else {
+        $ultimaDeteccio = $data->format('d/m/Y H:i');
+    }
+} else {
+    $ultimaDeteccio = '-';
+} 
 ?>
 
 <div class="panell">
@@ -61,7 +79,7 @@ $totalActives = $row['actives'];
 
         <div class="fila">
             <span class="label">Última alerta:</span>
-            <span class="valor">-</span>
+            <span class="valor"><?= $ultimaDeteccio ?></span>
         </div>
 
         <div class="fila">

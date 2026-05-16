@@ -17,7 +17,6 @@
 
 
 if ($usuari_validat) {
-    $dataRegistre = dataRegistreUsuari($conn, $userId);
     $vista = 'view/panell_autoritzat.php';
 } else {
     $vista = 'view/panell_noautoritzat.php';

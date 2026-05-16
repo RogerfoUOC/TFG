@@ -959,7 +959,8 @@ a:hover {
     }
     
 
-    /*CSS PANELL*/ .card-usuari {
+    /*CSS PANELL*/
+    .card-usuari {
         max-width: 500px;
         padding: 20px;
     }
@@ -1338,6 +1339,8 @@ a:hover {
 
 .alerta-log-taula { width: 100%; border-collapse: collapse; }
 .alerta-log-taula td {  border: 0px; }
+.alerta-log-cap  { width: 30%; vertical-align: top; }
+.alerta-log-desc { width: 70%; vertical-align: top; }
 
 @media (max-width: 600px) {
     .alerta-log-cap { flex-direction: column; align-items: flex-start; gap: 2px; }
@@ -1345,7 +1348,17 @@ a:hover {
 .mes-registres{
     text-align:center;
     padding: 10px;
+    color: #2e4f94;
 }
+.mes-registres a{
+    color: #2e4f94;
+    text-decoration: none;
+}
+.mes-registres a:hover{
+    color: #2c6bed;
+}
+
+
 #tab-alertes.tab-content,
 #tab-log.tab-content {
     padding:  0;
@@ -1358,6 +1371,13 @@ a:hover {
     display: flex;
     flex-direction: column;
     gap: 0;
+}
+
+.llista-alertes strong {
+    background-color: #2e4e9417;
+    border-radius: 5px;
+    padding: 0px 5px;
+    border: 1px solid #2e4f94;
 }
 
 .alerta-item {

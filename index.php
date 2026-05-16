@@ -179,13 +179,13 @@ $conn->close();
             <div class="data-fila">
                 <span><strong>Última lectura interior:</strong></span>
                 <span>
-                    <?= $dataHoraUltimaInterior ? $dataHoraUltimaInterior->format('H:i:s d/m/Y') : "Sense dades" ?>
+                    <?= $dataHoraUltimaInterior ? $dataHoraUltimaInterior->format('H:i:s') : "Sense dades" ?>
                 </span>
             </div>
             <div class="data-fila">
                 <span class="label"><strong>Última lectura exterior:</strong></span>
                 <span class="value">
-                    <?= $dataHoraUltimaExterior ? $dataHoraUltimaExterior->format('H:i:s d/m/Y') : "Sense dades" ?>
+                    <?= $dataHoraUltimaExterior ? $dataHoraUltimaExterior->format('H:i:s') : "Sense dades" ?>
                 </span>
             </div>
         </div>
