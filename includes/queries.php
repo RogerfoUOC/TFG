@@ -266,9 +266,7 @@ function getAlertesActivesLocalitzacio($conn, $location) {
 
 /* VALOR ANTERIOR A L'ULTIMA LECTURA DE CADA UBICACIÓ */
 function getPenultimaLectura($conn, $location){
-    $sql = "SELECT id, location, value1, value2 
-            FROM SensorData 
-            WHERE location = ?
+    $sql = "SELECT id, location, value1, value2 FROM SensorData WHERE location = ?
             ORDER BY id DESC LIMIT 1 OFFSET 1";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $location);
