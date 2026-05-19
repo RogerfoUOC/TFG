@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const toasts = document.querySelectorAll('.toast');
+    //evitem tancar els toast d'alertes
+    const toasts = document.querySelectorAll('.toast:not(.toast-alerta)');
     toasts.forEach(toast => {
         setTimeout(() => {
             toast.style.opacity = '0';

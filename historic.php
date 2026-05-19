@@ -62,13 +62,13 @@ if ($diaSeleccionat1 !== '') {
         $diferenciaMitjaHum = $stats["Interior"]["humitat_mitjana"] - $stats["Exterior"]["humitat_mitjana"];
     }
 }
-
-
-$conn->close();
 ?>
 <!-- MOSTRAR CONTINGUT -->
 <div class="main-container">
-    <?php include 'includes/menu.php'; ?>
+    <?php 
+    include 'includes/menu.php'; 
+    include 'includes/avisos-alerts.php';
+    ?>
     <main class="content">
         <h1>Històric de dades</h1>
         <!-- FORMULARI -->
@@ -200,5 +200,5 @@ $conn->close();
         <?php endif; ?>    
         </main> <!-- Final "content"> --> 
 </div> <!-- Final "main-container"> -->
-
+<?php $conn->close(); ?>
 

@@ -1,9 +1,9 @@
 <?php 
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-// mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);
+ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 $page = 'home';
 include 'includes/header.php';    
@@ -88,12 +88,15 @@ if (is_numeric($actuals["Interior"]["hum"]) && is_numeric($actuals["Exterior"]["
 }
 
 
-$conn->close();
+
 ?>
 
 <!-- MOSTRAR CONTINGUT -->
 <div class="main-container">
-    <?php include 'includes/menu.php'; ?>
+    <?php 
+    include 'includes/menu.php'; 
+    include 'includes/avisos-alerts.php';
+    ?>
     <main class="content">
         <h1>Dades actuals</h1>
         <div id="dia">
@@ -192,3 +195,6 @@ $conn->close();
 
 </main>
 </div>
+<?php
+$conn->close();
+?>

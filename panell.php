@@ -24,7 +24,10 @@ if ($usuari_validat) {
 ?>
 
 <div class="main-container">
-    <?php include 'includes/menu.php'; ?>
+    <?php 
+    include 'includes/menu.php'; 
+    include 'includes/avisos-alerts.php';
+    ?>
     <main class="content">
         <?php include $vista; ?>
     </main>

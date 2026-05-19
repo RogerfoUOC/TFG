@@ -26,7 +26,10 @@
 ?>
 <!-- MOSTRAR CONTINGUT -->
 <div class="main-container">
-    <?php include 'includes/menu.php'; ?>
+    <?php 
+    include 'includes/menu.php'; 
+    include 'includes/avisos-alerts.php';
+    ?>
     <main class="content">
         <h1>Logs</h1>
         <form method="GET" class="formulariFiltre">

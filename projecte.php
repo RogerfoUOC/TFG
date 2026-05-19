@@ -5,7 +5,10 @@
 ?>
 
 <div class="main-container">
-    <?php include 'includes/menu.php'; ?>
+    <?php 
+    include 'includes/menu.php'; 
+    include 'includes/avisos-alerts.php';
+    ?>
     <main class="content">
         <h1>Projecte</h1>
         <div class="projecte-container">

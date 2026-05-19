@@ -312,15 +312,19 @@ function getComptadorAlertesDisparades($conn, $userId) {
     return $result;
 }
 
-function obtenirUltimaAlertaWebActiva($conn, $user_id){
-    $sql = "SELECT *
-            FROM alerts
-            WHERE user_id = ?
-            AND avis_web = 1
-            AND tancada = 0
-            ORDER BY data_creada DESC LIMIT 1";
+function obtenirAlertsWebPendents($conn, $user_id) {
+    $sql = "SELECT al.id, al.valor_sensor, al.data_activacio,
+                   a.sensor, a.localitzacio, a.condicio, a.valor
+            FROM alert_logs al
+            JOIN alerts a ON a.id = al.alert_id
+            WHERE a.user_id = ?
+            AND a.avis_web = 1
+            AND a.activa = 1
+            AND al.tancada = 0
+            ORDER BY al.data_activacio DESC
+            LIMIT 3";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $userId);
+    $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();
