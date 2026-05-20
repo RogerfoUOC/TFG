@@ -39,7 +39,7 @@ if ($ultimaDeteccioRaw) {
         if ($okEmailMsg)    echo '<div class="toast success-box">' . htmlspecialchars($okEmailMsg)    . '</div>';
         if ($okPasswordMsg) echo '<div class="toast success-box">' . htmlspecialchars($okPasswordMsg) . '</div>';
     ?>
-    <div class="card-usuari">
+    <div class="card-usuari marc">
         <h2><?=htmlspecialchars($userName) ?></h2>
         <form id="form-email" method="POST" action="includes/update-email.php">
             <div class="fila cont-auth">

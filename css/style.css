@@ -809,7 +809,6 @@ a:hover {
 
     .marc.alertes-autoritzat {
         max-width: var(--amplada-alertes);
-        margin: 0 auto;
         padding: 0px;
         overflow: hidden;
     }
@@ -881,14 +880,15 @@ a:hover {
 
     .panell-botons form {
         display: block;
-        width: 100%;
-    }
+        margin-bottom: 0px;
+    }  
     .btn-submit,
     .btn-alerta,
     .btn-logout,
     .btn-cancel {
         margin-top: 10px;
         display: block;
+        white-space: nowrap;
         text-align: center;
         padding: 9px 16px;
         border-radius: 6px;
@@ -934,9 +934,10 @@ a:hover {
     }
     .panell-botons {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
         margin-top: 20px;
-        max-width: 160px;
         text-align: center;
     }
     .error-box {
@@ -961,7 +962,7 @@ a:hover {
 
     /*CSS PANELL*/
     .card-usuari {
-        max-width: 500px;
+        max-width: 600px;
         padding: 20px;
     }
 
@@ -1229,7 +1230,6 @@ a:hover {
 .llistat-alerta,
 .registre-alerta{
     max-width: var(--amplada-alertes);
-    margin: 0 auto;
     margin-bottom:20px;
 }
 .fa-square-plus,

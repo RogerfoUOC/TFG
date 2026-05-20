@@ -14,13 +14,13 @@ $alertesPendents = obtenirAlertsWebPendents($conn, $_SESSION['usuari_id']);
     <?php while ($alerta = $alertesPendents->fetch_assoc()): ?>
         <div class="toast toast-alerta">
             <span class="toast-alerta-text">
-                <i class="fa-solid fa-triangle-exclamation"></i> #<?= $alerta['id'] ?> 
+                <i class="fa-solid fa-bell"></i>                 
                 <?= htmlspecialchars(ucfirst($alerta['sensor'])) ?> 
                 <?= htmlspecialchars($alerta['localitzacio']) ?> 
-                <?= htmlspecialchars($alerta['condicio']) ?> 
-                <?= htmlspecialchars($alerta['valor']) . ($alerta['sensor'] === 'temperatura' ? 'º' : '%') ?> — 
-                <strong><?= htmlspecialchars($alerta['valor_sensor']) . ($alerta['sensor'] === 'temperatura' ? 'º' : '%') ?></strong>
-                <span class="toast-hora">(<?= date('d/m H:i', strtotime($alerta['data_activacio'])) ?>)</span>
+                <?= htmlspecialchars($alerta['condicio']) ?> a
+                <?= htmlspecialchars($alerta['valor']) . ($alerta['sensor'] === 'temperatura' ? 'º' : '%') ?> 
+                (<strong><?= htmlspecialchars($alerta['valor_sensor']) . ($alerta['sensor'] === 'temperatura' ? 'º' : '%') ?></strong>)
+                <span class="toast-hora">  #<?= $alerta['id'] ?> · (<?= date('d/m H:i', strtotime($alerta['data_activacio'])) ?>)</span>
             </span>
             <form method="POST" action="includes/tancar-alertes.php">
                 <input type="hidden" name="log_id" value="<?= $alerta['id'] ?>">
