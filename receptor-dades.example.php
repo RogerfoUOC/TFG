@@ -1,15 +1,7 @@
 <?php
 
 //Codi modificat del projecte de Rui Santos a: https://RandomNerdTutorials.com/esp32-esp8266-mysql-database-php/
-
-$servername = "localhost";
-$dbname = "database";
-$username = "user";
-$password = "password";
-
-// API per recollir dades al fitxer php web
-$api_key_value = "api-key";
-
+include 'includes/connexio.php';
 $api_key= $sensor = $location = $value1 = $value2 = $value3 = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

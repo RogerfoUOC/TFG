@@ -43,3 +43,5 @@ function setDatesRapides(){
     document.getElementById("inputData1").value = formatData(avui);
     document.getElementById("inputData2").value = formatData(ahir);
 }
+
+

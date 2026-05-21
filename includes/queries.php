@@ -252,7 +252,7 @@ function getAlertesUsuari($conn, $userId) {
 
 /* RECORREM LES ALERTES ACTIVES DE CADA LOCALITZACIO */
 function getAlertesActivesLocalitzacio($conn, $location) {
-    $sql = "SELECT alerts.id, user_id, users.email, localitzacio, sensor, condicio, valor, activa, avis_web, avis_mail, users.email 
+    $sql = "SELECT alerts.id, user_id, users.email, localitzacio, sensor, condicio, valor, activa, avis_web, avis_mail
             FROM alerts
             JOIN users on alerts.user_id = users.id
             WHERE localitzacio = ? and activa = 1";

@@ -3,7 +3,8 @@
     $dbname     = "dbname";
     $username   = "username";
     $password   = "password";
-
+    // API per recollir dades al fitxer php web
+    $api_key_value = "+++++++";
 	$conn = new mysqli($servername, $username, $password, $dbname);
 
 	if ($conn->connect_error) {

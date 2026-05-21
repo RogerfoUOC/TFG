@@ -40,7 +40,7 @@ if ($ultimaDeteccioRaw) {
         if ($okPasswordMsg) echo '<div class="toast success-box">' . htmlspecialchars($okPasswordMsg) . '</div>';
     ?>
     <div class="card-usuari marc">
-        <h2><?=htmlspecialchars($userName) ?></h2>
+        <h2>Hola, <?=htmlspecialchars($userName) ?></h2>
         <form id="form-email" method="POST" action="includes/update-email.php">
             <div class="fila cont-auth">
                 <span class="label">Correu electrònic:</span>

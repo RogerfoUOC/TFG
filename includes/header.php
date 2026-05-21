@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script defer src="js/menu.js"></script>
   <script defer src="js/utils.js"></script>
+  <script defer src="js/ui.js"></script> 
+
 
 </head>
 <body>
@@ -23,5 +25,7 @@
     </button>    
 </header>
 
-
+<?php
+include_once 'includes/ajuda.php';
+?>
   

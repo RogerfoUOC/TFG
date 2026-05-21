@@ -3,11 +3,8 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 if (!isset($_SESSION['usuari_id'])) return;
 
 include_once 'includes/queries.php';
-
 $alertesPendents = obtenirAlertsWebPendents($conn, $_SESSION['usuari_id']);
 ?>
-
-<!-- DEBUG alertes: <?= $alertesPendents ? $alertesPendents->num_rows : 'NULL' ?> -->
 
 <?php if ($alertesPendents && $alertesPendents->num_rows > 0): ?>
     <div class="contenidor-alertes">

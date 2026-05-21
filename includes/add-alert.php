@@ -33,25 +33,10 @@ function errorAlertaGenerica() {
 
 if (!$avis_web && !$avis_mail) errorAlertaGenerica();
 
-/*
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
-
-echo '<br> Usuer: ' . $user . '<br>';
-echo 'Tipus de dada: ' . $tipus_dada . '<br>';
-echo 'Ubicació: ' . $ubicacio . '<br>';
-echo 'Avis web: ' . $avis_web . '<br>';
-echo 'Avis correu: ' . $avis_mail . '<br>';
-echo 'Condició: ' . $condicio . '<br>';
-echo 'Valor: ' . $valor . '<br>';
-die();
-*/
-
 $sql = "INSERT INTO alerts (user_id, localitzacio, sensor, condicio, valor, avis_web, avis_mail)
         VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("isssiii", $user, $ubicacio, $tipus_dada, $condicio, $valor, $avis_web, $avis_mail); // i=int, s=string
+$stmt->bind_param("isssdii", $user, $ubicacio, $tipus_dada, $condicio, $valor, $avis_web, $avis_mail); // i=int, s=string, d=double
 $stmt->execute();
 $_SESSION['ok_alerta'] = "Alerta creada correctament.";
 header("Location: ../alertes.php");

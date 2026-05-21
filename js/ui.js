@@ -47,3 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleContrasenya('pass-confirm', 'show-pass-confirm', 'hide-pass-confirm');
 
 });
+
+//console.log("UI OK");
+//modal d'el botó ajuda amb informació de cada pàgina
+const btnAjuda  = document.getElementById('boto-ajuda');
+const modal = document.getElementById('modal-ajuda');
+const btnTancar = document.getElementById('tancar-modal');
+
+btnAjuda.addEventListener('click', () => modal.classList.add('actiu'));
+btnTancar.addEventListener('click', () => modal.classList.remove('actiu'));
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('actiu');
+});
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') modal.classList.remove('actiu');
+});

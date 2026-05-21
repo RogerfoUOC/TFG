@@ -16,16 +16,6 @@ $usuariId = $_SESSION['usuari_id'];
 $alertaId = $_POST['alerta_id'] ?? null;
 $activa   = $_POST['activa'] ?? null;
 
-/*
-if ($activa  === '1') {
-    echo 'Activar alerta ' . $alertaId;
-} else {
-    echo 'Desactivar alerta ' . $alertaId;
-}
-die();
-*/
-
-
 //validem que es torna una petició POST amb 0 o 1, per evitar enviar informació no vàlida a la base de dades
 if (!$alertaId || !in_array($activa, ['0', '1'])) {
     $_SESSION['error_alerta'] = "Error en modificar l'alerta.";

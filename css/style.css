@@ -600,6 +600,8 @@ a:hover {
 
 @media (max-width: 868px) {
 
+
+
     .date-group {
         flex-direction: column;
     }
@@ -692,6 +694,8 @@ a:hover {
     }
 }
 
+
+
 @media (min-width: 869px) {
     .site-header {
         display: none; 
@@ -719,12 +723,10 @@ a:hover {
         flex-direction: column;
         align-items: stretch;
     }
-
     .fastData {
         flex-direction: row;
         justify-content: space-between;
     }
-
     .fastData button {
         flex: 1;
     }
@@ -856,8 +858,6 @@ a:hover {
         -webkit-text-fill-color: inherit !important;
         border: 1px solid #d7ffc5  !important;
     }
-        
-
 
     .tab-btn {
         flex: 1;
@@ -877,11 +877,11 @@ a:hover {
         margin-bottom: -1px;
     }
 
-
     .panell-botons form {
         display: block;
         margin-bottom: 0px;
     }  
+
     .btn-submit,
     .btn-alerta,
     .btn-logout,
@@ -959,20 +959,66 @@ a:hover {
         text-align: center;
     }
     
-
     /*CSS PANELL*/
     .card-usuari {
         max-width: 600px;
-        padding: 20px;
+        padding: 20px 20px 40px 50px;
     }
 
     /* Files label + valor */
     .fila {
         display: grid;
-        grid-template-columns: 1fr auto 40px 40px; /* reserva espai icona */
+        grid-template-columns: 1fr auto 40px 40px;
         align-items: center;
         gap: 10px;
         line-height: 2.5rem;
+    }
+
+    @media (max-width: 500px) {
+        .fila {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px 8px;
+            padding: 6px 0;
+        }
+        .label {
+            width: 100%;
+        }
+        .card-usuari {
+            padding: 16px 16px 32px 32px;
+        }
+        .fila.cont-auth input {
+            width: 60%;
+        }
+
+        .alerta-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 8px;
+        }
+
+        .alerta-item .alerta-desc {
+            order: 4;      /* empeny desc al final */
+            width: 100%;   /* ocupa tota la fila */
+            flex: none;
+        }
+
+        .alerta-accions {
+            margin-left: auto;  /* empeny accions a la dreta */
+        }
+        .alerta-log-taula,
+        .alerta-log-taula tbody,
+        .alerta-log-taula tr {
+            width: 100%;
+        }
+
+        .alerta-log-taula .alerta-log-cap,
+        .alerta-log-taula .alerta-log-desc {
+            display: block;
+            width: 100%;
+        }
     }
 
     .fila.cont-auth {
@@ -1130,6 +1176,7 @@ a:hover {
         font-size: 0.8rem;
         color: #92400e;
     }
+
 @media (max-width: 868px) {
     .contenidor-alertes {
         top: auto;
@@ -1161,9 +1208,6 @@ a:hover {
     }
     
 /* -- MODAL CANVI PASS PANELL -- */
-
-
-
 .capa-modal {
     position: fixed;           /* clau per sobre de tota la pàgina */
     top: 0;
@@ -1197,10 +1241,11 @@ a:hover {
     width: 100%;
     background: #fff;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin: 8px;
 }
 
 .modal-pass {
-    max-width: 300px;
+    max-width: 400px;
 }
 
 .modal-alerta {
@@ -1471,6 +1516,7 @@ a:hover {
     width: 10px;
     height: 10px;
     border-radius: 50%;
+    display: inline-block;
 }
 
 .led-activa   { background: #28a745; }
@@ -1487,6 +1533,7 @@ a:hover {
     flex: 1;
     font-family: monospace;
     font-size: 0.85rem;
+    line-height: 22px;
 }
 
 .alerta-accions {
@@ -1562,4 +1609,70 @@ a:hover {
 
 .alerta-accions form {
     margin-bottom: 0px;
+}
+
+
+/*MODAL AJUDA + GLOBUS*/
+#boto-ajuda {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #2e4f94;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    z-index: 900;
+    transition: background 0.15s ease;
+}
+#boto-ajuda:hover {
+    background: #1a3570;
+}
+
+#modal-ajuda {
+    z-index: 9999;
+}
+#modal-ajuda .modal-pass {
+    max-width: 420px;
+    position: relative;
+}
+#modal-ajuda h2 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    color: #2e4f94;
+}
+#modal-ajuda p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 15px;
+}
+#tancar-modal {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #888;
+    line-height: 1;
+}
+#tancar-modal:hover { color: #333; }
+#modal-ajuda ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+}
+#modal-ajuda li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
 }
