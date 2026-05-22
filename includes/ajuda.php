@@ -36,8 +36,8 @@ $ajuda = [
         'text'  => 'Compara les estadístiques de dos dies diferents. Selecciona dos dates i prem "Comparar dades" per veure els resultats en paral·lel. El botó "Avui i Ahir" omple les dues dates automàticament.'
     ],
     'log' => [
-        'titol' => 'Logs de registres',
-        'text'  => 'Mostra tots els registres en brut enviats pels sensors. Filtra per data i per ubicació (interior, exterior o tots). Cada fila és una lectura individual amb temperatura, humitat, hora i identificador del sensor.'
+        'titol' => 'Registres de dades',
+        'text'  => 'Mostra tots els registres en brut enviats pels sensors. Filtra per data i per ubicació (interior, exterior o tots). Cada fila és una lectura individual amb temperatura, humitat, hora, data identificador del sensor i identificador únic del registre dins el sistema.'
     ],
     'projecte' => [
         'titol' => 'Sobre el projecte',

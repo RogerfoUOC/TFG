@@ -31,7 +31,7 @@
     include 'includes/avisos-alerts.php';
     ?>
     <main class="content">
-        <h1>Logs</h1>
+        <h1>Registre de dades</h1>
         <form method="GET" class="formulariFiltre">
             <fieldset>
                 <legend>Filtre de dades:</legend>
@@ -65,7 +65,7 @@
                         <button type="button" onclick="getAhir()">Ahir</button>
                     </div>
                 </div>
-                <button type="submit" class="btn-submit">Veure logs</button>
+                <button type="submit" class="btn-submit">Veure registres</button>
             </fieldset>
         </form>
         <!-- MOSTRAR CONTINGUT -->
@@ -105,7 +105,7 @@
                     </tbody>
                 </table>
         <?php else: ?>
-            <div class="sensedates">Selecciona un dia per mostrar el log.</div>
+            <div class="sensedates">Selecciona un dia per mostrar el registre de dades complet.</div>
         <?php endif; ?>
         </div>
         </main>

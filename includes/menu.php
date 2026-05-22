@@ -17,7 +17,7 @@
       <a href="compara.php"><i class="fa-solid fa-code-compare"></i> Compara</a>
     </li>
     <li class="<?= ($page == 'log') ? 'active' : '' ?>">
-      <a href="log.php"><i class="fa-solid fa-file-lines"></i> Logs</a>
+      <a href="log.php"><i class="fa-solid fa-file-lines"></i> Registre de dades</a>
     </li>
     <li class="<?= ($page == 'projecte') ? 'active' : '' ?>">
       <a href="projecte.php"><i class="fa-regular fa-circle-question"></i> Projecte</a>
