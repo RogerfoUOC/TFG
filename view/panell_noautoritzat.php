@@ -44,7 +44,7 @@
                         </div>
                         <div class="grup-form">
                             <label for="email">Correu electrònic:</label>
-                            <input id="email"  class="<?= isset($form_data['email']) ? 'input-error' : '' ?>" type="email" name="email" placeholder="Mail" value="<?= htmlspecialchars($form_data['email'] ?? '') ?>">
+                            <input id="email"  class="<?= isset($form_data['email']) ? 'input-error' : '' ?>" type="email" name="email" placeholder="Correu electrònic" value="<?= htmlspecialchars($form_data['email'] ?? '') ?>">
                         </div>
                         <div id="label-pass1" class="grup-form">
                             <label for="password1">Contrasenya:</label>
